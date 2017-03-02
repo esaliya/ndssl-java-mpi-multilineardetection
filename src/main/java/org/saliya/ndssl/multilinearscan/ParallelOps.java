@@ -105,43 +105,11 @@ public class ParallelOps {
         System.arraycopy(lengths, 0, displas, 1, worldProcsCount - 1);
         Arrays.parallelPrefix(displas, (m, n) -> m + n);
 
-        // DEBUG - check lengths
-        //if (worldProcRank == 1){
-        //    for (int i = 0; i < worldProcsCount; ++i){
-        //        System.out.println("Rank: " + i + " has " + worldIntBuffer.get(i) + " vertices");
-        //    }
-        //}
-
-
-        // DEBUG - check displas
-        //if (worldProcRank == 1) {
-        //    System.out.println("Rank: " + worldProcRank + " displacements");
-        //    for (int i = 0; i < worldProcsCount; ++i) {
-        //        System.out.print(displas[i] + " ");
-        //    }
-        //}
-
         int displacement = displas[worldProcRank];
         for (int i = 0; i < vertices.length; ++i){
             vertexIntBuffer.put(i+displacement, vertices[i].vertexLabel);
         }
         worldProcsComm.allGatherv(vertexIntBuffer, lengths, displas, MPI.INT);
-
-
-        // DEBUG - see what ranks have what vertices
-//        if (worldProcRank == 0){
-//            int rank = 0;
-//            do{
-//                System.out.print("\n\nRank: " + rank + " has ");
-//                int length = lengths[rank];
-//                displacement = displas[rank];
-//                for (int i = 0; i < length; ++i){
-//                    System.out.print(vertexIntBuffer.get(i+displacement) + " ");
-//                }
-//                ++rank;
-//
-//            } while (rank < worldProcsCount);
-//        }
 
 
         /* Just keep in mind this table and the vertexIntBuffer can be really large
@@ -166,54 +134,6 @@ public class ParallelOps {
                 outNeighborLabelToWorldRank.put(label, vertexLabelToWorldRank.get(label));
             }
         }
-
-
-        /*Hashtable<Integer, Hashtable<Integer, List<Integer>>> rankToVertexLabelToMyVerticesWithOutEdges = new Hashtable<>();
-        for (int rank = 0; rank < worldProcsCount; ++rank){
-            displacement = displas[rank];
-            // for each vertex in rank see if that vertex is an out-neighbor of any of my vertices
-            for (int i = 0; i < lengths[rank]; ++i){
-                int vertexLabel = vertexIntBuffer.get(i+displacement);
-                for (Vertex vertex : vertices){
-                    if (vertex.hasOutNeighbor(vertexLabel)){
-                        if (!rankToVertexLabelToMyVerticesWithOutEdges.containsKey(rank)){
-                            rankToVertexLabelToMyVerticesWithOutEdges.put(rank, new Hashtable<>());
-                        }
-                        Hashtable<Integer, List<Integer>> vertexLabelToMyVerticesWithOutEdges =
-                                rankToVertexLabelToMyVerticesWithOutEdges.get(rank);
-                        if (!vertexLabelToMyVerticesWithOutEdges.containsKey(vertexLabel)){
-                            vertexLabelToMyVerticesWithOutEdges.put(vertexLabel, new ArrayList<>());
-                        }
-                        List<Integer> list = vertexLabelToMyVerticesWithOutEdges.get(vertexLabel);
-                        list.add(vertex.vertexLabel);
-                    }
-                }
-            }
-        }
-
-
-
-        // DEBUG - print rankToVertexLabelToMyVerticesWithOutEdges
-        StringBuffer sb = new StringBuffer();
-        sb.append("Rank: ").append(worldProcRank).append('\n');
-        for (int rank = 0; rank < worldProcsCount; ++rank){
-            Hashtable<Integer, List<Integer>> vertexLabelToMyVerticesWithOutEdges =
-                    rankToVertexLabelToMyVerticesWithOutEdges.get(rank);
-            if (vertexLabelToMyVerticesWithOutEdges == null)  continue;
-
-            Set<Integer> keys = vertexLabelToMyVerticesWithOutEdges.keySet();
-            for (int key : keys){
-                sb.append("  has out edges to vertex ").append(key).append(" in rank ").append(rank).append(" from " +
-                        "vertices ");
-                List<Integer> vs = vertexLabelToMyVerticesWithOutEdges.get(key);
-                sb.append(Arrays.toString(vs.toArray())).append('\n');
-
-            }
-        }
-        String msg = allReduce(sb.toString(), worldProcsComm);
-        if (worldProcRank == 0){
-            System.out.println(msg);
-        }*/
 
         // ----------------
         TreeMap<Integer, List<Integer>> sendtoRankToMsgCountAndDestinedVertexLabels = new TreeMap<>();
@@ -252,50 +172,24 @@ public class ParallelOps {
             });
         }
         // DEBUG - print how many message counts and what are destined vertex labels (in order) for each rank from me
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.append("\n--Rank: ").append(worldProcRank).append('\n');
-            for (Map.Entry<Integer, List<Integer>> kv : sendtoRankToMsgCountAndDestinedVertexLabels.entrySet()) {
-                List<Integer> list = kv.getValue();
-                sb.append(" sends ").append(list.get(0)).append(" msgs to rank ").append(kv.getKey()).append(" destined " +
-                        "to vertices ");
-                for (int i = 1; i < list.size(); ++i) {
-                    sb.append(list.get(i)).append(" ");
-                }
-                sb.append(" in order \n");
-            }
-            String msg = allReduce(sb.toString(), worldProcsComm);
-            if (worldProcRank == 0) {
-                System.out.println(msg);
-            }
-        }
+//        {
+//            StringBuilder sb = new StringBuilder();
+//            sb.append("\n--Rank: ").append(worldProcRank).append('\n');
+//            for (Map.Entry<Integer, List<Integer>> kv : sendtoRankToMsgCountAndDestinedVertexLabels.entrySet()) {
+//                List<Integer> list = kv.getValue();
+//                sb.append(" sends ").append(list.get(0)).append(" msgs to rank ").append(kv.getKey()).append(" destined " +
+//                        "to vertices ");
+//                for (int i = 1; i < list.size(); ++i) {
+//                    sb.append(list.get(i)).append(" ");
+//                }
+//                sb.append(" in order \n");
+//            }
+//            String msg = allReduce(sb.toString(), worldProcsComm);
+//            if (worldProcRank == 0) {
+//                System.out.println(msg);
+//            }
+//        }
         // ----------------
-
-
-        // ****************
-        /*Hashtable<Integer, Integer> sendtoRankToMsgCount = new Hashtable<>();
-        for (Vertex vertex : vertices){
-            vertex.outNeighborLabelToWorldRank.values().forEach(rank -> {
-                Integer ret = sendtoRankToMsgCount.putIfAbsent(rank, 1);
-                if (ret!=null){
-                    sendtoRankToMsgCount.put(rank, ret+1);
-                }
-            });
-        }
-
-        // DEBUG - print how many message counts for each rank from me
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.append("\n**Rank: ").append(worldProcRank).append('\n');
-            for (Map.Entry<Integer, Integer> kv : sendtoRankToMsgCount.entrySet()) {
-                sb.append(" sends ").append(kv.getValue()).append(" msgs to rank ").append(kv.getKey()).append('\n');
-            }
-            String msg = allReduce(sb.toString(), worldProcsComm);
-            if (worldProcRank == 0) {
-                System.out.println(msg);
-            }
-        }*/
-        // ****************
 
         // ################
         recvfromRankToMsgCountAndforvertexLabels = new TreeMap<>();
@@ -342,23 +236,23 @@ public class ParallelOps {
         }
 
         // DEBUG - print how many message counts and what are destined vertex labels (in order) for each rank from me
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.append("\n##Rank: ").append(worldProcRank).append('\n');
-            for (Map.Entry<Integer, List<Integer>> kv : recvfromRankToMsgCountAndforvertexLabels.entrySet()) {
-                List<Integer> list = kv.getValue();
-                sb.append(" recvs ").append(list.get(0)).append(" msgs from rank ").append(kv.getKey()).append(" " +
-                        "for vertices ");
-                for (int i = 1; i < list.size(); ++i) {
-                    sb.append(list.get(i)).append(" ");
-                }
-                sb.append(" in order \n");
-            }
-            String msg = allReduce(sb.toString(), worldProcsComm);
-            if (worldProcRank == 0) {
-                System.out.println(msg);
-            }
-        }
+//        {
+//            StringBuilder sb = new StringBuilder();
+//            sb.append("\n##Rank: ").append(worldProcRank).append('\n');
+//            for (Map.Entry<Integer, List<Integer>> kv : recvfromRankToMsgCountAndforvertexLabels.entrySet()) {
+//                List<Integer> list = kv.getValue();
+//                sb.append(" recvs ").append(list.get(0)).append(" msgs from rank ").append(kv.getKey()).append(" " +
+//                        "for vertices ");
+//                for (int i = 1; i < list.size(); ++i) {
+//                    sb.append(list.get(i)).append(" ");
+//                }
+//                sb.append(" in order \n");
+//            }
+//            String msg = allReduce(sb.toString(), worldProcsComm);
+//            if (worldProcRank == 0) {
+//                System.out.println(msg);
+//            }
+//        }
         // ################
 
 
