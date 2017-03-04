@@ -108,7 +108,7 @@ public class Program {
             }
 
             for (Vertex vertex : vertices) {
-                compute();
+                vertex.compute();
             }
 
             if (ss < MAX_SS - 1){
