@@ -9,6 +9,7 @@ import org.saliya.ndssl.Utils;
 
 import java.util.Hashtable;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 /**
  * Saliya Ekanayake on 2/21/17.
@@ -101,10 +102,10 @@ public class Program {
         vertices = ParallelOps.setParallelDecomposition(inputFile, vertexCount);
 
         /* Super step loop*/
-        /*int MAX_SS = 10;
+        int MAX_SS = 2;
         for (int ss = 0; ss < MAX_SS; ++ss) {
             if (ss > 0){
-                receiveMessages();
+                receiveMessages(vertices[0].msgSize);
             }
 
             for (Vertex vertex : vertices) {
@@ -112,9 +113,9 @@ public class Program {
             }
 
             if (ss < MAX_SS - 1){
-                sendMessages();
+                sendMessages(vertices);
             }
-        }*/
+        }
 
         // DEBUG
         //System.out.println("Rank: " + ParallelOps.worldProcRank + " startVertexID: " + vertices[0].vertexId + " " +
@@ -126,15 +127,24 @@ public class Program {
         ParallelOps.tearDownParallelism();
     }
 
-    private static void sendMessages() {
+    private static void sendMessages(Vertex[] vertices) {
+        for (Vertex vertex : vertices){
 
+            vertex.outrankToSendBuffer.entrySet().forEach(kv ->{
+                int outrank = kv.getKey();
+                VertexBuffer vertexBuffer = kv.getValue();
+                int offset = ParallelOps.BUFFER_OFFSET + vertexBuffer.offsetFactor * vertex.msgSize;
+                IntStream.range(0, vertex.msgSize).forEach(i ->{
+                    vertexBuffer.buffer.put(offset+i, vertex.message.get(i));
+                });
+            });
+        }
+        ParallelOps.sendMessages(vertices[0].msgSize);
     }
 
-    private static void compute() {
-    }
 
-    private static void receiveMessages() {
-
+    private static void receiveMessages(int msgSize) throws MPIException {
+        ParallelOps.recvMessages(msgSize);
     }
 
     private static void runProgram() {

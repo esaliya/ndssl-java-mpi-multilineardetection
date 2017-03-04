@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import mpi.Intracomm;
 import mpi.MPI;
 import mpi.MPIException;
+import mpi.Request;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,6 +41,10 @@ public class ParallelOps {
     public static TreeMap<Integer, IntBuffer> sendtoRankToSendBuffer;
     // to store msg count and msg size
     public static final int BUFFER_OFFSET = 2;
+    public static final int MSG_COUNT_OFFSET = 0;
+    public static final int MSG_SIZE_OFFSET = 1;
+
+    public static TreeMap<Integer, Request> requests;
 
 
     public static void setupParallelism(String[] args) throws MPIException {
@@ -355,6 +360,7 @@ public class ParallelOps {
         // END ################
 
         // ~~~~~~~~~~~~~~~~
+        requests = new TreeMap<>();
         recvfromRankToRecvBuffer = new TreeMap<>();
         recvfromRankToMsgCountAndforvertexLabels.entrySet().forEach(kv -> {
             int recvfromRank = kv.getKey();
@@ -411,19 +417,22 @@ public class ParallelOps {
             sendtoRankToSendBuffer.put(sendtoRank, b);
         });
 
-        int offsetFactor = 0;
+
+        TreeMap<Integer, Integer> outrankToOffsetFactor = new TreeMap<>();
         for (Vertex vertex : vertices){
-            int finalOffsetFactor = offsetFactor;
-            vertex.outrankToSendBuffer.keySet().forEach(k -> {
-                VertexBuffer vertexSendBuffer = vertex.outrankToSendBuffer.get(k);
-                vertexSendBuffer.setOffsetFactor(finalOffsetFactor);
-                vertexSendBuffer.setBuffer(sendtoRankToSendBuffer.get(k));
+            Set<Integer> vertexOutRanks = vertex.outrankToSendBuffer.keySet();
+            vertexOutRanks.forEach(outRank -> {
+                if (!outrankToOffsetFactor.containsKey(outRank)) {
+                    outrankToOffsetFactor.put(outRank, 0);
+                } else {
+                    outrankToOffsetFactor.put(outRank, outrankToOffsetFactor.get(outRank)+1);
+                }
+                VertexBuffer vertexSendBuffer = vertex.outrankToSendBuffer.get(outRank);
+                vertexSendBuffer.setOffsetFactor(outrankToOffsetFactor.get(outRank));
+                vertexSendBuffer.setBuffer(sendtoRankToSendBuffer.get(outRank));
             });
-            ++offsetFactor;
+
         }
-
-
-
     }
 
     public static String allReduce(String value, Intracomm comm) throws MPIException {
@@ -440,5 +449,64 @@ public class ParallelOps {
         System.arraycopy(value.toCharArray(), 0,recv, displas[worldProcRank], length);
         comm.allGatherv(recv, lengths, displas, MPI.CHAR);
         return  new String(recv);
+    }
+
+    public static void sendMessages(int msgSize) {
+        sendtoRankToSendBuffer.entrySet().forEach(kv -> {
+            int sendtoRank = kv.getKey();
+            IntBuffer buffer = kv.getValue();
+            buffer.put(MSG_SIZE_OFFSET, msgSize);
+
+            try {
+                worldProcsComm.iSend(buffer, BUFFER_OFFSET+buffer.get(MSG_COUNT_OFFSET)*msgSize, MPI.INT, sendtoRank,
+                        worldProcRank);
+            } catch (MPIException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public static void recvMessages(int msgSize) throws MPIException {
+        recvfromRankToRecvBuffer.entrySet().forEach(kv -> {
+            int recvfromRank = kv.getKey();
+            IntBuffer buffer = kv.getValue();
+            int msgCount = recvfromRankToMsgCountAndforvertexLabels.get(recvfromRank).get(0);
+            try {
+                requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET+msgCount*msgSize, MPI.INT,
+                        recvfromRank, recvfromRank));
+            } catch (MPIException e) {
+                e.printStackTrace();
+            }
+        });
+
+        requests.values().forEach(request -> {
+            try {
+                request.waitFor();
+            } catch (MPIException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // DEBUG
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n%%Rank: ").append(worldProcRank);
+            recvfromRankToRecvBuffer.entrySet().forEach(kv -> {
+                int recvfromRank = kv.getKey();
+                IntBuffer b = kv.getValue();
+                int recvdMsgSize = b.get(MSG_SIZE_OFFSET);
+                if (recvdMsgSize != msgSize) throw new RuntimeException("recvd msg size " + recvdMsgSize  + " != " +
+                        msgSize + " msgSize");
+                int msgCount = b.get(MSG_COUNT_OFFSET);
+                sb.append("\n recvd ").append(msgCount).append(" msgs from rank ").append(recvfromRank).append(" of " +
+                        "size ").append(recvdMsgSize).append(" msg list: ");
+                IntStream.range(0, msgCount).forEach(i -> sb.append(b.get(BUFFER_OFFSET+i)).append(" "));
+            });
+            sb.append('\n');
+            String msg = allReduce(sb.toString(), worldProcsComm);
+            if (worldProcRank == 0) {
+                System.out.println(msg);
+            }
+        }
     }
 }

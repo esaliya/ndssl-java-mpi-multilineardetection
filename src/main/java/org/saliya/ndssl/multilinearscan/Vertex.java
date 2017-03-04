@@ -1,5 +1,8 @@
 package org.saliya.ndssl.multilinearscan;
 
+import mpi.MPI;
+
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -17,7 +20,9 @@ public class Vertex {
     TreeMap<Integer, VertexBuffer> outrankToSendBuffer;
     List<RecvVertexBuffer> recvBuffers;
 
-    int msgSize = ParallelOps.MAX_MSG_SIZE;
+    IntBuffer message;
+
+    int msgSize = 1;
 
     public Vertex(){
 
@@ -33,6 +38,7 @@ public class Vertex {
             outNeighborLabelToWorldRank.put(Integer.parseInt(splits[i]), -1);
         }
         recvBuffers = new ArrayList<>();
+        message = MPI.newIntBuffer(ParallelOps.MAX_MSG_SIZE);
     }
 
     public boolean hasOutNeighbor(int outNeighborLabel){
@@ -40,6 +46,7 @@ public class Vertex {
     }
 
     public void compute(){
+        message.put(0, vertexLabel);
 
     }
 }
