@@ -7,8 +7,6 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.saliya.ndssl.Utils;
 
-import java.util.Hashtable;
-import java.util.Set;
 import java.util.stream.IntStream;
 
 /**
@@ -104,17 +102,16 @@ public class Program {
         /* Super step loop*/
         int MAX_SS = 2;
         for (int ss = 0; ss < MAX_SS; ++ss) {
-            int msgSize = 1;// has to be decided per super step
             if (ss > 0){
-                receiveMessages(msgSize);
+                receiveMessages();
             }
 
             for (Vertex vertex : vertices) {
-                vertex.compute();
+                vertex.compute(ss);
             }
 
             if (ss < MAX_SS - 1){
-                sendMessages(vertices, msgSize);
+                sendMessages(vertices, ss);
             }
         }
 
@@ -128,23 +125,17 @@ public class Program {
         ParallelOps.tearDownParallelism();
     }
 
-    private static void sendMessages(Vertex[] vertices, int msgSize) {
+    private static void sendMessages(Vertex[] vertices, int superStep) {
+        int msgSize = -1;
         for (Vertex vertex : vertices){
-
-            vertex.outrankToSendBuffer.entrySet().forEach(kv ->{
-                VertexBuffer vertexBuffer = kv.getValue();
-                int offset = ParallelOps.BUFFER_OFFSET + vertexBuffer.offsetFactor * vertex.msgSize;
-                IntStream.range(0, vertex.msgSize).forEach(i ->{
-                    vertexBuffer.buffer.put(offset+i, vertex.message.get(i));
-                });
-            });
+            msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
         }
         ParallelOps.sendMessages(msgSize);
     }
 
 
-    private static void receiveMessages(int msgSize) throws MPIException {
-        ParallelOps.recvMessages(msgSize);
+    private static void receiveMessages() throws MPIException {
+        ParallelOps.recvMessages();
     }
 
     private static void runProgram() {

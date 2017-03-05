@@ -44,6 +44,8 @@ public class ParallelOps {
     public static final int MSG_COUNT_OFFSET = 0;
     public static final int MSG_SIZE_OFFSET = 1;
 
+    public static int msgSizeToReceive;
+
     public static TreeMap<Integer, Request> requests;
 
 
@@ -186,56 +188,6 @@ public class ParallelOps {
             }
         }
 
-
-        // ++++++++++++++++
-//        Hashtable<Integer, Hashtable<Integer, List<Integer>>> rankToVertexLabelToMyVerticesWithOutEdges = new Hashtable<>();
-//        for (int rank = 0; rank < worldProcsCount; ++rank){
-//            displacement = displas[rank];
-//            // for each vertex in rank see if that vertex is an out-neighbor of any of my vertices
-//            for (int i = 0; i < lengths[rank]; ++i){
-//                int vertexLabel = vertexIntBuffer.get(i+displacement);
-//                for (Vertex vertex : vertices){
-//                    if (vertex.hasOutNeighbor(vertexLabel)){
-//                        if (!rankToVertexLabelToMyVerticesWithOutEdges.containsKey(rank)){
-//                            rankToVertexLabelToMyVerticesWithOutEdges.put(rank, new Hashtable<>());
-//                        }
-//                        Hashtable<Integer, List<Integer>> vertexLabelToMyVerticesWithOutEdges =
-//                                rankToVertexLabelToMyVerticesWithOutEdges.get(rank);
-//                        if (!vertexLabelToMyVerticesWithOutEdges.containsKey(vertexLabel)){
-//                            vertexLabelToMyVerticesWithOutEdges.put(vertexLabel, new ArrayList<>());
-//                        }
-//                        List<Integer> list = vertexLabelToMyVerticesWithOutEdges.get(vertexLabel);
-//                        list.add(vertex.vertexLabel);
-//                    }
-//                }
-//            }
-//        }
-//
-//        // DEBUG - print rankToVertexLabelToMyVerticesWithOutEdges
-//        {
-//            StringBuffer sb = new StringBuffer();
-//            sb.append("Rank: ").append(worldProcRank).append('\n');
-//            for (int rank = 0; rank < worldProcsCount; ++rank) {
-//                Hashtable<Integer, List<Integer>> vertexLabelToMyVerticesWithOutEdges =
-//                        rankToVertexLabelToMyVerticesWithOutEdges.get(rank);
-//                if (vertexLabelToMyVerticesWithOutEdges == null) continue;
-//
-//                Set<Integer> keys = vertexLabelToMyVerticesWithOutEdges.keySet();
-//                for (int key : keys) {
-//                    sb.append("  has out edges to vertex ").append(key).append(" in rank ").append(rank).append(" from " +
-//                            "vertices ");
-//                    List<Integer> vs = vertexLabelToMyVerticesWithOutEdges.get(key);
-//                    sb.append(Arrays.toString(vs.toArray())).append('\n');
-//
-//                }
-//            }
-//            String msg = allReduce(sb.toString(), worldProcsComm);
-//            if (worldProcRank == 0) {
-//                System.out.println(msg);
-//            }
-//        }
-        // END ++++++++++++++++
-
         // ----------------
         sendtoRankToMsgCountAndDestinedVertexLabels = new TreeMap<>();
         final int[] msgSize = {0};
@@ -374,6 +326,7 @@ public class ParallelOps {
                 if (val >= 0){
                     Vertex vertex = vertexLabelToVertex.get(val);
                     vertex.recvBuffers.add(new RecvVertexBuffer(currentMsg, b, recvfromRank));
+                    vertex.recvdMessages.add(new Message());
                     currentMsg++;
                     ++i;
                 } else if (val < 0) {
@@ -382,6 +335,7 @@ public class ParallelOps {
                         val = list.get(j);
                         Vertex vertex = vertexLabelToVertex.get(val);
                         vertex.recvBuffers.add(new RecvVertexBuffer(currentMsg, b, recvfromRank));
+                        vertex.recvdMessages.add(new Message());
                     }
                     i+=intendedVertexCount+1;
                     currentMsg++;
@@ -452,6 +406,7 @@ public class ParallelOps {
     }
 
     public static void sendMessages(int msgSize) {
+        msgSizeToReceive = msgSize;
         sendtoRankToSendBuffer.entrySet().forEach(kv -> {
             int sendtoRank = kv.getKey();
             IntBuffer buffer = kv.getValue();
@@ -466,13 +421,13 @@ public class ParallelOps {
         });
     }
 
-    public static void recvMessages(int msgSize) throws MPIException {
+    public static void recvMessages() throws MPIException {
         recvfromRankToRecvBuffer.entrySet().forEach(kv -> {
             int recvfromRank = kv.getKey();
             IntBuffer buffer = kv.getValue();
             int msgCount = recvfromRankToMsgCountAndforvertexLabels.get(recvfromRank).get(0);
             try {
-                requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET+msgCount*msgSize, MPI.INT,
+                requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET+msgCount*msgSizeToReceive, MPI.INT,
                         recvfromRank, recvfromRank));
             } catch (MPIException e) {
                 e.printStackTrace();
@@ -495,8 +450,8 @@ public class ParallelOps {
                 int recvfromRank = kv.getKey();
                 IntBuffer b = kv.getValue();
                 int recvdMsgSize = b.get(MSG_SIZE_OFFSET);
-                if (recvdMsgSize != msgSize) throw new RuntimeException("recvd msg size " + recvdMsgSize  + " != " +
-                        msgSize + " msgSize");
+                if (recvdMsgSize != msgSizeToReceive) throw new RuntimeException("recvd msg size " + recvdMsgSize  + " != " +
+                        msgSizeToReceive + " msgSize");
                 int msgCount = b.get(MSG_COUNT_OFFSET);
                 sb.append("\n recvd ").append(msgCount).append(" msgs from rank ").append(recvfromRank).append(" of " +
                         "size ").append(recvdMsgSize).append(" msg list: ");

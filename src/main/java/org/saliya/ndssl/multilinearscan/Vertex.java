@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 /**
  * Saliya Ekanayake on 2/22/17.
@@ -20,9 +21,8 @@ public class Vertex {
     TreeMap<Integer, VertexBuffer> outrankToSendBuffer;
     List<RecvVertexBuffer> recvBuffers;
 
-    IntBuffer message;
-
-    int msgSize = 1;
+    Message message;
+    List<Message> recvdMessages;
 
     public Vertex(){
 
@@ -38,15 +38,36 @@ public class Vertex {
             outNeighborLabelToWorldRank.put(Integer.parseInt(splits[i]), -1);
         }
         recvBuffers = new ArrayList<>();
-        message = MPI.newIntBuffer(ParallelOps.MAX_MSG_SIZE);
+        message = new Message(vertexLabel);
+        recvdMessages = new ArrayList<>();
     }
 
     public boolean hasOutNeighbor(int outNeighborLabel){
         return outNeighborLabelToWorldRank.containsKey(outNeighborLabel);
     }
 
-    public void compute(){
-        message.put(0, vertexLabel);
+    public void compute(int superStep){
+        /* compute logic */
+
+        /* decide msg size */
+        int msgSize = 1;
+
+        message.msgSize = msgSize;
+        message.data = vertexLabel;
+    }
+
+    public int prepareSend(int superStep, int shift){
+        /* copy msg to outrankToSendBuffer */
+        outrankToSendBuffer.entrySet().forEach(kv ->{
+            VertexBuffer vertexBuffer = kv.getValue();
+            int offset = shift + vertexBuffer.offsetFactor * message.msgSize;
+            message.copyTo(vertexBuffer.buffer, offset);
+        });
+        return message.msgSize;
+    }
+
+    public void processRecvd(int superStep, int shift){
 
     }
+
 }
