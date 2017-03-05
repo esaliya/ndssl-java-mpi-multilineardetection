@@ -104,8 +104,9 @@ public class Program {
         /* Super step loop*/
         int MAX_SS = 2;
         for (int ss = 0; ss < MAX_SS; ++ss) {
+            int msgSize = 1;// has to be decided per super step
             if (ss > 0){
-                receiveMessages(vertices[0].msgSize);
+                receiveMessages(msgSize);
             }
 
             for (Vertex vertex : vertices) {
@@ -113,7 +114,7 @@ public class Program {
             }
 
             if (ss < MAX_SS - 1){
-                sendMessages(vertices);
+                sendMessages(vertices, msgSize);
             }
         }
 
@@ -127,11 +128,10 @@ public class Program {
         ParallelOps.tearDownParallelism();
     }
 
-    private static void sendMessages(Vertex[] vertices) {
+    private static void sendMessages(Vertex[] vertices, int msgSize) {
         for (Vertex vertex : vertices){
 
             vertex.outrankToSendBuffer.entrySet().forEach(kv ->{
-                int outrank = kv.getKey();
                 VertexBuffer vertexBuffer = kv.getValue();
                 int offset = ParallelOps.BUFFER_OFFSET + vertexBuffer.offsetFactor * vertex.msgSize;
                 IntStream.range(0, vertex.msgSize).forEach(i ->{
@@ -139,7 +139,7 @@ public class Program {
                 });
             });
         }
-        ParallelOps.sendMessages(vertices[0].msgSize);
+        ParallelOps.sendMessages(msgSize);
     }
 
 
