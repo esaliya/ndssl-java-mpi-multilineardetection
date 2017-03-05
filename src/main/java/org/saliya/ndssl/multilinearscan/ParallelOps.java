@@ -325,7 +325,7 @@ public class ParallelOps {
                 int val = list.get(i);
                 if (val >= 0){
                     Vertex vertex = vertexLabelToVertex.get(val);
-                    vertex.recvBuffers.add(new RecvVertexBuffer(currentMsg, b, recvfromRank));
+                    vertex.recvBuffers.add(new RecvVertexBuffer(currentMsg, b, recvfromRank, MSG_SIZE_OFFSET));
                     vertex.recvdMessages.add(new Message());
                     currentMsg++;
                     ++i;
@@ -334,7 +334,7 @@ public class ParallelOps {
                     for (int j = i+1; j <= intendedVertexCount+i; ++j){
                         val = list.get(j);
                         Vertex vertex = vertexLabelToVertex.get(val);
-                        vertex.recvBuffers.add(new RecvVertexBuffer(currentMsg, b, recvfromRank));
+                        vertex.recvBuffers.add(new RecvVertexBuffer(currentMsg, b, recvfromRank, MSG_SIZE_OFFSET));
                         vertex.recvdMessages.add(new Message());
                     }
                     i+=intendedVertexCount+1;

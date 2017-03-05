@@ -23,8 +23,6 @@ public class Program {
     private static boolean bind;
     private static int cps;
 
-    private static Vertex[] vertices;
-
     static {
         programOptions.addOption(
                 String.valueOf(Constants.CMD_OPTION_SHORT_VC),
@@ -97,30 +95,16 @@ public class Program {
         readConfiguration(cmd);
 
         ParallelOps.setupParallelism(args);
-        vertices = ParallelOps.setParallelDecomposition(inputFile, vertexCount);
+        Vertex[] vertices = ParallelOps.setParallelDecomposition(inputFile, vertexCount);
 
-        /* Super step loop*/
-        int MAX_SS = 2;
-        for (int ss = 0; ss < MAX_SS; ++ss) {
-            if (ss > 0){
-                receiveMessages();
-            }
 
-            for (Vertex vertex : vertices) {
-                vertex.compute(ss);
-            }
-
-            if (ss < MAX_SS - 1){
-                sendMessages(vertices, ss);
-            }
-        }
 
         // DEBUG
         //System.out.println("Rank: " + ParallelOps.worldProcRank + " startVertexID: " + vertices[0].vertexId + " " +
         //        "startVertexLabel: " + vertices[0].vertexLabel + " endVertexID: " + vertices[vertices.length - 1]
         //        .vertexId + " endVertexLabel: " + vertices[vertices.length - 1].vertexLabel);
 
-        runProgram();
+        runProgram(vertices);
 
         ParallelOps.tearDownParallelism();
     }
@@ -134,11 +118,30 @@ public class Program {
     }
 
 
-    private static void receiveMessages() throws MPIException {
+    private static void receiveMessages(Vertex[] vertices, int superStep) throws MPIException {
         ParallelOps.recvMessages();
+        for (Vertex vertex : vertices){
+            vertex.processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
+        }
     }
 
-    private static void runProgram() {
+    private static void runProgram(Vertex[] vertices) throws MPIException {
+
+        /* Super step loop*/
+        int MAX_SS = 2;
+        for (int ss = 0; ss < MAX_SS; ++ss) {
+            if (ss > 0){
+                receiveMessages(vertices, ss);
+            }
+
+            for (Vertex vertex : vertices) {
+                vertex.compute(ss);
+            }
+
+            if (ss < MAX_SS - 1){
+                sendMessages(vertices, ss);
+            }
+        }
     }
 
 

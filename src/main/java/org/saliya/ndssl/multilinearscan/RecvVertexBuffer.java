@@ -7,9 +7,15 @@ import java.nio.IntBuffer;
  */
 public class RecvVertexBuffer extends VertexBuffer {
     int recvfromRank;
+    int msgSizeOffset;
 
-    public RecvVertexBuffer(int offsetFactor, IntBuffer buffer, int recvfromRank) {
+    public RecvVertexBuffer(int offsetFactor, IntBuffer buffer, int recvfromRank, int msgSizeOffset) {
         super(offsetFactor, buffer);
         this.recvfromRank = recvfromRank;
+        this.msgSizeOffset = msgSizeOffset;
+    }
+
+    public int getMessageSize(){
+        return buffer.get(msgSizeOffset);
     }
 }

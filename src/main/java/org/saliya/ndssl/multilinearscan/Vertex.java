@@ -54,6 +54,16 @@ public class Vertex {
 
         message.msgSize = msgSize;
         message.data = vertexLabel;
+
+        if (superStep > 0){
+            StringBuffer sb = new StringBuffer("\nVertex ");
+            sb.append(vertexLabel).append(" recvd ");
+            recvdMessages.forEach(m -> {
+                sb.append(m.data).append(" ");
+            });
+            sb.append('\n');
+            System.out.println(sb.toString());
+        }
     }
 
     public int prepareSend(int superStep, int shift){
@@ -67,7 +77,14 @@ public class Vertex {
     }
 
     public void processRecvd(int superStep, int shift){
-
+        for (int i = 0; i < recvBuffers.size(); ++i){
+            RecvVertexBuffer recvVertexBuffer = recvBuffers.get(i);
+            Message recvdMessage = recvdMessages.get(i);
+            int recvdMsgSize = recvVertexBuffer
+                    .getMessageSize
+                            ();
+            recvdMessage.loadFrom(recvVertexBuffer.buffer, shift+recvVertexBuffer.offsetFactor*recvdMsgSize, recvdMsgSize);
+        }
     }
 
 }
