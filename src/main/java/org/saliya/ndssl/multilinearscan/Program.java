@@ -97,14 +97,9 @@ public class Program {
         ParallelOps.setupParallelism(args);
         Vertex[] vertices = ParallelOps.setParallelDecomposition(inputFile, vertexCount);
 
-
-
-        // DEBUG
-        //System.out.println("Rank: " + ParallelOps.worldProcRank + " startVertexID: " + vertices[0].vertexId + " " +
-        //        "startVertexLabel: " + vertices[0].vertexLabel + " endVertexID: " + vertices[vertices.length - 1]
-        //        .vertexId + " endVertexLabel: " + vertices[vertices.length - 1].vertexLabel);
-
-        runProgram(vertices);
+        for (int i = 0; i < 2; ++i) {
+            runProgram(vertices);
+        }
 
         ParallelOps.tearDownParallelism();
     }

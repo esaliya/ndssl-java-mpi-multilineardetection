@@ -48,6 +48,8 @@ public class ParallelOps {
 
     public static TreeMap<Integer, Request> requests;
 
+    private static boolean debug = false;
+
 
     public static void setupParallelism(String[] args) throws MPIException {
         MPI.Init(args);
@@ -148,19 +150,19 @@ public class ParallelOps {
 
 
         // DEBUG - see what ranks have what vertices
-//        if (worldProcRank == 0){
-//            int rank = 0;
-//            do{
-//                System.out.print("\n\nRank: " + rank + " has ");
-//                int length = lengths[rank];
-//                displacement = displas[rank];
-//                for (int i = 0; i < length; ++i){
-//                    System.out.print(vertexIntBuffer.get(i+displacement) + " ");
-//                }
-//                ++rank;
-//
-//            } while (rank < worldProcsCount);
-//        }
+        if (debug && worldProcRank == 0){
+            int rank = 0;
+            do{
+                System.out.print("\n\nRank: " + rank + " has ");
+                int length = lengths[rank];
+                displacement = displas[rank];
+                for (int i = 0; i < length; ++i){
+                    System.out.print(vertexIntBuffer.get(i+displacement) + " ");
+                }
+                ++rank;
+
+            } while (rank < worldProcsCount);
+        }
 
 
         /* Just keep in mind this table and the vertexIntBuffer can be really large
@@ -226,7 +228,7 @@ public class ParallelOps {
             });
         }
         // DEBUG - print how many message counts and what are destined vertex labels (in order) for each rank from me
-        {
+        if (debug){
             StringBuilder sb = new StringBuilder();
             sb.append("\n--Rank: ").append(worldProcRank).append('\n');
             for (Map.Entry<Integer, List<Integer>> kv : sendtoRankToMsgCountAndDestinedVertexLabels.entrySet()) {
@@ -292,7 +294,7 @@ public class ParallelOps {
         }
 
         // DEBUG - print how many message counts and what are destined vertex labels (in order) for each rank from me
-        {
+        if (debug){
             StringBuilder sb = new StringBuilder();
             sb.append("\n##Rank: ").append(worldProcRank).append('\n');
             for (Map.Entry<Integer, List<Integer>> kv : recvfromRankToMsgCountAndforvertexLabels.entrySet()) {
@@ -344,7 +346,7 @@ public class ParallelOps {
         });
 
         // DEBUG
-        {
+        if (debug) {
             StringBuilder sb = new StringBuilder();
             sb.append("\n##Rank: ").append(worldProcRank).append('\n');
             for (Vertex vertex : vertices){
@@ -443,7 +445,7 @@ public class ParallelOps {
         });
 
         // DEBUG
-        {
+        if (debug) {
             StringBuilder sb = new StringBuilder();
             sb.append("\n%%Rank: ").append(worldProcRank);
             recvfromRankToRecvBuffer.entrySet().forEach(kv -> {

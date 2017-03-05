@@ -42,10 +42,6 @@ public class Vertex {
         recvdMessages = new ArrayList<>();
     }
 
-    public boolean hasOutNeighbor(int outNeighborLabel){
-        return outNeighborLabelToWorldRank.containsKey(outNeighborLabel);
-    }
-
     public void compute(int superStep){
         /* compute logic */
 
