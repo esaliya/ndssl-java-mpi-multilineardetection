@@ -1,4 +1,4 @@
-package org.saliya.ndssl.multilinearscan;
+package org.saliya.ndssl.multilinearscan.mpi;
 
 import com.google.common.base.Strings;
 import mpi.Intracomm;
@@ -8,7 +8,9 @@ import mpi.Request;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.DoubleBuffer;
 import java.nio.IntBuffer;
+import java.nio.LongBuffer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -28,8 +30,11 @@ public class ParallelOps {
     public static int worldProcsCount;
 
     public static IntBuffer oneIntBuffer;
+    public static DoubleBuffer oneDoubleBuffer;
     public static IntBuffer worldIntBuffer;
     public static IntBuffer vertexIntBuffer;
+    public static LongBuffer vertexLongBuffer;
+    public static DoubleBuffer vertexDoubleBuffer;
 
     // Will include same rank as well
     public static TreeMap<Integer, List<Integer>> recvfromRankToMsgCountAndforvertexLabels;
@@ -49,6 +54,8 @@ public class ParallelOps {
     public static TreeMap<Integer, Request> requests;
 
     private static boolean debug = false;
+    public static int[] localVertexCounts;
+    public static int[] localVertexDisplas;
 
 
     public static void setupParallelism(String[] args) throws MPIException {
@@ -59,6 +66,7 @@ public class ParallelOps {
         worldProcsCount = worldProcsComm.getSize();
 
         oneIntBuffer = MPI.newIntBuffer(1);
+        oneDoubleBuffer = MPI.newDoubleBuffer(1);
         worldIntBuffer = MPI.newIntBuffer(worldProcsCount);
 
     }
@@ -71,6 +79,8 @@ public class ParallelOps {
     public static Vertex[] setParallelDecomposition(String file, int vertexCount) throws MPIException {
         /* Decompose input graph into processes */
         vertexIntBuffer = MPI.newIntBuffer(vertexCount);
+        vertexLongBuffer = MPI.newLongBuffer(vertexCount);
+        vertexDoubleBuffer = MPI.newDoubleBuffer(vertexCount);
         return simpleGraphPartition(file, vertexCount);
     }
 
@@ -118,15 +128,15 @@ public class ParallelOps {
         }
         oneIntBuffer.put(0,vertices.length);
         worldProcsComm.allGather(oneIntBuffer, 1, MPI.INT, worldIntBuffer, 1, MPI.INT);
-        int[] lengths = new int[worldProcsCount];
+        localVertexCounts = new int[worldProcsCount];
         worldIntBuffer.position(0);
-        worldIntBuffer.get(lengths, 0, worldProcsCount);
+        worldIntBuffer.get(localVertexCounts, 0, worldProcsCount);
 
-        int[] displas = new int[worldProcsCount];
-        System.arraycopy(lengths, 0, displas, 1, worldProcsCount - 1);
-        Arrays.parallelPrefix(displas, (m, n) -> m + n);
+        localVertexDisplas = new int[worldProcsCount];
+        System.arraycopy(localVertexCounts, 0, localVertexDisplas, 1, worldProcsCount - 1);
+        Arrays.parallelPrefix(localVertexDisplas, (m, n) -> m + n);
 
-        // DEBUG - check lengths
+        // DEBUG - check localVertexCounts
         //if (worldProcRank == 1){
         //    for (int i = 0; i < worldProcsCount; ++i){
         //        System.out.println("Rank: " + i + " has " + worldIntBuffer.get(i) + " vertices");
@@ -134,19 +144,19 @@ public class ParallelOps {
         //}
 
 
-        // DEBUG - check displas
+        // DEBUG - check localVertexDisplas
         //if (worldProcRank == 1) {
         //    System.out.println("Rank: " + worldProcRank + " displacements");
         //    for (int i = 0; i < worldProcsCount; ++i) {
-        //        System.out.print(displas[i] + " ");
+        //        System.out.print(localVertexDisplas[i] + " ");
         //    }
         //}
 
-        int displacement = displas[worldProcRank];
+        int displacement = localVertexDisplas[worldProcRank];
         for (int i = 0; i < vertices.length; ++i){
             vertexIntBuffer.put(i+displacement, vertices[i].vertexLabel);
         }
-        worldProcsComm.allGatherv(vertexIntBuffer, lengths, displas, MPI.INT);
+        worldProcsComm.allGatherv(vertexIntBuffer, localVertexCounts, localVertexDisplas, MPI.INT);
 
 
         // DEBUG - see what ranks have what vertices
@@ -154,8 +164,8 @@ public class ParallelOps {
             int rank = 0;
             do{
                 System.out.print("\n\nRank: " + rank + " has ");
-                int length = lengths[rank];
-                displacement = displas[rank];
+                int length = localVertexCounts[rank];
+                displacement = localVertexDisplas[rank];
                 for (int i = 0; i < length; ++i){
                     System.out.print(vertexIntBuffer.get(i+displacement) + " ");
                 }
@@ -171,8 +181,8 @@ public class ParallelOps {
         {
             int rank = 0;
             do {
-                int length = lengths[rank];
-                displacement = displas[rank];
+                int length = localVertexCounts[rank];
+                displacement = localVertexDisplas[rank];
                 for (int i = 0; i < length; ++i) {
                     vertexLabelToWorldRank.put(vertexIntBuffer.get(i + displacement), rank);
                 }

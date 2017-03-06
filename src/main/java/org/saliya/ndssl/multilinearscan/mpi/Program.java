@@ -1,12 +1,18 @@
-package org.saliya.ndssl.multilinearscan;
+package org.saliya.ndssl.multilinearscan.mpi;
 
 import com.google.common.base.Optional;
+import mpi.MPI;
 import mpi.MPIException;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.saliya.ndssl.Utils;
+import org.saliya.ndssl.multilinearscan.GaloisField;
+import org.saliya.ndssl.multilinearscan.Polynomial;
 
+import java.util.Date;
+import java.util.PriorityQueue;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 /**
@@ -15,13 +21,22 @@ import java.util.stream.IntStream;
 public class Program {
     private static Options programOptions = new Options();
     private static String inputFile;
-    private static int vertexCount;
+    private static int globalVertexCount;
     private static int k;
-    private static int epsilon;
+    private static double epsilon;
     private static int delta;
     private static double alphaMax;
     private static boolean bind;
     private static int cps;
+
+    private static long mainSeed;
+    private static int roundingFactor;
+    private static int r;
+    private static int twoRaisedToK;
+    private static GaloisField gf;
+    private static int maxIterations;
+
+    private static ParallelUtils putils;
 
     static {
         programOptions.addOption(
@@ -95,11 +110,9 @@ public class Program {
         readConfiguration(cmd);
 
         ParallelOps.setupParallelism(args);
-        Vertex[] vertices = ParallelOps.setParallelDecomposition(inputFile, vertexCount);
+        Vertex[] vertices = ParallelOps.setParallelDecomposition(inputFile, globalVertexCount);
 
-        for (int i = 0; i < 2; ++i) {
-            runProgram(vertices);
-        }
+        runProgram(vertices);
 
         ParallelOps.tearDownParallelism();
     }
@@ -121,6 +134,25 @@ public class Program {
     }
 
     private static void runProgram(Vertex[] vertices) throws MPIException {
+        putils = new ParallelUtils(0, ParallelOps.worldProcRank);
+
+        putils.printMessage("\n== " + Constants.PROGRAM_NAME + " run started on " + new Date() + " ==\n");
+        // get number of iterations for a target error bound (epsilon)
+        double probSuccess = 0.2;
+        int iter = (int) Math.round(Math.log(epsilon) / Math.log(1 - probSuccess));
+        putils.printMessage(iter + " assignments will be evaluated for epsilon = " + epsilon);
+        double roundingFactor = 1 + delta;
+        putils.printMessage("approximation factor is " + roundingFactor);
+
+        mainSeed = System.currentTimeMillis();
+//        for (int i = 0; i < iter; ++i) {
+        for (int i = 0; i < 1; ++i) {
+            runGraphComp(vertices);
+        }
+    }
+
+    private static void runGraphComp(Vertex[] vertices) throws MPIException {
+        initComp(vertices);
 
         /* Super step loop*/
         int MAX_SS = 2;
@@ -139,22 +171,75 @@ public class Program {
         }
     }
 
+    private static void initComp(Vertex[] vertices) throws MPIException {
+        roundingFactor =  1+delta;
+        Random random = new Random(mainSeed);
+        // (1 << k) is 2 raised to the kth power
+        twoRaisedToK = (1 << k);
+        int degree = (3 + Utils.log2(k));
+        gf = GaloisField.getInstance(1 << degree, Polynomial.createIrreducible(degree, random).toBigInteger().intValue());
+        maxIterations = k-1; // the original pregel loop was from 2 to k (including k), so that's (k-2)+1 times
+
+        if (ParallelOps.worldProcRank == 0){
+            Random r = new Random();
+            IntStream.range(0, globalVertexCount).forEach(
+                    x -> ParallelOps.vertexLongBuffer.put(x, r.nextLong()));
+        }
+        ParallelOps.worldProcsComm.bcast(
+                ParallelOps.vertexLongBuffer, globalVertexCount, MPI.LONG, 0);
+        for (int i = 0; i < vertices.length; ++i){
+            int offset = ParallelOps.localVertexDisplas[ParallelOps.worldProcRank];
+            vertices[i].uniqueRandomSeed = ParallelOps.vertexLongBuffer.get(offset +i);
+            // put vertex weights to be collected to compute maxweight - the sum of largest k weights
+            ParallelOps.vertexDoubleBuffer.put(offset+i, vertices[i].weight);
+        }
+
+        ParallelOps.worldProcsComm.allGatherv(ParallelOps.vertexDoubleBuffer, ParallelOps.localVertexCounts,
+                ParallelOps.localVertexDisplas, MPI.DOUBLE);
+
+        PriorityQueue<Double> pq = new PriorityQueue<>();
+        for (int i = 0; i < globalVertexCount; ++i){
+            double val = ParallelOps.vertexDoubleBuffer.get(i);
+            if (i < k){
+                pq.add(val);
+            } else {
+                if (pq.peek() >= val) continue;
+                if (pq.size() == k) {
+                    pq.poll();
+                }
+                pq.offer(val);
+            }
+        }
+        double maxWeight = 0;
+        for (double d : pq){
+            maxWeight+=d;
+        }
+
+        r = (int) Math.ceil(Utils.logb((int) maxWeight + 1, roundingFactor));
+        putils.printMessage("Max Weight: " + maxWeight + " r: " + r);
+        // invalid input: r is negative
+        if (r < 0) {
+            throw new IllegalArgumentException("r must be a positive integer or 0");
+        }
+
+
+    }
 
 
     private static void readConfiguration(CommandLine cmd) {
         inputFile = cmd.hasOption(Constants.CMD_OPTION_SHORT_INPUT) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_INPUT) :
                 cmd.getOptionValue(Constants.CMD_OPTION_LONG_INPUT);
-        vertexCount = Integer.parseInt(cmd.hasOption(Constants.CMD_OPTION_SHORT_VC) ?
+        globalVertexCount = Integer.parseInt(cmd.hasOption(Constants.CMD_OPTION_SHORT_VC) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_VC) :
                 cmd.getOptionValue(Constants.CMD_OPTION_LONG_NUM_VC));
         k = Integer.parseInt(cmd.hasOption(Constants.CMD_OPTION_SHORT_K) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_K) :
                 cmd.getOptionValue(Constants.CMD_OPTION_LONG_K));
-        epsilon = Integer.parseInt(cmd.hasOption(Constants.CMD_OPTION_SHORT_EPSILON) ?
+        epsilon = Double.parseDouble(cmd.hasOption(Constants.CMD_OPTION_SHORT_EPSILON) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_EPSILON) :
                 (cmd.hasOption(Constants.CMD_OPTION_LONG_EPSILON) ? cmd.getOptionValue(Constants
-                .CMD_OPTION_LONG_EPSILON) : "1"));
+                .CMD_OPTION_LONG_EPSILON) : "1.0"));
         delta = Integer.parseInt(cmd.hasOption(Constants.CMD_OPTION_SHORT_DELTA) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_DELTA) :
                 (cmd.hasOption(Constants.CMD_OPTION_LONG_DELTA) ? cmd.getOptionValue(Constants

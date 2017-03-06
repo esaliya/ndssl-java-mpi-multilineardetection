@@ -1,4 +1,4 @@
-package org.saliya.ndssl.multilinearscan;
+package org.saliya.ndssl.multilinearscan.mpi;
 
 import java.nio.IntBuffer;
 

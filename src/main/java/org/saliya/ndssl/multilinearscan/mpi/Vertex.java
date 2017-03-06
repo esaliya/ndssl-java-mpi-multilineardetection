@@ -1,13 +1,9 @@
-package org.saliya.ndssl.multilinearscan;
+package org.saliya.ndssl.multilinearscan.mpi;
 
-import mpi.MPI;
-
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 
 /**
  * Saliya Ekanayake on 2/22/17.
@@ -16,13 +12,17 @@ public class Vertex {
     Pattern pat = Pattern.compile(" ");
     int vertexLabel;
     int vertexId;
-    double weight;
+
     TreeMap<Integer, Integer> outNeighborLabelToWorldRank;
     TreeMap<Integer, VertexBuffer> outrankToSendBuffer;
     List<RecvVertexBuffer> recvBuffers;
 
     Message message;
     List<Message> recvdMessages;
+
+
+    double weight;
+    long uniqueRandomSeed;
 
     public Vertex(){
 
