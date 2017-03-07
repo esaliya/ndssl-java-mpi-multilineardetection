@@ -10,9 +10,7 @@ import org.saliya.ndssl.Utils;
 import org.saliya.ndssl.multilinearscan.GaloisField;
 import org.saliya.ndssl.multilinearscan.Polynomial;
 
-import java.util.Date;
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.IntStream;
 
 /**
@@ -35,6 +33,8 @@ public class Program {
     private static int twoRaisedToK;
     private static GaloisField gf;
     private static int maxIterations;
+    private static TreeMap<Integer, Integer> randomAssignments;
+    private static int[] completionVariables;
 
     private static ParallelUtils putils;
 
@@ -154,19 +154,34 @@ public class Program {
     private static void runGraphComp(Vertex[] vertices) throws MPIException {
         initComp(vertices);
 
-        /* Super step loop*/
-        int MAX_SS = 2;
-        for (int ss = 0; ss < MAX_SS; ++ss) {
-            if (ss > 0){
-                receiveMessages(vertices, ss);
-            }
-
+//        for (int iter = 0; iter < twoRaisedToK; ++iter) {
+        // TODO - TEST
+        for (int iter = 0; iter < 1; ++iter) {
             for (Vertex vertex : vertices) {
-                vertex.compute(ss);
+                vertex.reset(iter, completionVariables, randomAssignments);
             }
 
-            if (ss < MAX_SS - 1){
-                sendMessages(vertices, ss);
+            /* Super step loop*/
+            int workerSteps = maxIterations+1; // +1 to send initial values
+//            for (int ss = 0; ss < workerSteps; ++ss) {
+            // TODO - TEST
+            for (int ss = 0; ss < 2; ++ss) {
+                // In the original code I started from 2 and went
+                // till k (including).
+                // we start ss from zero, which is for initial msg sending
+                // then real work begins with ss=1,
+                // which should give I=2, hence I=ss+1
+                int I = ss+1;
+                if (ss > 0) {
+                    receiveMessages(vertices, ss);
+                    for (Vertex vertex : vertices) {
+                        vertex.compute(ss);
+                    }
+                }
+
+                if (ss < workerSteps - 1) {
+                    sendMessages(vertices, ss);
+                }
             }
         }
     }
@@ -180,19 +195,26 @@ public class Program {
         gf = GaloisField.getInstance(1 << degree, Polynomial.createIrreducible(degree, random).toBigInteger().intValue());
         maxIterations = k-1; // the original pregel loop was from 2 to k (including k), so that's (k-2)+1 times
 
-        if (ParallelOps.worldProcRank == 0){
-            Random r = new Random();
-            IntStream.range(0, globalVertexCount).forEach(
-                    x -> ParallelOps.vertexLongBuffer.put(x, r.nextLong()));
+
+        int myDisplas = ParallelOps.localVertexDisplas[ParallelOps.worldProcRank];
+        // same as vertices.length
+        int myLength = ParallelOps.localVertexCounts[ParallelOps.worldProcRank];
+        for (int i = 0; i < globalVertexCount; ++i){
+            long uniqRandomVal = random.nextLong();
+            if (i >= myDisplas && i < myDisplas+myLength){
+                vertices[i-myDisplas].uniqueRandomSeed = uniqRandomVal;
+                // put vertex weights to be collected to compute maxweight - the sum of largest k weights
+                ParallelOps.vertexDoubleBuffer.put(i, vertices[i-myDisplas].weight);
+            }
         }
-        ParallelOps.worldProcsComm.bcast(
-                ParallelOps.vertexLongBuffer, globalVertexCount, MPI.LONG, 0);
-        for (int i = 0; i < vertices.length; ++i){
-            int offset = ParallelOps.localVertexDisplas[ParallelOps.worldProcRank];
-            vertices[i].uniqueRandomSeed = ParallelOps.vertexLongBuffer.get(offset +i);
-            // put vertex weights to be collected to compute maxweight - the sum of largest k weights
-            ParallelOps.vertexDoubleBuffer.put(offset+i, vertices[i].weight);
+
+        // DEBUG - check each vertex has a unique random seed
+        /*StringBuffer sb = new StringBuffer("Rank ");
+        sb.append(ParallelOps.worldProcRank).append('\n');
+        for (Vertex vertex : vertices){
+            sb.append(vertex.uniqueRandomSeed).append(" ");
         }
+        System.out.println(sb.toString());*/
 
         ParallelOps.worldProcsComm.allGatherv(ParallelOps.vertexDoubleBuffer, ParallelOps.localVertexCounts,
                 ParallelOps.localVertexDisplas, MPI.DOUBLE);
@@ -222,7 +244,15 @@ public class Program {
             throw new IllegalArgumentException("r must be a positive integer or 0");
         }
 
-
+        randomAssignments = new TreeMap<>();
+        ParallelOps.vertexLabelToWorldRank.keySet().forEach(
+                vertexLabel -> randomAssignments.put(
+                        vertexLabel, random.nextInt(twoRaisedToK)));
+        completionVariables = new int[k-1];
+        IntStream.range(0,k-1).forEach(i->completionVariables[i] = random.nextInt(twoRaisedToK));
+        for (Vertex vertex : vertices) {
+            vertex.init(k, r, gf);
+        }
     }
 
 

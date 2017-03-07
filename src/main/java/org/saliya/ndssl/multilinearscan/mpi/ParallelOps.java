@@ -57,6 +57,8 @@ public class ParallelOps {
     public static int[] localVertexCounts;
     public static int[] localVertexDisplas;
 
+    public static Hashtable<Integer, Integer> vertexLabelToWorldRank;
+
 
     public static void setupParallelism(String[] args) throws MPIException {
         MPI.Init(args);
@@ -177,7 +179,7 @@ public class ParallelOps {
 
         /* Just keep in mind this table and the vertexIntBuffer can be really large
         * Think of optimizations if this becomes a bottleneck */
-        Hashtable<Integer, Integer> vertexLabelToWorldRank = new Hashtable<>();
+        vertexLabelToWorldRank = new Hashtable<>();
         {
             int rank = 0;
             do {
@@ -467,7 +469,13 @@ public class ParallelOps {
                 int msgCount = b.get(MSG_COUNT_OFFSET);
                 sb.append("\n recvd ").append(msgCount).append(" msgs from rank ").append(recvfromRank).append(" of " +
                         "size ").append(recvdMsgSize).append(" msg list: ");
-                IntStream.range(0, msgCount).forEach(i -> sb.append(b.get(BUFFER_OFFSET+i)).append(" "));
+                IntStream.range(0, msgCount).forEach(i -> {
+                    sb.append("[");
+                    IntStream.range(0, recvdMsgSize).forEach(j -> {
+                        sb.append(b.get(BUFFER_OFFSET+(i*recvdMsgSize+j))).append(" ");
+                    });
+                    sb.append("] ");
+                });
             });
             sb.append('\n');
             String msg = allReduce(sb.toString(), worldProcsComm);
