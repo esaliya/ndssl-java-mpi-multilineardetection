@@ -147,42 +147,56 @@ public class Program {
         mainSeed = System.currentTimeMillis();
 //        for (int i = 0; i < iter; ++i) {
         for (int i = 0; i < 1; ++i) {
-            runGraphComp(vertices);
+            runGraphComp(i, vertices);
         }
     }
 
-    private static void runGraphComp(Vertex[] vertices) throws MPIException {
+    private static void runGraphComp(int loopNumber, Vertex[] vertices) throws MPIException {
         initComp(vertices);
 
-//        for (int iter = 0; iter < twoRaisedToK; ++iter) {
-        // TODO - TEST
-        for (int iter = 0; iter < 1; ++iter) {
-            for (Vertex vertex : vertices) {
-                vertex.reset(iter, completionVariables, randomAssignments);
-            }
-
+        for (int iter = 0; iter < twoRaisedToK; ++iter) {
             /* Super step loop*/
             int workerSteps = maxIterations+1; // +1 to send initial values
-//            for (int ss = 0; ss < workerSteps; ++ss) {
-            // TODO - TEST
-            for (int ss = 0; ss < 2; ++ss) {
-                // In the original code I started from 2 and went
-                // till k (including).
-                // we start ss from zero, which is for initial msg sending
-                // then real work begins with ss=1,
-                // which should give I=2, hence I=ss+1
-                int I = ss+1;
+            for (int ss = 0; ss < workerSteps; ++ss) {
                 if (ss > 0) {
                     receiveMessages(vertices, ss);
-                    for (Vertex vertex : vertices) {
-                        vertex.compute(ss);
-                    }
                 }
+
+                compute(iter, vertices, ss);
 
                 if (ss < workerSteps - 1) {
                     sendMessages(vertices, ss);
                 }
             }
+            finalizeIteration(vertices);
+        }
+        double bestScore = finalizeIterations(vertices);
+        ParallelOps.oneDoubleBuffer.put(0, bestScore);
+        ParallelOps.worldProcsComm.allReduce(ParallelOps.oneDoubleBuffer, 1, MPI.DOUBLE, MPI.MAX);
+        bestScore = ParallelOps.oneDoubleBuffer.get(0);
+        putils.printMessage("*** End of loop "  +loopNumber + " best score: " + bestScore);
+    }
+
+    private static double finalizeIterations(Vertex[] vertices) {
+        double bestScore = Double.MIN_VALUE;
+        for (Vertex vertex : vertices){
+            double score = vertex.finalizeIterations(alphaMax, roundingFactor);
+            if (score > bestScore){
+                bestScore = score;
+            }
+        }
+        return bestScore;
+    }
+
+    private static void finalizeIteration(Vertex[] vertices) {
+        for (Vertex vertex : vertices){
+            vertex.finalizeIteration();
+        }
+    }
+
+    private static void compute(int iter, Vertex[] vertices, int ss) {
+        for (Vertex vertex : vertices) {
+            vertex.compute(ss, iter, completionVariables, randomAssignments);
         }
     }
 
