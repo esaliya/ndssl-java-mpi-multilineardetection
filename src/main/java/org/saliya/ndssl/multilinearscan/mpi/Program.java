@@ -145,8 +145,8 @@ public class Program {
         putils.printMessage("approximation factor is " + roundingFactor);
 
         mainSeed = System.currentTimeMillis();
-//        for (int i = 0; i < iter; ++i) {
-        for (int i = 0; i < 1; ++i) {
+        for (int i = 0; i < iter; ++i) {
+//        for (int i = 0; i < 1; ++i) {
             runGraphComp(i, vertices);
         }
     }
@@ -219,6 +219,10 @@ public class Program {
                 vertices[i-myDisplas].uniqueRandomSeed = uniqRandomVal;
                 // put vertex weights to be collected to compute maxweight - the sum of largest k weights
                 ParallelOps.vertexDoubleBuffer.put(i, vertices[i-myDisplas].weight);
+                vertices[i-myDisplas].weight
+                        = (int) Math.ceil(
+                        Utils.logb((int) vertices[i-myDisplas].weight + 1,
+                                roundingFactor));
             }
         }
 
