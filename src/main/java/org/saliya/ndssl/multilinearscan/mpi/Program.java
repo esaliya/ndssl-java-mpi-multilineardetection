@@ -180,6 +180,10 @@ public class Program {
                 }
             }
             finalizeIteration(vertices);
+            if (iter%10 == 0 || iter == twoRaisedToK-1){
+                putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " elapsed " + (System
+                        .currentTimeMillis() - startTime) + " ms");
+            }
         }
         double bestScore = finalizeIterations(vertices);
         ParallelOps.oneDoubleBuffer.put(0, bestScore);
@@ -251,7 +255,7 @@ public class Program {
         putils.printMessage("  Max Weight: " + maxWeight + " r: " + r + "\n");
         // invalid input: r is negative
         if (r < 0) {
-            throw new IllegalArgumentException("r must be a positive integer or 0");
+            throw new IllegalArgumentException("  r must be a positive integer or 0");
         }
     }
 
