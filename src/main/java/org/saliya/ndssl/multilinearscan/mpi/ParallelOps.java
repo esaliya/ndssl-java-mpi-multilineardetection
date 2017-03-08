@@ -430,8 +430,16 @@ public class ParallelOps {
             buffer.put(MSG_SIZE_OFFSET, (short)msgSize);
 
             try {
-                worldProcsComm.iSend(buffer, BUFFER_OFFSET+buffer.get(MSG_COUNT_OFFSET)*msgSize, MPI.INT, sendtoRank,
-                        worldProcRank);
+                if (sendtoRank == worldProcRank){
+                    // local copy
+                    ShortBuffer b = recvfromRankToRecvBuffer.get(worldProcRank);
+                    b.position(0);
+                    buffer.position(0);
+                    b.put(buffer);
+                } else {
+                    worldProcsComm.iSend(buffer, BUFFER_OFFSET + buffer.get(MSG_COUNT_OFFSET) * msgSize, MPI.INT, sendtoRank,
+                            worldProcRank);
+                }
             } catch (MPIException e) {
                 e.printStackTrace();
             }
@@ -444,8 +452,10 @@ public class ParallelOps {
             ShortBuffer buffer = kv.getValue();
             int msgCount = recvfromRankToMsgCountAndforvertexLabels.get(recvfromRank).get(0);
             try {
-                requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET+msgCount*msgSizeToReceive, MPI.INT,
-                        recvfromRank, recvfromRank));
+                if (recvfromRank != worldProcRank) {
+                    requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET + msgCount * msgSizeToReceive, MPI.INT,
+                            recvfromRank, recvfromRank));
+                }
             } catch (MPIException e) {
                 e.printStackTrace();
             }
