@@ -30,6 +30,7 @@ public class ParallelOps {
     public static int worldProcsCount;
 
     public static IntBuffer oneIntBuffer;
+    public static LongBuffer oneLongBuffer;
     public static DoubleBuffer oneDoubleBuffer;
     public static IntBuffer worldIntBuffer;
     public static IntBuffer vertexIntBuffer;
@@ -68,6 +69,7 @@ public class ParallelOps {
         worldProcsCount = worldProcsComm.getSize();
 
         oneIntBuffer = MPI.newIntBuffer(1);
+        oneLongBuffer = MPI.newLongBuffer(1);
         oneDoubleBuffer = MPI.newDoubleBuffer(1);
         worldIntBuffer = MPI.newIntBuffer(worldProcsCount);
 

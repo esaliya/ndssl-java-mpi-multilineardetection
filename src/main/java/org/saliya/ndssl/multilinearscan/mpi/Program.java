@@ -27,7 +27,6 @@ public class Program {
     private static boolean bind;
     private static int cps;
 
-    private static long mainSeed;
     private static int roundingFactor;
     private static int r;
     private static int twoRaisedToK;
@@ -141,9 +140,9 @@ public class Program {
         // get number of iterations for a target error bound (epsilon)
         double probSuccess = 0.2;
         int iter = (int) Math.round(Math.log(epsilon) / Math.log(1 - probSuccess));
-        putils.printMessage(iter + " assignments will be evaluated for epsilon = " + epsilon);
+        putils.printMessage("  " + iter + " assignments will be evaluated for epsilon = " + epsilon);
         double roundingFactor = 1 + delta;
-        putils.printMessage("approximation factor is " + roundingFactor);
+        putils.printMessage("  approximation factor is " + roundingFactor);
 
 
         double bestScore = Double.MIN_VALUE;
@@ -249,7 +248,7 @@ public class Program {
         }
 
         r = (int) Math.ceil(Utils.logb((int) maxWeight + 1, roundingFactor));
-        putils.printMessage("  Max Weight: " + maxWeight + " r: " + r);
+        putils.printMessage("  Max Weight: " + maxWeight + " r: " + r + "\n");
         // invalid input: r is negative
         if (r < 0) {
             throw new IllegalArgumentException("r must be a positive integer or 0");
@@ -257,8 +256,14 @@ public class Program {
     }
 
     private static void initLoop(Vertex[] vertices) throws MPIException {
-        mainSeed = System.currentTimeMillis();
-        Random random = new Random(mainSeed);
+        long perLoopRandomSeed = System.currentTimeMillis();
+        if (ParallelOps.worldProcRank == 0) {
+            ParallelOps.oneLongBuffer.put(0, perLoopRandomSeed);
+        }
+        ParallelOps.worldProcsComm.bcast(ParallelOps.oneLongBuffer, 1, MPI.LONG, 0);
+        perLoopRandomSeed = ParallelOps.oneLongBuffer.get(0);
+
+        Random random = new Random(perLoopRandomSeed);
         int degree = (3 + Utils.log2(k));
         gf = GaloisField.getInstance(1 << degree, Polynomial.createIrreducible(degree, random).toBigInteger().intValue());
 
