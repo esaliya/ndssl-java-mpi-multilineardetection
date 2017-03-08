@@ -30,8 +30,8 @@ public class Vertex {
     private GaloisField gf;
     private int[] cumulativeCompletionVariables;
     private int[][] totalSumTable;
-    private int[][] optTable;
-    private int[][] extTable;
+    private short[][] optTable;
+    private short[][] extTable;
     // Vertex unique random generator
     private Random random;
 
@@ -84,7 +84,7 @@ public class Vertex {
                 // iterate through all the pairs of polynomials whose sizes add up to i
                 for (int iPrime = 1; iPrime < I; iPrime++) {
                     for (Message msg : recvdMessages) {
-                        int[][] neighborOptTable = msg.getData();
+                        short[][] neighborOptTable = msg.getData();
                         if (l == 0) {
                             int weight = random.nextInt(fieldSize);
                             int product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][0]);
@@ -119,7 +119,7 @@ public class Vertex {
                         }
                     }
                 }
-                optTable[I][l] = polynomial;
+                optTable[I][l] = (short)polynomial;
                 if (cumulativeCompletionVariables[k - I] != 0) {
                     extTable[I][l] = optTable[I][l];
                 }
@@ -155,8 +155,8 @@ public class Vertex {
         this.r = r;
         this.gf = gf;
         totalSumTable = new int[k+1][r+1];
-        optTable = new int[k+1][r+1];
-        extTable = new int[k+1][r+1];
+        optTable = new short[k+1][r+1];
+        extTable = new short[k+1][r+1];
         for (int i = 0; i <= k; i++) {
             for (int j = 0; j <= r; j++) {
                 totalSumTable[i][j] = 0;
@@ -192,8 +192,8 @@ public class Vertex {
         for (int i = 0; i <= r; i++) {
             optTable[1][i] = extTable[1][i] = 0;
         }
-        optTable[1][nodeWeight] = eigenvalue;
-        extTable[1][nodeWeight] = eigenvalue * cumulativeCompletionVariables[k - 1];
+        optTable[1][nodeWeight] = (short)eigenvalue;
+        extTable[1][nodeWeight] = (short)(eigenvalue * cumulativeCompletionVariables[k - 1]);
         message.setDataAndMsgSize(optTable, (k+1)*(r+1));
     }
 

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.DoubleBuffer;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
+import java.nio.ShortBuffer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -43,8 +44,8 @@ public class ParallelOps {
 
     // Maximum message size sent by a vertex. To be set later correctly.
     public static final int MAX_MSG_SIZE = 500;
-    public static TreeMap<Integer, IntBuffer> recvfromRankToRecvBuffer;
-    public static TreeMap<Integer, IntBuffer> sendtoRankToSendBuffer;
+    public static TreeMap<Integer, ShortBuffer> recvfromRankToRecvBuffer;
+    public static TreeMap<Integer, ShortBuffer> sendtoRankToSendBuffer;
     // to store msg count and msg size
     public static final int BUFFER_OFFSET = 2;
     public static final int MSG_COUNT_OFFSET = 0;
@@ -334,7 +335,7 @@ public class ParallelOps {
             int recvfromRank = kv.getKey();
             List<Integer> list = kv.getValue();
             int msgCount = list.get(0);
-            IntBuffer b = MPI.newIntBuffer(BUFFER_OFFSET + msgCount * MAX_MSG_SIZE);
+            ShortBuffer b = MPI.newShortBuffer(BUFFER_OFFSET + msgCount * MAX_MSG_SIZE);
             recvfromRankToRecvBuffer.put(recvfromRank, b);
             int currentMsg = 0;
             for (int i = 1; i < list.size(); ){
@@ -382,8 +383,8 @@ public class ParallelOps {
             int sendtoRank = kv.getKey();
             int msgCount = kv.getValue().get(0);
             // +2 to store msgCount and msgSize
-            IntBuffer b = MPI.newIntBuffer(BUFFER_OFFSET +msgCount*MAX_MSG_SIZE);
-            b.put(0, msgCount);
+            ShortBuffer b = MPI.newShortBuffer(BUFFER_OFFSET +msgCount*MAX_MSG_SIZE);
+            b.put(0, (short)msgCount);
             sendtoRankToSendBuffer.put(sendtoRank, b);
         });
 
@@ -425,8 +426,8 @@ public class ParallelOps {
         msgSizeToReceive = msgSize;
         sendtoRankToSendBuffer.entrySet().forEach(kv -> {
             int sendtoRank = kv.getKey();
-            IntBuffer buffer = kv.getValue();
-            buffer.put(MSG_SIZE_OFFSET, msgSize);
+            ShortBuffer buffer = kv.getValue();
+            buffer.put(MSG_SIZE_OFFSET, (short)msgSize);
 
             try {
                 worldProcsComm.iSend(buffer, BUFFER_OFFSET+buffer.get(MSG_COUNT_OFFSET)*msgSize, MPI.INT, sendtoRank,
@@ -440,7 +441,7 @@ public class ParallelOps {
     public static void recvMessages() throws MPIException {
         recvfromRankToRecvBuffer.entrySet().forEach(kv -> {
             int recvfromRank = kv.getKey();
-            IntBuffer buffer = kv.getValue();
+            ShortBuffer buffer = kv.getValue();
             int msgCount = recvfromRankToMsgCountAndforvertexLabels.get(recvfromRank).get(0);
             try {
                 requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET+msgCount*msgSizeToReceive, MPI.INT,
@@ -464,7 +465,7 @@ public class ParallelOps {
             sb.append("\n%%Rank: ").append(worldProcRank);
             recvfromRankToRecvBuffer.entrySet().forEach(kv -> {
                 int recvfromRank = kv.getKey();
-                IntBuffer b = kv.getValue();
+                ShortBuffer b = kv.getValue();
                 int recvdMsgSize = b.get(MSG_SIZE_OFFSET);
                 if (recvdMsgSize != msgSizeToReceive) throw new RuntimeException("recvd msg size " + recvdMsgSize  + " != " +
                         msgSizeToReceive + " msgSize");

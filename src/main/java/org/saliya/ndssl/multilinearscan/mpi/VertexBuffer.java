@@ -1,6 +1,7 @@
 package org.saliya.ndssl.multilinearscan.mpi;
 
 import java.nio.IntBuffer;
+import java.nio.ShortBuffer;
 
 /**
  * Saliya Ekanayake on 3/3/17.
@@ -8,13 +9,13 @@ import java.nio.IntBuffer;
 public class VertexBuffer {
     // The real offset would be 2+(offsetFactor*msgSize)
     int offsetFactor;
-    IntBuffer buffer;
+    ShortBuffer buffer;
 
 
     public VertexBuffer() {
     }
 
-    public VertexBuffer(int offsetFactor, IntBuffer buffer) {
+    public VertexBuffer(int offsetFactor, ShortBuffer buffer) {
         this.offsetFactor = offsetFactor;
         this.buffer = buffer;
     }
@@ -27,11 +28,11 @@ public class VertexBuffer {
         this.offsetFactor = offset;
     }
 
-    public IntBuffer getBuffer() {
+    public ShortBuffer getBuffer() {
         return buffer;
     }
 
-    public void setBuffer(IntBuffer buffer) {
+    public void setBuffer(ShortBuffer buffer) {
         this.buffer = buffer;
     }
 }
