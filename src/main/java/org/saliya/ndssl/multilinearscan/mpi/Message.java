@@ -37,7 +37,12 @@ public class Message {
         int dimB = buffer.get(offset+1);
         data = new short[dimA][dimB];
         IntStream.range(0, dimA).forEach(i->IntStream.range(0,dimB).forEach(j->{
-            data[i][j] = buffer.get(offset+2+(i*dimB+j));
+            try {
+                data[i][j] = buffer.get(offset+2+(i*dimB+j));
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Rank: " + ParallelOps.worldProcRank + " IOOBE idx: " + (offset+2+(i*dimB+j)) + " " +
+                        "buff.capacity " + buffer.capacity());
+            }
         }));
     }
 
