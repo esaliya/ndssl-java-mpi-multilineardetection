@@ -43,7 +43,7 @@ public class ParallelOps {
     public static TreeMap<Integer, List<Integer>> sendtoRankToMsgCountAndDestinedVertexLabels;
 
     // Maximum message size sent by a vertex. To be set later correctly.
-    public static final int MAX_MSG_SIZE = 500;
+    public static int MAX_MSG_SIZE = 500;
     public static TreeMap<Integer, ShortBuffer> recvfromRankToRecvBuffer;
     public static TreeMap<Integer, ShortBuffer> sendtoRankToSendBuffer;
     // to store msg count and msg size

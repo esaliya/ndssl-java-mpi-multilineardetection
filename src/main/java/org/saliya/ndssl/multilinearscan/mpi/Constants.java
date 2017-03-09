@@ -41,6 +41,10 @@ public class Constants {
     static final String CMD_OPTION_LONG_TC = "threadCount";
     static final String CMD_OPTION_DESCRIPTION_TC = "Thread count";
 
+    static final String CMD_OPTION_SHORT_MMS = "mms";
+    static final String CMD_OPTION_LONG_MMS = "maxMsgSize";
+    static final String CMD_OPTION_DESCRIPTION_MMS = "Maximum message size (#shorts)";
+
     public static final String CMD_OPTION_SHORT_MMAP_SCRATCH_DIR = "mmapdir";
     public static final String
             CMD_OPTION_DESCRIPTION_MMAP_SCRATCH_DIR =

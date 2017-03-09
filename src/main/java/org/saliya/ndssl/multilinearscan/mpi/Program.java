@@ -335,6 +335,12 @@ public class Program {
         ParallelOps.mmapScratchDir = cmd.hasOption(Constants.CMD_OPTION_SHORT_MMAP_SCRATCH_DIR) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_MMAP_SCRATCH_DIR) : "/tmp";
 
+        ParallelOps.MAX_MSG_SIZE = cmd.hasOption(Constants.CMD_OPTION_SHORT_MMS)
+                ? Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_SHORT_MMS))
+                : cmd.hasOption(Constants.CMD_OPTION_LONG_MMS)
+                ? Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_LONG_MMS))
+                : 500;
+
         bind = !cmd.hasOption(Constants.CMD_OPTION_SHORT_BIND_THREADS) ||
                 Boolean.parseBoolean(cmd.getOptionValue(Constants.CMD_OPTION_SHORT_BIND_THREADS));
         cps = (cmd.hasOption(Constants.CMD_OPTION_SHORT_CPS)) ?
