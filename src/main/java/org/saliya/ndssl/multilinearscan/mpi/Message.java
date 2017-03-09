@@ -42,6 +42,7 @@ public class Message {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Rank: " + ParallelOps.worldProcRank + " IOOBE idx: " + (offset+2+(i*dimB+j)) + " " +
                         "buff.capacity " + buffer.capacity());
+                throw new RuntimeException(e);
             }
         }));
     }
