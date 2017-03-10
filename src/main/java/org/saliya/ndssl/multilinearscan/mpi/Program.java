@@ -208,9 +208,10 @@ public class Program {
     }
 
     private static void compute(int iter, Vertex[] vertices, int ss) {
-        for (Vertex vertex : vertices) {
-            vertex.compute(ss, iter, completionVariables, randomAssignments);
-        }
+//        for (Vertex vertex : vertices) {
+//            vertex.compute(ss, iter, completionVariables, randomAssignments);
+//        }
+        IntStream.range(0, vertices.length).parallel().forEach(i -> vertices[i].compute(ss, iter, completionVariables, randomAssignments));
     }
 
     private static void initComp(Vertex[] vertices) throws MPIException {

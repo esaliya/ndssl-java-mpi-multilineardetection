@@ -61,6 +61,8 @@ public class ParallelOps {
 
     public static Hashtable<Integer, Integer> vertexLabelToWorldRank;
 
+    public static int[] threadIdToVertexOffset;
+
 
     public static void setupParallelism(String[] args) throws MPIException {
         MPI.Init(args);
@@ -86,7 +88,19 @@ public class ParallelOps {
         vertexIntBuffer = MPI.newIntBuffer(vertexCount);
         vertexLongBuffer = MPI.newLongBuffer(vertexCount);
         vertexDoubleBuffer = MPI.newDoubleBuffer(vertexCount);
-        return simpleGraphPartition(file, vertexCount);
+        Vertex[] vertices = simpleGraphPartition(file, vertexCount);
+        decomposeAmongThreads(vertices);
+        return vertices;
+    }
+
+    private static void decomposeAmongThreads(Vertex[] vertices) {
+        int length = vertices.length;
+        int p = length / threadCount;
+        int q = length % threadCount;
+        threadIdToVertexOffset = new int[threadCount];
+//        IntStream.range(0)
+
+
     }
 
     private static Vertex[] simpleGraphPartition(String file, int globalVertexCount) throws MPIException {
