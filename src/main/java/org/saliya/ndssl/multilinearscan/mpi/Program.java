@@ -188,7 +188,7 @@ public class Program {
         */
         double bestScore = finalizeIterations(vertices);
         ParallelOps.oneDoubleBuffer.put(0, bestScore);
-        ParallelOps.worldProcsComm.allReduce(ParallelOps.oneDoubleBuffer, 1, MPI.DOUBLE, MPI.MAX);
+//        ParallelOps.worldProcsComm.allReduce(ParallelOps.oneDoubleBuffer, 1, MPI.DOUBLE, MPI.MAX);
         bestScore = ParallelOps.oneDoubleBuffer.get(0);
         putils.printMessage("    Loop "  +loopNumber + " best score: " + bestScore);
         return bestScore;
