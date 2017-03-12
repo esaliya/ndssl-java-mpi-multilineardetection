@@ -437,7 +437,13 @@ public class ParallelOps {
                     buffer.position(0);
                     b.put(buffer);
                 } else {
-                    worldProcsComm.iSend(buffer, BUFFER_OFFSET + buffer.get(MSG_COUNT_OFFSET) * msgSize, MPI.INT, sendtoRank,
+
+                    int count = BUFFER_OFFSET + buffer.get(MSG_COUNT_OFFSET) * msgSize;
+                    if (count <= 0){
+                        System.out.println("Invalid Count Error - Rank: " + worldProcRank + "torank: " + sendtoRank +
+                                " count: " + count + " msgCount: " + buffer.get(MSG_COUNT_OFFSET) + " msgSize: " + msgSize);
+                    }
+                    worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
                             worldProcRank);
                 }
             } catch (MPIException e) {
@@ -453,7 +459,8 @@ public class ParallelOps {
             int msgCount = recvfromRankToMsgCountAndforvertexLabels.get(recvfromRank).get(0);
             try {
                 if (recvfromRank != worldProcRank) {
-                    requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET + msgCount * msgSizeToReceive, MPI.INT,
+                    requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET + msgCount *
+                                    msgSizeToReceive, MPI.SHORT,
                             recvfromRank, recvfromRank));
                 }
             } catch (MPIException e) {
