@@ -1,6 +1,7 @@
 package org.saliya.ndssl.multilinearscan.mpi;
 
 import com.google.common.base.Strings;
+import com.sun.jna.platform.win32.WinDef;
 import mpi.Intracomm;
 import mpi.MPI;
 import mpi.MPIException;
@@ -8,10 +9,7 @@ import mpi.Request;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.DoubleBuffer;
-import java.nio.IntBuffer;
-import java.nio.LongBuffer;
-import java.nio.ShortBuffer;
+import java.nio.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -46,10 +44,10 @@ public class ParallelOps {
     public static int MAX_MSG_SIZE = 500;
     public static TreeMap<Integer, ShortBuffer> recvfromRankToRecvBuffer;
     public static TreeMap<Integer, ShortBuffer> sendtoRankToSendBuffer;
-    // to store msg count and msg size
-    public static final int BUFFER_OFFSET = 2;
+    // to store msg count and msg size -- note msg count is stored as two shorts
+    public static final int BUFFER_OFFSET = 3;
     public static final int MSG_COUNT_OFFSET = 0;
-    public static final int MSG_SIZE_OFFSET = 1;
+    public static final int MSG_SIZE_OFFSET = 2;
 
     public static int msgSizeToReceive;
 
@@ -60,6 +58,7 @@ public class ParallelOps {
     public static int[] localVertexDisplas;
 
     public static Hashtable<Integer, Integer> vertexLabelToWorldRank;
+    public static ByteBuffer converterByteBuffer;
 
 
     public static void setupParallelism(String[] args) throws MPIException {
@@ -73,6 +72,7 @@ public class ParallelOps {
         oneLongBuffer = MPI.newLongBuffer(1);
         oneDoubleBuffer = MPI.newDoubleBuffer(1);
         worldIntBuffer = MPI.newIntBuffer(worldProcsCount);
+        converterByteBuffer = MPI.newByteBuffer(Integer.BYTES);
 
     }
 
@@ -384,7 +384,9 @@ public class ParallelOps {
             int msgCount = kv.getValue().get(0);
             // +2 to store msgCount and msgSize
             ShortBuffer b = MPI.newShortBuffer(BUFFER_OFFSET +msgCount*MAX_MSG_SIZE);
-            b.put(0, (short)msgCount);
+            converterByteBuffer.putInt(0, msgCount);
+            b.put(MSG_COUNT_OFFSET, converterByteBuffer.getShort(0));
+            b.put(MSG_COUNT_OFFSET+1, converterByteBuffer.getShort(Byte.BYTES));
             sendtoRankToSendBuffer.put(sendtoRank, b);
         });
 
@@ -438,7 +440,9 @@ public class ParallelOps {
                     b.put(buffer);
                 } else {
 
-                    int count = BUFFER_OFFSET + buffer.get(MSG_COUNT_OFFSET) * msgSize;
+                    converterByteBuffer.putShort(0, buffer.get(MSG_COUNT_OFFSET));
+                    converterByteBuffer.putShort(Byte.BYTES, buffer.get(MSG_COUNT_OFFSET+1));
+                    int count = BUFFER_OFFSET + converterByteBuffer.getInt(0) * msgSize;
                     if (count <= 0){
                         System.out.println("Invalid Count Error - Rank: " + worldProcRank + "torank: " + sendtoRank +
                                 " count: " + count + " msgCount: " + buffer.get(MSG_COUNT_OFFSET) + " msgSize: " + msgSize);
@@ -486,7 +490,9 @@ public class ParallelOps {
                 int recvdMsgSize = b.get(MSG_SIZE_OFFSET);
                 if (recvdMsgSize != msgSizeToReceive) throw new RuntimeException("recvd msg size " + recvdMsgSize  + " != " +
                         msgSizeToReceive + " msgSize");
-                int msgCount = b.get(MSG_COUNT_OFFSET);
+                converterByteBuffer.putShort(0, b.get(MSG_COUNT_OFFSET));
+                converterByteBuffer.putShort(Byte.BYTES, b.get(MSG_COUNT_OFFSET+1));
+                int msgCount = converterByteBuffer.getInt(0);
                 sb.append("\n recvd ").append(msgCount).append(" msgs from rank ").append(recvfromRank).append(" of " +
                         "size ").append(recvdMsgSize).append(" msg list: ");
                 IntStream.range(0, msgCount).forEach(i -> {
