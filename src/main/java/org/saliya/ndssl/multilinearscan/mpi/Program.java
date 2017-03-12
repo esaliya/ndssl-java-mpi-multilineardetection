@@ -185,13 +185,13 @@ public class Program {
                         .currentTimeMillis() - startTime) + " ms");
             }
         }
+        */
         double bestScore = finalizeIterations(vertices);
         ParallelOps.oneDoubleBuffer.put(0, bestScore);
         ParallelOps.worldProcsComm.allReduce(ParallelOps.oneDoubleBuffer, 1, MPI.DOUBLE, MPI.MAX);
         bestScore = ParallelOps.oneDoubleBuffer.get(0);
         putils.printMessage("    Loop "  +loopNumber + " best score: " + bestScore);
-        return bestScore;*/
-        return 1.0;
+        return bestScore;
     }
 
     private static double finalizeIterations(Vertex[] vertices) {
