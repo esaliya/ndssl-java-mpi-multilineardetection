@@ -162,11 +162,11 @@ public class Program {
     }
 
     private static double runGraphComp(int loopNumber, Vertex[] vertices) throws MPIException {
-        initLoop(vertices);
+        /*initLoop(vertices);
 
         long startTime = System.currentTimeMillis();
         for (int iter = 0; iter < twoRaisedToK; ++iter) {
-            /* Super step loop*/
+            *//* Super step loop*//*
             int workerSteps = maxIterations+1; // +1 to send initial values
             for (int ss = 0; ss < workerSteps; ++ss) {
                 if (ss > 0) {
@@ -190,7 +190,8 @@ public class Program {
         ParallelOps.worldProcsComm.allReduce(ParallelOps.oneDoubleBuffer, 1, MPI.DOUBLE, MPI.MAX);
         bestScore = ParallelOps.oneDoubleBuffer.get(0);
         putils.printMessage("    Loop "  +loopNumber + " best score: " + bestScore);
-        return bestScore;
+        return bestScore;*/
+        return 1.0;
     }
 
     private static double finalizeIterations(Vertex[] vertices) {
