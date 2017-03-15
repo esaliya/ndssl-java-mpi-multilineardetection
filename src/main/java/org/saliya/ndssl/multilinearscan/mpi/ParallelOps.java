@@ -54,6 +54,7 @@ public class ParallelOps {
     public static TreeMap<Integer, Request> requests;
 
     private static boolean debug = false;
+    private static boolean debug2 = true;
     public static int[] localVertexCounts;
     public static int[] localVertexDisplas;
 
@@ -405,6 +406,29 @@ public class ParallelOps {
                 vertexSendBuffer.setBuffer(sendtoRankToSendBuffer.get(outRank));
             });
 
+        }
+
+        if (debug2){
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n--Rank: ").append(worldProcRank).append('\n');
+            int recvfromRankCount = recvfromRankToMsgCountAndforvertexLabels.size();
+            int recvMsgCount = 0;
+            for (List<Integer> l : recvfromRankToMsgCountAndforvertexLabels.values()){
+                recvMsgCount += l.get(0);
+            }
+            int sendtoRankCount = sendtoRankToMsgCountAndDestinedVertexLabels.size();
+            int sendMsgCount = 0;
+            for (List<Integer> l : sendtoRankToMsgCountAndDestinedVertexLabels.values()){
+                sendMsgCount += l.get(0);
+            }
+            sb.append("  recvs from ").append(recvfromRankCount).append(" ranks -- totals ").append(recvMsgCount)
+                    .append(" msgs \n");
+            sb.append("  sends to ").append(sendtoRankCount).append(" ranks -- totals ").append(sendMsgCount)
+                    .append(" msgs \n");
+            String msg = allReduce(sb.toString(), worldProcsComm);
+            if (worldProcRank == 0) {
+                System.out.println(msg);
+            }
         }
     }
 
