@@ -410,7 +410,7 @@ public class ParallelOps {
 
         if (debug2){
             StringBuilder sb = new StringBuilder();
-            sb.append("\n--Rank: ").append(worldProcRank).append('\n');
+            sb.append("--Rank: ").append(worldProcRank).append(" ");
             int recvfromRankCount = recvfromRankToMsgCountAndforvertexLabels.size();
             int recvMsgCount = 0;
             for (List<Integer> l : recvfromRankToMsgCountAndforvertexLabels.values()){
@@ -421,10 +421,12 @@ public class ParallelOps {
             for (List<Integer> l : sendtoRankToMsgCountAndDestinedVertexLabels.values()){
                 sendMsgCount += l.get(0);
             }
-            sb.append("  recvs from ").append(recvfromRankCount).append(" ranks -- totals ").append(recvMsgCount)
-                    .append(" msgs \n");
-            sb.append("  sends to ").append(sendtoRankCount).append(" ranks -- totals ").append(sendMsgCount)
-                    .append(" msgs \n");
+//            sb.append("  recvs from ").append(recvfromRankCount).append(" ranks -- totals ").append(recvMsgCount)
+//                    .append(" msgs \n");
+//            sb.append("  sends to ").append(sendtoRankCount).append(" ranks -- totals ").append(sendMsgCount)
+//                    .append(" msgs \n");
+            sb.append(recvfromRankCount).append(" ").append(recvMsgCount).append(" ").append(sendtoRankCount).append
+                    (" ").append(sendMsgCount);
             String msg = allReduce(sb.toString(), worldProcsComm);
             if (worldProcRank == 0) {
                 System.out.println(msg);
