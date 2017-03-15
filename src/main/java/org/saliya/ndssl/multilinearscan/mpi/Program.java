@@ -148,7 +148,8 @@ public class Program {
         double bestScore = Double.MIN_VALUE;
         long startTime = System.currentTimeMillis();
         initComp(vertices);
-        for (int i = 0; i < iter; ++i) {
+        //for (int i = 0; i < iter; ++i) {
+        for (int i = 0; i < 1; ++i) {
             putils.printMessage("  Start of Loop: " + i);
             long loopStartTime = System.currentTimeMillis();
             bestScore = Math.max(bestScore, runGraphComp(i, vertices));
@@ -165,7 +166,8 @@ public class Program {
         initLoop(vertices);
 
         long startTime = System.currentTimeMillis();
-        for (int iter = 0; iter < twoRaisedToK; ++iter) {
+        //for (int iter = 0; iter < twoRaisedToK; ++iter) {
+        for (int iter = 0; iter < 3; ++iter) {
             /* Super step loop*/
             int workerSteps = maxIterations+1; // +1 to send initial values
             for (int ss = 0; ss < workerSteps; ++ss) {
