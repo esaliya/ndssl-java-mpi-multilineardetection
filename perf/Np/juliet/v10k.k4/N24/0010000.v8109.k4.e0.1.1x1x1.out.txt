@@ -1,0 +1,37 @@
+--------------------------------------------------------------------------
+WARNING: a request was made to bind a process. While the system
+supports binding the process itself, at least one node does NOT
+support binding memory to the process location.
+
+  Node:  j-001
+
+This usually is due to not having the required NUMA support installed
+on the node. In some Linux distributions, the required support is
+contained in the libnumactl and libnumactl-devel packages.
+This is a warning only; your job will continue, though performance may be degraded.
+--------------------------------------------------------------------------
+[j-001:32574] MCW rank 0 is not bound (or bound to all available processors)
+
+== MultilinearScan run started on Sun Mar 12 13:43:39 EDT 2017 ==
+
+Parameters...
+           Input File: /N/u/sekanaya/sali/projects/vt/giraph/random-er/0010000.txt
+  Global Vertex Count: 8109
+                    K: 4
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 1x1x1
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 1895.0 r: 11
+
+  Start of Loop: 0
+      Iteration 1 of 16 elapsed 1119 ms
+      Iteration 11 of 16 elapsed 12083 ms
+      Iteration 16 of 16 elapsed 17606 ms
+    Loop 0 best score: 1942.6508645231424
+  End of Loop: 0 took 17644 ms
+  Start of Loop: 1
+      Iteration 1 of 16 elapsed 1020 ms
