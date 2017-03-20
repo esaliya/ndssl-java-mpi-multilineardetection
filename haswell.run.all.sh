@@ -12,18 +12,18 @@ v=4843864
 dir=/N/u/sekanaya/sali/projects/vt/giraph
 COMMENT
 
-#fn=0100000
-#v=80991
-fn=1000000
-v=809165
+fn=0100000
+v=80991
+#fn=1000000
+#v=809165
 dir=/localscratch/esaliya/sali/projects/vt/giraph/random-er
 
 i=$dir/"$fn".txt
-k=4
+k=6
 e=0.1
 
-nodes=16
-ppn=4
+nodes=2
+ppn=16
 xmx=4g
 
 cps=16
