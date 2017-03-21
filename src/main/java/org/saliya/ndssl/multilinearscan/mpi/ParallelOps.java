@@ -506,6 +506,10 @@ public class ParallelOps {
             }
         });
 
+        if (debug2){
+            System.out.println("Rank: " + worldProcRank + " completed recv");
+        }
+
         // DEBUG
         if (debug) {
             StringBuilder sb = new StringBuilder();
