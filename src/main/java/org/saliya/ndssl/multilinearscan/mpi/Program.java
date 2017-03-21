@@ -167,15 +167,16 @@ public class Program {
 
         long startTime = System.currentTimeMillis();
         //for (int iter = 0; iter < twoRaisedToK; ++iter) {
-        for (int iter = 0; iter < 3; ++iter) {
+        for (int iter = 0; iter < 1; ++iter) {
             /* Super step loop*/
-            int workerSteps = maxIterations+1; // +1 to send initial values
+//            int workerSteps = maxIterations+1; // +1 to send initial values
+            int workerSteps = 2; // +1 to send initial values
             for (int ss = 0; ss < workerSteps; ++ss) {
                 if (ss > 0) {
                     receiveMessages(vertices, ss);
                 }
 
-                compute(iter, vertices, ss);
+//                compute(iter, vertices, ss);
 
                 if (ss < workerSteps - 1) {
                     sendMessages(vertices, ss);
