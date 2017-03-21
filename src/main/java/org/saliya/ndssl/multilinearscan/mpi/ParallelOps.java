@@ -498,8 +498,10 @@ public class ParallelOps {
             }
         });
 
-        requests.values().forEach(request -> {
+        requests.entrySet().forEach(recvfromRankToRequest -> {
             try {
+                int recvfromRank = recvfromRankToRequest.getKey();
+                Request request = recvfromRankToRequest.getValue();
                 request.waitFor();
             } catch (MPIException e) {
                 e.printStackTrace();
