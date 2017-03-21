@@ -122,6 +122,7 @@ public class Program {
             msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
         }
         ParallelOps.sendMessages(msgSize);
+
     }
 
 
@@ -172,9 +173,11 @@ public class Program {
 //            int workerSteps = maxIterations+1; // +1 to send initial values
             int workerSteps = 2; // +1 to send initial values
             for (int ss = 0; ss < workerSteps; ++ss) {
+                ParallelOps.worldProcsComm.barrier();
                 if (ss > 0) {
                     receiveMessages(vertices, ss);
                 }
+                ParallelOps.worldProcsComm.barrier();
 
                 compute(iter, vertices, ss);
 
