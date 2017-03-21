@@ -176,7 +176,7 @@ public class Program {
                     receiveMessages(vertices, ss);
                 }
 
-//                compute(iter, vertices, ss);
+                compute(iter, vertices, ss);
 
                 if (ss < workerSteps - 1) {
                     sendMessages(vertices, ss);
