@@ -194,11 +194,12 @@ public class Program {
 
                 // TODO - debug - uncomment after testing
 //                if (ss < workerSteps - 1) {
-                    sendMessages(vertices, ss);
+//                    sendMessages(vertices, ss);
 //                }
 
                 // TODO - debug - remove after testing
                 receiveMessages();
+                sendMessages(vertices, ss);
                 processRecvdMessages(vertices, ss);
 
 
