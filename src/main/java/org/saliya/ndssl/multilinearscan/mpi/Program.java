@@ -3,6 +3,7 @@ package org.saliya.ndssl.multilinearscan.mpi;
 import com.google.common.base.Optional;
 import mpi.MPI;
 import mpi.MPIException;
+import mpi.Request;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
@@ -192,7 +193,7 @@ public class Program {
 
 
                 // TODO - debug - uncomment after testing
-                compute(iter, vertices, ss);
+//                compute(iter, vertices, ss);
 
                 // TODO - debug - uncomment after testing
 //                if (ss < workerSteps - 1) {
@@ -200,10 +201,17 @@ public class Program {
 //                }
 
                 // TODO - debug - remove after testing
-                receiveMessages();
-                sendMessages(vertices, ss);
-                processRecvdMessages(vertices, ss);
+                ParallelOps.oneIntBuffer.put(ParallelOps.worldProcRank);
+                Request recvReq = ParallelOps.worldProcsComm.iRecv(ParallelOps.worldIntBuffer, 1, MPI.INT, (ParallelOps
+                        .worldProcRank+1)%ParallelOps.worldProcsCount, 324);
 
+                Request sendReq = ParallelOps.worldProcsComm.iSend(ParallelOps.oneIntBuffer, 1, MPI.INT, (ParallelOps
+                        .worldProcRank+1)%ParallelOps.worldProcsCount, 324);
+                recvReq.waitFor();
+                sendReq.waitFor();
+                System.out.println("Rank: " + ParallelOps.worldProcRank + " recvd " + ParallelOps.worldIntBuffer.get
+                        (0) + " from rank " + (ParallelOps
+                        .worldProcRank+1)%ParallelOps.worldProcsCount);
 
             }
             finalizeIteration(vertices);
