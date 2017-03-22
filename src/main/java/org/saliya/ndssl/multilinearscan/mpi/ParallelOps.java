@@ -507,15 +507,17 @@ public class ParallelOps {
                     int recvfromRank = recvfromRankToRequest.getKey();
                     Request request = recvfromRankToRequest.getValue();
                     if (debug2) {
-                        System.out.println("Rank: " + worldProcRank + " waiting to recv from rank " + recvfromRank);
+//                        System.out.println("Rank: " + worldProcRank + " waiting to recv from rank " + recvfromRank);
                     }
-                    recvfromRankToCompleted.put(recvfromRank, request.test());
+                    if (!recvfromRankToCompleted.get(recvfromRank)) {
+                        recvfromRankToCompleted.put(recvfromRank, request.test());
+                    }
 //                    request.waitFor();
 
 
 
                     if (debug2) {
-                        System.out.println("Rank: " + worldProcRank + " finished waiting recv from rank " + recvfromRank);
+//                        System.out.println("Rank: " + worldProcRank + " finished waiting recv from rank " + recvfromRank);
                     }
                 } catch (MPIException e) {
                     e.printStackTrace();
