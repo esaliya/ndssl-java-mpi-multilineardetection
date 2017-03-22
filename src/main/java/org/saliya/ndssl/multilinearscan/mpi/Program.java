@@ -181,9 +181,9 @@ public class Program {
                     processRecvdMessages(vertices, ss);
                 }
 
-                if (ss < workerSteps - 1) {
+//                if (ss < workerSteps - 1) {
                     receiveMessages();
-                }
+//                }
 //                if (ss > 0) {
 //                }
 
@@ -191,9 +191,9 @@ public class Program {
 
                 compute(iter, vertices, ss);
 
-                if (ss < workerSteps - 1) {
+//                if (ss < workerSteps - 1) {
                     sendMessages(vertices, ss);
-                }
+//                }
 
                 // TODO - debug - remove after testing
                 processRecvdMessages(vertices, ss);
