@@ -175,9 +175,8 @@ public class Program {
         for (int iter = 0; iter < 1; ++iter) {
             /* Super step loop*/
 //            int workerSteps = maxIterations+1; // +1 to send initial values
-            int workerSteps = 2; // +1 to send initial values
+            int workerSteps = 1; // +1 to send initial values
             for (int ss = 0; ss < workerSteps; ++ss) {
-                ParallelOps.worldProcsComm.barrier();
                 if (ss > 0) {
                     processRecvdMessages(vertices, ss);
                 }
@@ -195,6 +194,9 @@ public class Program {
                 if (ss < workerSteps - 1) {
                     sendMessages(vertices, ss);
                 }
+
+                // TODO - debug - remove after testing
+                processRecvdMessages(vertices, ss);
 
 
             }
