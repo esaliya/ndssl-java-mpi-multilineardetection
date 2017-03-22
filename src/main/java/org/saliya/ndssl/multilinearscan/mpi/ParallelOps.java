@@ -54,7 +54,7 @@ public class ParallelOps {
     public static TreeMap<Integer, Request> requests;
 
     private static boolean debug = false;
-    private static boolean debug2 = true;
+    private static boolean debug2 = false;
     public static int[] localVertexCounts;
     public static int[] localVertexDisplas;
 
@@ -498,43 +498,14 @@ public class ParallelOps {
             }
         });
 
-        boolean done = false;
-
-        TreeMap<Integer, Boolean> recvfromRankToCompleted = new TreeMap<>();
-        while (!done) {
-            requests.entrySet().forEach(recvfromRankToRequest -> {
-                try {
-                    int recvfromRank = recvfromRankToRequest.getKey();
-                    Request request = recvfromRankToRequest.getValue();
-                    if (debug2) {
-//                        System.out.println("Rank: " + worldProcRank + " waiting to recv from rank " + recvfromRank);
-                    }
-                    Boolean status = recvfromRankToCompleted.get(recvfromRank);
-                    if (status == null || !status) {
-                        recvfromRankToCompleted.put(recvfromRank, request.test());
-                    }
-//                    request.waitFor();
-
-
-
-                    if (debug2) {
-//                        System.out.println("Rank: " + worldProcRank + " finished waiting recv from rank " + recvfromRank);
-                    }
-                } catch (MPIException e) {
-                    e.printStackTrace();
-                }
-            });
-
-            done = true;
-            for (boolean s : recvfromRankToCompleted.values()){
-                done = done & s;
+        requests.entrySet().forEach(recvfromRankToRequest -> {
+            try {
+                Request request = recvfromRankToRequest.getValue();
+                request.waitFor();
+            } catch (MPIException e) {
+                e.printStackTrace();
             }
-        }
-
-        if (debug2){
-            System.out.println("Rank: " + worldProcRank + " completed all recvs ");
-        }
-
+        });
 
 
         // DEBUG
