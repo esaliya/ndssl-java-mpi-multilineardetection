@@ -133,9 +133,10 @@ public class Program {
     private static void processRecvdMessages(Vertex[] vertices, int superStep) {
         ParallelOps.waitForRecvs();
         ParallelOps.waitForSends();
-        for (Vertex vertex : vertices){
+        // TODO - debug - uncomment after testing
+        /*for (Vertex vertex : vertices){
             vertex.processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
-        }
+        }*/
     }
 
     private static void runProgram(Vertex[] vertices) throws MPIException {
@@ -190,6 +191,7 @@ public class Program {
 
 
 
+                // TODO - debug - uncomment after testing
                 compute(iter, vertices, ss);
 
                 // TODO - debug - uncomment after testing
