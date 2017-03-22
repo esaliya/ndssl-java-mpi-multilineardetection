@@ -202,16 +202,18 @@ public class Program {
 
                 // TODO - debug - remove after testing
                 ParallelOps.oneIntBuffer.put(ParallelOps.worldProcRank);
-                Request recvReq = ParallelOps.worldProcsComm.iRecv(ParallelOps.worldIntBuffer, 1, MPI.INT, (ParallelOps
-                        .worldProcRank+1)%ParallelOps.worldProcsCount, 324);
 
-                Request sendReq = ParallelOps.worldProcsComm.iSend(ParallelOps.oneIntBuffer, 1, MPI.INT, (ParallelOps
-                        .worldProcRank+1)%ParallelOps.worldProcsCount, 324);
+                int sendtoRank = (ParallelOps.worldProcRank == ParallelOps.worldProcsCount - 1) ? 0 : ParallelOps
+                        .worldProcRank + 1;
+                int recvfromRank = (ParallelOps.worldProcRank == 0) ? ParallelOps.worldProcsCount - 1 : ParallelOps
+                        .worldProcRank - 1;
+                Request recvReq = ParallelOps.worldProcsComm.iRecv(ParallelOps.worldIntBuffer, 1, MPI.INT, recvfromRank, 324);
+
+                Request sendReq = ParallelOps.worldProcsComm.iSend(ParallelOps.oneIntBuffer, 1, MPI.INT, sendtoRank, 324);
                 recvReq.waitFor();
                 sendReq.waitFor();
                 System.out.println("Rank: " + ParallelOps.worldProcRank + " recvd " + ParallelOps.worldIntBuffer.get
-                        (0) + " from rank " + (ParallelOps
-                        .worldProcRank+1)%ParallelOps.worldProcsCount);
+                        (0) + " from rank " + recvfromRank);
 
             }
             finalizeIteration(vertices);
