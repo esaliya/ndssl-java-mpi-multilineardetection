@@ -132,7 +132,7 @@ public class Program {
 
     private static void processRecvdMessages(Vertex[] vertices, int superStep) {
         ParallelOps.waitForRecvs();
-//        ParallelOps.waitForSends();
+        ParallelOps.waitForSends();
         for (Vertex vertex : vertices){
             vertex.processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
         }
@@ -178,9 +178,10 @@ public class Program {
 //            int workerSteps = maxIterations+1; // +1 to send initial values
             int workerSteps = 1; // +1 to send initial values
             for (int ss = 0; ss < workerSteps; ++ss) {
-                if (ss > 0) {
+                // TODO - debug - uncomment after testing
+                /*if (ss > 0) {
                     processRecvdMessages(vertices, ss);
-                }
+                }*/
 
                 // TODO - debug - uncomment after testing
 //                if (ss < workerSteps - 1) {
