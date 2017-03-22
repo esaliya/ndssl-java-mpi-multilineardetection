@@ -132,6 +132,7 @@ public class Program {
 
     private static void processRecvdMessages(Vertex[] vertices, int superStep) {
         ParallelOps.waitForRecvs();
+        ParallelOps.waitForSends();
         for (Vertex vertex : vertices){
             vertex.processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
         }

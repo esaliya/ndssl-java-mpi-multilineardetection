@@ -52,6 +52,7 @@ public class ParallelOps {
     public static int msgSizeToReceive;
 
     public static TreeMap<Integer, Request> requests;
+    public static TreeMap<Integer, Request> sendRequests;
 
     private static boolean debug = false;
     private static boolean debug2 = true;
@@ -333,6 +334,7 @@ public class ParallelOps {
 
         // ~~~~~~~~~~~~~~~~
         requests = new TreeMap<>();
+        sendRequests = new TreeMap<>();
         recvfromRankToCompleted = new TreeMap<>();
         recvfromRankToRecvBuffer = new TreeMap<>();
         recvfromRankToMsgCountAndforvertexLabels.entrySet().forEach(kv -> {
@@ -476,8 +478,8 @@ public class ParallelOps {
                         System.out.println("Invalid Count Error - Rank: " + worldProcRank + "torank: " + sendtoRank +
                                 " count: " + count + " msgCount: " + buffer.get(MSG_COUNT_OFFSET) + " msgSize: " + msgSize);
                     }
-                    worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
-                            worldProcRank);
+                    sendRequests.put(sendtoRank, worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
+                            worldProcRank));
                 }
             } catch (MPIException e) {
                 e.printStackTrace();
@@ -569,5 +571,30 @@ public class ParallelOps {
         if (debug2){
             System.out.println("Rank: " + worldProcRank + " completed all recvs ");
         }
+    }
+
+    public static void waitForSends() {
+        sendRequests.entrySet().forEach(sendtoRankToRequest -> {
+            try {
+                int sendtoRank = sendtoRankToRequest.getKey();
+                Request request = sendtoRankToRequest.getValue();
+                if (debug2) {
+//                        System.out.println("Rank: " + worldProcRank + " waiting to recv from rank " + sendtoRank);
+                }
+//                    Boolean status = recvfromRankToCompleted.get(sendtoRank);
+//                    if (status == null || !status) {
+//                        recvfromRankToCompleted.put(sendtoRank, request.test());
+//                    }
+                request.waitFor();
+
+
+
+                if (debug2) {
+//                        System.out.println("Rank: " + worldProcRank + " finished waiting recv from rank " + sendtoRank);
+                }
+            } catch (MPIException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
