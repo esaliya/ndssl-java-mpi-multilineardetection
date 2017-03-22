@@ -507,12 +507,16 @@ public class ParallelOps {
                 }
                 request.waitFor();
                 if (debug2){
-                    System.out.println("Rank: " + worldProcRank + " done recv from rank " + recvfromRank);
+                    System.out.println("Rank: " + worldProcRank + " finished waiting recv from rank " + recvfromRank);
                 }
             } catch (MPIException e) {
                 e.printStackTrace();
             }
         });
+
+        if (debug2){
+            System.out.println("Rank: " + worldProcRank + " completed all recvs ");
+        }
 
 
 
