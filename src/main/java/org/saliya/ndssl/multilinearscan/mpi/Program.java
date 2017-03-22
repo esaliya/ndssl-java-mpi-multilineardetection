@@ -207,13 +207,12 @@ public class Program {
                         .worldProcRank + 1;
                 int recvfromRank = (ParallelOps.worldProcRank == 0) ? ParallelOps.worldProcsCount - 1 : ParallelOps
                         .worldProcRank - 1;
-                Request recvReq = ParallelOps.worldProcsComm.iRecv(ParallelOps.worldIntBuffer, 1, MPI.INT, recvfromRank, 324);
+                Request[] requests = new Request[2];
+                requests[0] = ParallelOps.worldProcsComm.iRecv(ParallelOps.worldIntBuffer, 1, MPI.INT, recvfromRank,
+                        324);
 
-                Request sendReq = ParallelOps.worldProcsComm.iSend(ParallelOps.oneIntBuffer, 1, MPI.INT, sendtoRank, 324);
-                recvReq.waitFor();
-                recvReq.free();
-                sendReq.waitFor();
-                sendReq.free();
+                requests[1] = ParallelOps.worldProcsComm.iSend(ParallelOps.oneIntBuffer, 1, MPI.INT, sendtoRank, 324);
+                Request.waitAll(requests);
 
                 System.out.println("Rank: " + ParallelOps.worldProcRank + " recvd " + ParallelOps.worldIntBuffer.get
                         (0) + " from rank " + recvfromRank);
