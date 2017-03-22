@@ -3,7 +3,6 @@ package org.saliya.ndssl.multilinearscan.mpi;
 import com.google.common.base.Optional;
 import mpi.MPI;
 import mpi.MPIException;
-import mpi.Request;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
@@ -127,17 +126,11 @@ public class Program {
     }
 
 
-    private static void receiveMessages() throws MPIException {
+    private static void receiveMessages(Vertex[] vertices, int superStep) throws MPIException {
         ParallelOps.recvMessages();
-    }
-
-    private static void processRecvdMessages(Vertex[] vertices, int superStep) {
-        ParallelOps.waitForRecvs();
-        ParallelOps.waitForSends();
-        // TODO - debug - uncomment after testing
-        /*for (Vertex vertex : vertices){
+        for (Vertex vertex : vertices){
             vertex.processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
-        }*/
+        }
     }
 
     private static void runProgram(Vertex[] vertices) throws MPIException {
@@ -178,48 +171,17 @@ public class Program {
         for (int iter = 0; iter < 1; ++iter) {
             /* Super step loop*/
 //            int workerSteps = maxIterations+1; // +1 to send initial values
-            int workerSteps = 1; // +1 to send initial values
+            int workerSteps = 2; // +1 to send initial values
             for (int ss = 0; ss < workerSteps; ++ss) {
-                // TODO - debug - uncomment after testing
-                /*if (ss > 0) {
-                    processRecvdMessages(vertices, ss);
-                }*/
-
-                // TODO - debug - uncomment after testing
-//                if (ss < workerSteps - 1) {
-//                    receiveMessages();
-//                }
-
-
-
-                // TODO - debug - uncomment after testing
-//                compute(iter, vertices, ss);
-
-                // TODO - debug - uncomment after testing
-//                if (ss < workerSteps - 1) {
-//                    sendMessages(vertices, ss);
-//                }
-
-                // TODO - debug - remove after testing
-                ParallelOps.oneIntBuffer.put(ParallelOps.worldProcRank);
-
-                int sendtoRank = (ParallelOps.worldProcRank == ParallelOps.worldProcsCount - 1) ? 0 : ParallelOps
-                        .worldProcRank + 1;
-                int recvfromRank = (ParallelOps.worldProcRank == 0) ? ParallelOps.worldProcsCount - 1 : ParallelOps
-                        .worldProcRank - 1;
-                Request[] requests = new Request[2];
-                requests[0] = ParallelOps.worldProcsComm.iRecv(ParallelOps.worldIntBuffer, 1, MPI.INT, recvfromRank,
-                        324);
-
-                requests[1] = ParallelOps.worldProcsComm.iSend(ParallelOps.oneIntBuffer, 1, MPI.INT, sendtoRank, 324);
-                Request.waitAll(requests);
-                for (Request request : requests) {
-                    request.free();
+                if (ss > 0) {
+                    receiveMessages(vertices, ss);
                 }
 
-                System.out.println("Rank: " + ParallelOps.worldProcRank + " recvd " + ParallelOps.worldIntBuffer.get
-                        (0) + " from rank " + recvfromRank);
+                compute(iter, vertices, ss);
 
+                if (ss < workerSteps - 1) {
+                    sendMessages(vertices, ss);
+                }
             }
             finalizeIteration(vertices);
             if (iter%10 == 0 || iter == twoRaisedToK-1){
