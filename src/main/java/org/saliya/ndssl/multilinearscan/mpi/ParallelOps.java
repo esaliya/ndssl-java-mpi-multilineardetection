@@ -536,7 +536,7 @@ public class ParallelOps {
         boolean done = false;
 
         recvfromRankToCompleted.clear();
-        while (!done) {
+//        while (!done) {
             requests.entrySet().forEach(recvfromRankToRequest -> {
                 try {
                     int recvfromRank = recvfromRankToRequest.getKey();
@@ -544,11 +544,11 @@ public class ParallelOps {
                     if (debug2) {
 //                        System.out.println("Rank: " + worldProcRank + " waiting to recv from rank " + recvfromRank);
                     }
-                    Boolean status = recvfromRankToCompleted.get(recvfromRank);
-                    if (status == null || !status) {
-                        recvfromRankToCompleted.put(recvfromRank, request.test());
-                    }
-//                    request.waitFor();
+//                    Boolean status = recvfromRankToCompleted.get(recvfromRank);
+//                    if (status == null || !status) {
+//                        recvfromRankToCompleted.put(recvfromRank, request.test());
+//                    }
+                    request.waitFor();
 
 
 
@@ -560,11 +560,11 @@ public class ParallelOps {
                 }
             });
 
-            done = true;
-            for (boolean s : recvfromRankToCompleted.values()){
-                done = done & s;
-            }
-        }
+//            done = true;
+//            for (boolean s : recvfromRankToCompleted.values()){
+//                done = done & s;
+//            }
+//        }
 
         if (debug2){
             System.out.println("Rank: " + worldProcRank + " completed all recvs ");
