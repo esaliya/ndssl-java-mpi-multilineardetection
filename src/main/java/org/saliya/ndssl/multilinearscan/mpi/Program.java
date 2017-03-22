@@ -185,7 +185,7 @@ public class Program {
 
                 // TODO - debug - uncomment after testing
 //                if (ss < workerSteps - 1) {
-                    receiveMessages();
+//                    receiveMessages();
 //                }
 
 
@@ -198,6 +198,7 @@ public class Program {
 //                }
 
                 // TODO - debug - remove after testing
+                receiveMessages();
                 processRecvdMessages(vertices, ss);
 
 
