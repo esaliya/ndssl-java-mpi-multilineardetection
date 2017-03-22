@@ -498,21 +498,35 @@ public class ParallelOps {
             }
         });
 
-        requests.entrySet().forEach(recvfromRankToRequest -> {
-            try {
-                int recvfromRank = recvfromRankToRequest.getKey();
-                Request request = recvfromRankToRequest.getValue();
-                if (debug2){
-                    System.out.println("Rank: " + worldProcRank + " waiting to recv from rank " + recvfromRank);
+        boolean done = false;
+
+        TreeMap<Integer, Boolean> recvfromRankToCompleted = new TreeMap<>();
+        while (!done) {
+            requests.entrySet().forEach(recvfromRankToRequest -> {
+                try {
+                    int recvfromRank = recvfromRankToRequest.getKey();
+                    Request request = recvfromRankToRequest.getValue();
+                    if (debug2) {
+                        System.out.println("Rank: " + worldProcRank + " waiting to recv from rank " + recvfromRank);
+                    }
+                    recvfromRankToCompleted.put(recvfromRank, request.test());
+//                    request.waitFor();
+
+
+
+                    if (debug2) {
+                        System.out.println("Rank: " + worldProcRank + " finished waiting recv from rank " + recvfromRank);
+                    }
+                } catch (MPIException e) {
+                    e.printStackTrace();
                 }
-                request.waitFor();
-                if (debug2){
-                    System.out.println("Rank: " + worldProcRank + " finished waiting recv from rank " + recvfromRank);
-                }
-            } catch (MPIException e) {
-                e.printStackTrace();
+            });
+
+            done = true;
+            for (boolean s : recvfromRankToCompleted.values()){
+                done = done & s;
             }
-        });
+        }
 
         if (debug2){
             System.out.println("Rank: " + worldProcRank + " completed all recvs ");
