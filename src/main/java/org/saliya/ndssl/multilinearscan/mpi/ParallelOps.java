@@ -478,8 +478,10 @@ public class ParallelOps {
                         System.out.println("Invalid Count Error - Rank: " + worldProcRank + "torank: " + sendtoRank +
                                 " count: " + count + " msgCount: " + buffer.get(MSG_COUNT_OFFSET) + " msgSize: " + msgSize);
                     }
-                    sendRequests.put(sendtoRank, worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
-                            worldProcRank));
+                    /*sendRequests.put(sendtoRank, worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
+                            worldProcRank));*/
+                    worldProcsComm.send(buffer, count, MPI.SHORT, sendtoRank,
+                            worldProcRank);
                 }
             } catch (MPIException e) {
                 e.printStackTrace();
