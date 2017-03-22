@@ -211,7 +211,7 @@ public class Program {
 
                 Request sendReq = ParallelOps.worldProcsComm.iSend(ParallelOps.oneIntBuffer, 1, MPI.INT, sendtoRank, 324);
                 recvReq.waitFor();
-                sendReq.waitFor();
+//                sendReq.waitFor();
                 System.out.println("Rank: " + ParallelOps.worldProcRank + " recvd " + ParallelOps.worldIntBuffer.get
                         (0) + " from rank " + recvfromRank);
 
