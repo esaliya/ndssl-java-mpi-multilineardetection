@@ -509,7 +509,8 @@ public class ParallelOps {
                     if (debug2) {
 //                        System.out.println("Rank: " + worldProcRank + " waiting to recv from rank " + recvfromRank);
                     }
-                    if (!recvfromRankToCompleted.get(recvfromRank)) {
+                    Boolean status = recvfromRankToCompleted.get(recvfromRank);
+                    if (status == null || !status) {
                         recvfromRankToCompleted.put(recvfromRank, request.test());
                     }
 //                    request.waitFor();
