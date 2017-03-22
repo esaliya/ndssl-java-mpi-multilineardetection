@@ -181,16 +181,16 @@ public class Program {
                     processRecvdMessages(vertices, ss);
                 }
 
+                // TODO - debug - uncomment after testing
 //                if (ss < workerSteps - 1) {
                     receiveMessages();
-//                }
-//                if (ss > 0) {
 //                }
 
 
 
                 compute(iter, vertices, ss);
 
+                // TODO - debug - uncomment after testing
 //                if (ss < workerSteps - 1) {
                     sendMessages(vertices, ss);
 //                }
