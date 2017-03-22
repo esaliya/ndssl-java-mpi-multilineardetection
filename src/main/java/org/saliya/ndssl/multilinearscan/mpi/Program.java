@@ -126,8 +126,12 @@ public class Program {
     }
 
 
-    private static void receiveMessages(Vertex[] vertices, int superStep) throws MPIException {
+    private static void receiveMessages() throws MPIException {
         ParallelOps.recvMessages();
+    }
+
+    private static void processRecvdMessages(Vertex[] vertices, int superStep) {
+        ParallelOps.waitForRecvs();
         for (Vertex vertex : vertices){
             vertex.processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
         }
@@ -174,14 +178,24 @@ public class Program {
             int workerSteps = 2; // +1 to send initial values
             for (int ss = 0; ss < workerSteps; ++ss) {
                 if (ss > 0) {
-                    receiveMessages(vertices, ss);
+                    processRecvdMessages(vertices, ss);
                 }
+
+                if (ss != workerSteps - 1) {
+                    receiveMessages();
+                }
+//                if (ss > 0) {
+//                }
+
+
 
                 compute(iter, vertices, ss);
 
                 if (ss < workerSteps - 1) {
                     sendMessages(vertices, ss);
                 }
+
+
             }
             finalizeIteration(vertices);
             if (iter%10 == 0 || iter == twoRaisedToK-1){

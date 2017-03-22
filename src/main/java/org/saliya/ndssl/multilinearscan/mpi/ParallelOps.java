@@ -61,6 +61,8 @@ public class ParallelOps {
     public static Hashtable<Integer, Integer> vertexLabelToWorldRank;
     public static ByteBuffer converterByteBuffer;
 
+    public static TreeMap<Integer, Boolean> recvfromRankToCompleted;
+
 
     public static void setupParallelism(String[] args) throws MPIException {
         MPI.Init(args);
@@ -331,6 +333,7 @@ public class ParallelOps {
 
         // ~~~~~~~~~~~~~~~~
         requests = new TreeMap<>();
+        recvfromRankToCompleted = new TreeMap<>();
         recvfromRankToRecvBuffer = new TreeMap<>();
         recvfromRankToMsgCountAndforvertexLabels.entrySet().forEach(kv -> {
             int recvfromRank = kv.getKey();
@@ -498,9 +501,41 @@ public class ParallelOps {
             }
         });
 
+        // DEBUG
+        /*if (debug) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("\n%%Rank: ").append(worldProcRank);
+            recvfromRankToRecvBuffer.entrySet().forEach(kv -> {
+                int recvfromRank = kv.getKey();
+                ShortBuffer b = kv.getValue();
+                int recvdMsgSize = b.get(MSG_SIZE_OFFSET);
+                if (recvdMsgSize != msgSizeToReceive) throw new RuntimeException("recvd msg size " + recvdMsgSize  + " != " +
+                        msgSizeToReceive + " msgSize");
+                converterByteBuffer.putShort(0, b.get(MSG_COUNT_OFFSET));
+                converterByteBuffer.putShort(Byte.BYTES, b.get(MSG_COUNT_OFFSET+1));
+                int msgCount = converterByteBuffer.getInt(0);
+                sb.append("\n recvd ").append(msgCount).append(" msgs from rank ").append(recvfromRank).append(" of " +
+                        "size ").append(recvdMsgSize).append(" msg list: ");
+                IntStream.range(0, msgCount).forEach(i -> {
+                    sb.append("[");
+                    IntStream.range(0, recvdMsgSize).forEach(j -> {
+                        sb.append(b.get(BUFFER_OFFSET+(i*recvdMsgSize+j))).append(" ");
+                    });
+                    sb.append("] ");
+                });
+            });
+            sb.append('\n');
+            String msg = allReduce(sb.toString(), worldProcsComm);
+            if (worldProcRank == 0) {
+                System.out.println(msg);
+            }
+        }*/
+    }
+
+    public static void waitForRecvs() {
         boolean done = false;
 
-        TreeMap<Integer, Boolean> recvfromRankToCompleted = new TreeMap<>();
+        recvfromRankToCompleted.clear();
         while (!done) {
             requests.entrySet().forEach(recvfromRankToRequest -> {
                 try {
@@ -533,38 +568,6 @@ public class ParallelOps {
 
         if (debug2){
             System.out.println("Rank: " + worldProcRank + " completed all recvs ");
-        }
-
-
-
-        // DEBUG
-        if (debug) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("\n%%Rank: ").append(worldProcRank);
-            recvfromRankToRecvBuffer.entrySet().forEach(kv -> {
-                int recvfromRank = kv.getKey();
-                ShortBuffer b = kv.getValue();
-                int recvdMsgSize = b.get(MSG_SIZE_OFFSET);
-                if (recvdMsgSize != msgSizeToReceive) throw new RuntimeException("recvd msg size " + recvdMsgSize  + " != " +
-                        msgSizeToReceive + " msgSize");
-                converterByteBuffer.putShort(0, b.get(MSG_COUNT_OFFSET));
-                converterByteBuffer.putShort(Byte.BYTES, b.get(MSG_COUNT_OFFSET+1));
-                int msgCount = converterByteBuffer.getInt(0);
-                sb.append("\n recvd ").append(msgCount).append(" msgs from rank ").append(recvfromRank).append(" of " +
-                        "size ").append(recvdMsgSize).append(" msg list: ");
-                IntStream.range(0, msgCount).forEach(i -> {
-                    sb.append("[");
-                    IntStream.range(0, recvdMsgSize).forEach(j -> {
-                        sb.append(b.get(BUFFER_OFFSET+(i*recvdMsgSize+j))).append(" ");
-                    });
-                    sb.append("] ");
-                });
-            });
-            sb.append('\n');
-            String msg = allReduce(sb.toString(), worldProcsComm);
-            if (worldProcRank == 0) {
-                System.out.println(msg);
-            }
         }
     }
 }
