@@ -71,6 +71,7 @@ public class ParallelOps {
         worldProcsCount = worldProcsComm.getSize();
 
         oneIntBuffer = MPI.newIntBuffer(1);
+        oneByteBuffer = MPI.newByteBuffer(1);
         oneLongBuffer = MPI.newLongBuffer(1);
         oneDoubleBuffer = MPI.newDoubleBuffer(1);
         worldIntBuffer = MPI.newIntBuffer(worldProcsCount);
