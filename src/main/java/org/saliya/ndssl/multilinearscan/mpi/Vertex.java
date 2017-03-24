@@ -1,11 +1,13 @@
 package org.saliya.ndssl.multilinearscan.mpi;
 
-import org.saliya.ndssl.Utils;
-import org.saliya.ndssl.multilinearscan.GaloisField;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
+
+import org.saliya.ndssl.multilinearscan.GaloisField;
 
 /**
  * Saliya Ekanayake on 2/22/17.
@@ -26,16 +28,16 @@ public class Vertex {
     double weight;
     long uniqueRandomSeed;
     private int k;
-    private int r;
+    //private int r;
     private GaloisField gf;
-    private int[] cumulativeCompletionVariables;
-    private int[][] totalSumTable;
-    private short[][] optTable;
-    private short[][] extTable;
+    //private int[] cumulativeCompletionVariables;
+    //private int[] totalSumTable;
+    private short[] optTable;
+    private short totalSum;
     // Vertex unique random generator
     private Random random;
 
-    public Vertex(){
+    public Vertex() {
 
     }
     public Vertex(int vertexId, String vertexLine){
@@ -62,9 +64,10 @@ public class Vertex {
         int I = superStep+1;
 
         /* compute logic */
-        if (superStep == 0){
-            reset(iter, completionVariables, randomAssignments);
-        } else if (superStep > 0){
+        if (superStep == 0) {
+            //reset(iter, completionVariables, randomAssignments);
+            reset(iter, randomAssignments);
+        } else if (superStep > 0) {
             // DEBUG - see received messages
             /*StringBuffer sb = new StringBuffer("\nVertex ");
             sb.append(vertexLabel).append(" recvd ");
@@ -76,54 +79,63 @@ public class Vertex {
             
             // Business logic
             int fieldSize = gf.getFieldSize();
-            // for every quota l from 0 to r
-            for (int l = 0; l <= r; l++) {
-                // initialize the polynomial P_{i,u,l}
-                int polynomial = 0;
-                // recursive step:
-                // iterate through all the pairs of polynomials whose sizes add up to i
-                for (int iPrime = 1; iPrime < I; iPrime++) {
-                    for (Message msg : recvdMessages) {
-                        short[][] neighborOptTable = msg.getData();
-                        if (l == 0) {
-                            int weight = random.nextInt(fieldSize);
-                            int product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][0]);
-                            product = gf.multiply(weight, product);
-                            polynomial = gf.add(polynomial, product);
-                        } else if (l == 1) {
-                            int weight = random.nextInt(fieldSize);
-                            int product = gf.multiply(optTable[iPrime][1], neighborOptTable[I - iPrime][0]);
-                            product = gf.multiply(weight, product);
-                            polynomial = gf.add(polynomial, product);
-
-                            weight = random.nextInt(fieldSize);
-                            product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][1]);
-                            product = gf.multiply(weight, product);
-                            polynomial = gf.add(polynomial, product);
-                        } else {
-                            int weight = random.nextInt(fieldSize);
-                            int product = gf.multiply(optTable[iPrime][l - 1], neighborOptTable[I - iPrime][l -
-                                    1]);
-                            product = gf.multiply(weight, product);
-                            polynomial = gf.add(polynomial, product);
-
-                            weight = random.nextInt(fieldSize);
-                            product = gf.multiply(optTable[iPrime][l], neighborOptTable[I - iPrime][0]);
-                            product = gf.multiply(weight, product);
-                            polynomial = gf.add(polynomial, product);
-
-                            weight = random.nextInt(fieldSize);
-                            product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][l]);
-                            product = gf.multiply(weight, product);
-                            polynomial = gf.add(polynomial, product);
-                        }
-                    }
-                }
-                optTable[I][l] = (short)polynomial;
-                if (cumulativeCompletionVariables[k - I] != 0) {
-                    extTable[I][l] = optTable[I][l];
-                }
+            int polynomial = 0;
+            for (Message msg : recvdMessages) {
+                short[] neighborOptTable = msg.getData();
+                int weight = random.nextInt(fieldSize);
+                int product = gf.multiply(optTable[1], neighborOptTable[I - 1]);
+                product = gf.multiply(weight, product);
+                polynomial = gf.add(polynomial, product);
             }
+            optTable[I] = (short) polynomial;
+            // for every quota l from 0 to r
+//            for (int l = 0; l <= r; l++) {
+//                // initialize the polynomial P_{i,u,l}
+//                int polynomial = 0;
+//                // recursive step:
+//                // iterate through all the pairs of polynomials whose sizes add up to i
+//                for (int iPrime = 1; iPrime < I; iPrime++) {
+//                    for (Message msg : recvdMessages) {
+//                        short[][] neighborOptTable = msg.getData();
+//                        if (l == 0) {
+//                            int weight = random.nextInt(fieldSize);
+//                            int product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][0]);
+//                            product = gf.multiply(weight, product);
+//                            polynomial = gf.add(polynomial, product);
+//                        } else if (l == 1) {
+//                            int weight = random.nextInt(fieldSize);
+//                            int product = gf.multiply(optTable[iPrime][1], neighborOptTable[I - iPrime][0]);
+//                            product = gf.multiply(weight, product);
+//                            polynomial = gf.add(polynomial, product);
+//
+//                            weight = random.nextInt(fieldSize);
+//                            product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][1]);
+//                            product = gf.multiply(weight, product);
+//                            polynomial = gf.add(polynomial, product);
+//                        } else {
+//                            int weight = random.nextInt(fieldSize);
+//                            int product = gf.multiply(optTable[iPrime][l - 1], neighborOptTable[I - iPrime][l -
+//                                    1]);
+//                            product = gf.multiply(weight, product);
+//                            polynomial = gf.add(polynomial, product);
+//
+//                            weight = random.nextInt(fieldSize);
+//                            product = gf.multiply(optTable[iPrime][l], neighborOptTable[I - iPrime][0]);
+//                            product = gf.multiply(weight, product);
+//                            polynomial = gf.add(polynomial, product);
+//
+//                            weight = random.nextInt(fieldSize);
+//                            product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][l]);
+//                            product = gf.multiply(weight, product);
+//                            polynomial = gf.add(polynomial, product);
+//                        }
+//                    }
+//                }
+//                optTable[I][l] = (short)polynomial;
+//                if (cumulativeCompletionVariables[k - I] != 0) {
+//                    extTable[I][l] = optTable[I][l];
+//                }
+//            }
         }
     }
 
@@ -152,91 +164,82 @@ public class Vertex {
 
     public void init(int k, int r, GaloisField gf) {
         this.k = k;
-        this.r = r;
+        //this.r = r;
         this.gf = gf;
-        totalSumTable = new int[k+1][r+1];
-        optTable = new short[k+1][r+1];
-        extTable = new short[k+1][r+1];
-        for (int i = 0; i <= k; i++) {
-            for (int j = 0; j <= r; j++) {
-                totalSumTable[i][j] = 0;
-            }
-        }
-        cumulativeCompletionVariables = new int[k];
+        //totalSumTable = new int[k+1];
+        optTable = new short[k+1];
+        //extTable = new short[k+1];
+        //for (int i = 0; i <= k; i++) {
+        //    totalSumTable[i] = 0;
+        //}
+        //cumulativeCompletionVariables = new int[k];
         
     }
 
-    public void reset(int iter, int[] completionVariables, TreeMap<Integer, Integer> randomAssignments) {
+    public void reset(int iter, TreeMap<Integer, Integer> randomAssignments) {
+    //public void reset(int iter, int[] completionVariables, TreeMap<Integer, Integer> randomAssignments) {	
         // the ith index of this array contains the polynomial
         // y_1 * y_2 * ... y_i
         // where y_0 is defined as the identity of the finite field, (i.e., 1)
-        cumulativeCompletionVariables[0] = 1;
-        for (int i = 1; i < k; i++) {
-            int dotProduct = (completionVariables[i - 1] & iter); // dot product is bitwise and
-            cumulativeCompletionVariables[i] = (Integer.bitCount(dotProduct) % 2 == 1) ? 0 :
-                    cumulativeCompletionVariables[i - 1];
-        }
+//        cumulativeCompletionVariables[0] = 1;
+//        for (int i = 1; i < k; i++) {
+//            int dotProduct = (completionVariables[i - 1] & iter); // dot product is bitwise and
+//            cumulativeCompletionVariables[i] = (Integer.bitCount(dotProduct) % 2 == 1) ? 0 :
+//                    cumulativeCompletionVariables[i - 1];
+//        }
 
         // create the vertex unique random variable
         random = new Random(uniqueRandomSeed);
         // set arrays in vertex data
-        IntStream.range(0,k+1).forEach(i ->
-                IntStream.range(0, r+1).forEach(j -> {
-            optTable[i][j] = 0;
-            extTable[i][j] = 0;
-        }));
+        IntStream.range(0,k+1).forEach(i -> optTable[i] = 0);
 
-        int nodeWeight = (int)weight;
         int dotProduct = (randomAssignments.get(vertexLabel) & iter); // dot product is bitwise and
         int eigenvalue = (Integer.bitCount(dotProduct) % 2 == 1) ? 0 : 1;
-        for (int i = 0; i <= r; i++) {
-            optTable[1][i] = extTable[1][i] = 0;
-        }
-        optTable[1][nodeWeight] = (short)eigenvalue;
-        extTable[1][nodeWeight] = (short)(eigenvalue * cumulativeCompletionVariables[k - 1]);
-        message.setDataAndMsgSize(optTable, (k+1)*(r+1));
+        optTable[1] = (short) eigenvalue;
+        message.setDataAndMsgSize(optTable, (k+1));
     }
 
     public void finalizeIteration() {
         // aggregate to master
         // hmm, but we don't need to aggregate, just add to totalSumTable of the vertex
-        for (int kPrime = 0; kPrime <= k; kPrime++) {
-            for (int rPrime = 0; rPrime <= r; rPrime++) {
-                totalSumTable[kPrime][rPrime] = gf.add(totalSumTable[kPrime][rPrime],
-                        extTable[kPrime][rPrime]);
-            }
-        }
+//        for (int kPrime = 0; kPrime <= k; kPrime++) {
+//        	totalSumTable[kPrime]= gf.add(totalSumTable[kPrime], optTable[kPrime]);
+//        }
+        totalSum = (short) gf.add(totalSum, optTable[k]);
     }
 
-    public double finalizeIterations(double alphaMax, int roundingFactor) {
-        // Now, we can change the totalSumTable to the decisionTable
-        for (int kPrime = 0; kPrime <= k; kPrime++) {
-            for (int rPrime = 0; rPrime <= r; rPrime++) {
-                totalSumTable[kPrime][rPrime] = (totalSumTable[kPrime][rPrime] > 0) ? 1 : -1;
-            }
-        }
-        return getScoreFromTablePower(totalSumTable, alphaMax, roundingFactor);
+    public boolean finalizeIterations() {
+    	return totalSum > 0;
     }
-
-    // This is node local best score, not the global best
-    // to get the global best we have to find the max of these local best scores,
-    // which we'll do in the master using aggregation
-    private double getScoreFromTablePower(int[][] existenceForNode, double alpha, int roundingFactor) {
-        double nodeLocalBestScore = 0;
-        for (int kPrime = 1; kPrime < existenceForNode.length; kPrime++) {
-            for (int rPrime = 0; rPrime < existenceForNode[0].length; rPrime++) {
-                if (existenceForNode[kPrime][rPrime] == 1) {
-                    //System.out.println("Found subgraph with size " + kPrime + " and score " + rPrime);
-                    // size cannot be smaller than weight
-                    int unroundedPrize = (int) Math.pow(roundingFactor, rPrime - 1);
-                    // adjust for the fact that this is the refined graph
-                    int unroundedSize = Math.max(kPrime, unroundedPrize);
-                    double score = Utils.BJ(alpha, unroundedPrize, unroundedSize);
-                    //System.out.println("Score is " + score);
-                    nodeLocalBestScore = Math.max(nodeLocalBestScore, score);
-                }
-            }
-        }
-        return nodeLocalBestScore;
-    }
+//    public double finalizeIterations(double alphaMax, int roundingFactor) {
+//        // Now, we can change the totalSumTable to the decisionTable
+//        for (int kPrime = 0; kPrime <= k; kPrime++) {
+//            for (int rPrime = 0; rPrime <= r; rPrime++) {
+//                totalSumTable[kPrime][rPrime] = (totalSumTable[kPrime][rPrime] > 0) ? 1 : -1;
+//            }
+//        }
+//        return getScoreFromTablePower(totalSumTable, alphaMax, roundingFactor);
+//    }
+//
+//    // This is node local best score, not the global best
+//    // to get the global best we have to find the max of these local best scores,
+//    // which we'll do in the master using aggregation
+//    private double getScoreFromTablePower(int[][] existenceForNode, double alpha, int roundingFactor) {
+//        double nodeLocalBestScore = 0;
+//        for (int kPrime = 1; kPrime < existenceForNode.length; kPrime++) {
+//            for (int rPrime = 0; rPrime < existenceForNode[0].length; rPrime++) {
+//                if (existenceForNode[kPrime][rPrime] == 1) {
+//                    //System.out.println("Found subgraph with size " + kPrime + " and score " + rPrime);
+//                    // size cannot be smaller than weight
+//                    int unroundedPrize = (int) Math.pow(roundingFactor, rPrime - 1);
+//                    // adjust for the fact that this is the refined graph
+//                    int unroundedSize = Math.max(kPrime, unroundedPrize);
+//                    double score = Utils.BJ(alpha, unroundedPrize, unroundedSize);
+//                    //System.out.println("Score is " + score);
+//                    nodeLocalBestScore = Math.max(nodeLocalBestScore, score);
+//                }
+//            }
+//        }
+//        return nodeLocalBestScore;
+//    }
 }

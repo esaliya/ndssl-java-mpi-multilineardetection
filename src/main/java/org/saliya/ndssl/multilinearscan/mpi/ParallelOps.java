@@ -31,6 +31,7 @@ public class ParallelOps {
     public static IntBuffer oneIntBuffer;
     public static LongBuffer oneLongBuffer;
     public static DoubleBuffer oneDoubleBuffer;
+    public static ByteBuffer oneByteBuffer;
     public static IntBuffer worldIntBuffer;
     public static IntBuffer vertexIntBuffer;
     public static LongBuffer vertexLongBuffer;

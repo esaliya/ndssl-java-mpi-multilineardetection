@@ -142,28 +142,33 @@ public class Program {
         double probSuccess = 0.2;
         int iter = (int) Math.round(Math.log(epsilon) / Math.log(1 - probSuccess));
         putils.printMessage("  " + iter + " assignments will be evaluated for epsilon = " + epsilon);
-        double roundingFactor = 1 + delta;
-        putils.printMessage("  approximation factor is " + roundingFactor);
-
-
-        double bestScore = Double.MIN_VALUE;
+        
+        boolean foundPath = false;
         long startTime = System.currentTimeMillis();
         initComp(vertices);
         //for (int i = 0; i < iter; ++i) {
         for (int i = 0; i < 1; ++i) {
             putils.printMessage("  Start of Loop: " + i);
             long loopStartTime = System.currentTimeMillis();
-            bestScore = Math.max(bestScore, runGraphComp(i, vertices));
+            //bestScore = Math.max(bestScore, runGraphComp(i, vertices));
+            foundPath = runGraphComp(i, vertices);
+            if (foundPath) {
+            	break;
+            }
             putils.printMessage("  End of Loop: " + i + " took " + (System.currentTimeMillis() - loopStartTime) + " " +
                     "ms");
         }
         long endTime = System.currentTimeMillis();
-        putils.printMessage("Best score: " + bestScore);
+        if (foundPath) {
+        	putils.printMessage("Graph contains a " + k + "-path");
+        } else {
+        	putils.printMessage("Graph doest not contain a " + k + "-path");
+        }
         putils.printMessage("\n== " + Constants.PROGRAM_NAME + " run ended on " + new Date() + " took " + (endTime -
                 startTime) + " ms ==\n");
     }
 
-    private static double runGraphComp(int loopNumber, Vertex[] vertices) throws MPIException {
+    private static boolean runGraphComp(int loopNumber, Vertex[] vertices) throws MPIException {
         initLoop(vertices);
 
         long startTime = System.currentTimeMillis();
@@ -188,20 +193,33 @@ public class Program {
                         .currentTimeMillis() - startTime) + " ms");
             }
         }
-        double bestScore = finalizeIterations(vertices);
-        ParallelOps.oneDoubleBuffer.put(0, bestScore);
-        ParallelOps.worldProcsComm.allReduce(ParallelOps.oneDoubleBuffer, 1, MPI.DOUBLE, MPI.MAX);
-        bestScore = ParallelOps.oneDoubleBuffer.get(0);
-        putils.printMessage("    Loop "  +loopNumber + " best score: " + bestScore);
-        return bestScore;
+        //double bestScore = finalizeIterations(vertices);      
+//        ParallelOps.oneDoubleBuffer.put(0, bestScore);
+//        ParallelOps.worldProcsComm.allReduce(ParallelOps.oneDoubleBuffer, 1, MPI.DOUBLE, MPI.MAX);
+//        bestScore = ParallelOps.oneDoubleBuffer.get(0);
+//        putils.printMessage("    Loop "  +loopNumber + " best score: " + bestScore);
+//        return bestScore;
+        byte foundKPath = (byte) (finalizeIterations(vertices) ? 1: 0);
+        ParallelOps.oneByteBuffer.put(0, foundKPath);
+        ParallelOps.worldProcsComm.allReduce(ParallelOps.oneByteBuffer, 1, MPI.BYTE, MPI.MAX);
+        foundKPath = ParallelOps.oneByteBuffer.get(0);
+        putils.printMessage("    Loop "  +loopNumber + " found k Path: " + foundKPath);
+        return (foundKPath > 0);
     }
 
-    private static double finalizeIterations(Vertex[] vertices) {
-        double bestScore = Double.MIN_VALUE;
-        for (Vertex vertex : vertices){
-            bestScore = Math.max(bestScore, vertex.finalizeIterations(alphaMax, roundingFactor));
-        }
-        return bestScore;
+    private static boolean finalizeIterations(Vertex[] vertices) {
+//        double bestScore = Double.MIN_VALUE;
+//        for (Vertex vertex : vertices){
+//            bestScore = Math.max(bestScore, vertex.finalizeIterations(alphaMax, roundingFactor));
+//        }
+//        return bestScore;
+    	boolean foundKPath = false;
+    	for (Vertex vertex : vertices) {
+    		if (vertex.finalizeIterations()) {
+    			foundKPath = true;
+    		}
+    	}
+    	return foundKPath;
     }
 
     private static void finalizeIteration(Vertex[] vertices) {
@@ -217,49 +235,47 @@ public class Program {
     }
 
     private static void initComp(Vertex[] vertices) throws MPIException {
-        roundingFactor =  1+delta;
         // (1 << k) is 2 raised to the kth power
         twoRaisedToK = (1 << k);
         maxIterations = k-1; // the original pregel loop was from 2 to k (including k), so that's (k-2)+1 times
 
-
-        int myDisplas = ParallelOps.localVertexDisplas[ParallelOps.worldProcRank];
+        //int myDisplas = ParallelOps.localVertexDisplas[ParallelOps.worldProcRank];
         // same as vertices.length
-        int myLength = ParallelOps.localVertexCounts[ParallelOps.worldProcRank];
-        for (int i = 0; i < myLength; ++i){
-            ParallelOps.vertexDoubleBuffer.put(myDisplas+i, vertices[i].weight);
-            vertices[i].weight = (int) Math.ceil(
-                    Utils.logb((int) vertices[i].weight + 1,
-                            roundingFactor));
-        }
+        //int myLength = ParallelOps.localVertexCounts[ParallelOps.worldProcRank];
+//        for (int i = 0; i < myLength; ++i){
+//            ParallelOps.vertexDoubleBuffer.put(myDisplas+i, vertices[i].weight);
+//            vertices[i].weight = (int) Math.ceil(
+//                    Utils.logb((int) vertices[i].weight + 1,
+//                            roundingFactor));
+//        }
 
-        ParallelOps.worldProcsComm.allGatherv(ParallelOps.vertexDoubleBuffer, ParallelOps.localVertexCounts,
-                ParallelOps.localVertexDisplas, MPI.DOUBLE);
-
-        PriorityQueue<Double> pq = new PriorityQueue<>();
-        for (int i = 0; i < globalVertexCount; ++i){
-            double val = ParallelOps.vertexDoubleBuffer.get(i);
-            if (i < k){
-                pq.add(val);
-            } else {
-                if (pq.peek() >= val) continue;
-                if (pq.size() == k) {
-                    pq.poll();
-                }
-                pq.offer(val);
-            }
-        }
-        double maxWeight = 0;
-        for (double d : pq){
-            maxWeight+=d;
-        }
-
-        r = (int) Math.ceil(Utils.logb((int) maxWeight + 1, roundingFactor));
-        putils.printMessage("  Max Weight: " + maxWeight + " r: " + r + "\n");
-        // invalid input: r is negative
-        if (r < 0) {
-            throw new IllegalArgumentException("  r must be a positive integer or 0");
-        }
+//        ParallelOps.worldProcsComm.allGatherv(ParallelOps.vertexDoubleBuffer, ParallelOps.localVertexCounts,
+//                ParallelOps.localVertexDisplas, MPI.DOUBLE);
+//
+//        PriorityQueue<Double> pq = new PriorityQueue<>();
+//        for (int i = 0; i < globalVertexCount; ++i){
+//            double val = ParallelOps.vertexDoubleBuffer.get(i);
+//            if (i < k) {
+//                pq.add(val);
+//            } else {
+//                if (pq.peek() >= val) continue;
+//                if (pq.size() == k) {
+//                    pq.poll();
+//                }
+//                pq.offer(val);
+//            }
+//        }
+//        double maxWeight = 0;
+//        for (double d : pq){
+//            maxWeight+=d;
+//        }
+//
+//        r = (int) Math.ceil(Utils.logb((int) maxWeight + 1, roundingFactor));
+//        putils.printMessage("  Max Weight: " + maxWeight + " r: " + r + "\n");
+//        // invalid input: r is negative
+//        if (r < 0) {
+//            throw new IllegalArgumentException("  r must be a positive integer or 0");
+//        }
     }
 
     private static void initLoop(Vertex[] vertices) throws MPIException {

@@ -2,9 +2,7 @@ package org.saliya.ndssl.multilinearscan.mpi;
 
 import mpi.MPI;
 
-import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 /**
@@ -13,7 +11,7 @@ import java.util.stream.IntStream;
 public class Message {
     private int originalVertexLabel;
     private int msgSize;
-    private short[][] data;
+    private short[] data;
     private ShortBuffer serializedBytes = null;
 
     public Message() {
@@ -33,20 +31,16 @@ public class Message {
 
     public void loadFrom(ShortBuffer buffer, int offset, int recvdMsgSize){
         this.msgSize = recvdMsgSize;
-        int dimA = buffer.get(offset);
-        int dimB = buffer.get(offset+1);
-        data = new short[dimA][dimB];
-        IntStream.range(0, dimA).forEach(i->IntStream.range(0,dimB).forEach(j->{
-            data[i][j] = buffer.get(offset+2+(i*dimB+j));
-        }));
+        int dim = buffer.get(offset);
+        data = new short[dim];
+        IntStream.range(0, dim).forEach(i-> data[i] = buffer.get(offset+1+i));
     }
 
     public void pack(){
         serializedBytes.position(0);
         serializedBytes.put((short)data.length);
-        serializedBytes.put((short)((data.length > 0) ? data[0].length : 0));
-        for (short[] arr : data){
-            serializedBytes.put(arr);
+        for (short i : data){
+            serializedBytes.put(i);
         }
     }
 
@@ -62,14 +56,14 @@ public class Message {
         return msgSize;
     }
 
-    public short[][] getData() {
+    public short[] getData() {
         return data;
     }
 
-    public void setDataAndMsgSize(short[][] data, int msgSize) {
+    public void setDataAndMsgSize(short[] data, int msgSize) {
         this.data = data;
         // +2 to store dimensions
-        this.msgSize = msgSize+2;
+        this.msgSize = msgSize+1;
 
         if (serializedBytes == null || serializedBytes.capacity() < this.msgSize){
             serializedBytes = MPI.newShortBuffer(this.msgSize);
@@ -77,9 +71,9 @@ public class Message {
     }
 
     public StringBuffer toString(StringBuffer sb) {
-        sb.append("[");
-        for(short[] arr : data){
-            sb.append(Arrays.toString(arr));
+        sb.append("[ ");
+        for(short i : data){
+            sb.append(" " + i);
         }
         sb.append("]");
         return sb;
