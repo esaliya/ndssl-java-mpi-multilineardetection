@@ -88,9 +88,10 @@ public class ParallelOps {
         vertexIntBuffer = MPI.newIntBuffer(vertexCount);
         vertexLongBuffer = MPI.newLongBuffer(vertexCount);
         vertexDoubleBuffer = MPI.newDoubleBuffer(vertexCount);
-        return !Strings.isNullOrEmpty(partitionFile)
-                ? metisGraphPartition(file, partitionFile, vertexCount)
-                : simpleGraphPartition(file, vertexCount);
+        return metisGraphPartition(file, partitionFile, vertexCount);
+//        return !Strings.isNullOrEmpty(partitionFile)
+//                ? metisGraphPartition(file, partitionFile, vertexCount)
+//                : simpleGraphPartition(file, vertexCount);
     }
 
     private static Vertex[] metisGraphPartition(String graphFile, String partitionFile, int globalVertexCount) throws MPIException {
