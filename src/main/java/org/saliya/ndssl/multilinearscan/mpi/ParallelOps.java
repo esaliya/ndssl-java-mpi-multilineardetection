@@ -61,6 +61,8 @@ public class ParallelOps {
     public static Hashtable<Integer, Integer> vertexLabelToWorldRank;
     public static ByteBuffer converterByteBuffer;
 
+    public static ShortBuffer testAllGathervBuffer;
+
 
     public static void setupParallelism(String[] args) throws MPIException {
         MPI.Init(args);
@@ -74,7 +76,33 @@ public class ParallelOps {
         oneDoubleBuffer = MPI.newDoubleBuffer(1);
         worldIntBuffer = MPI.newIntBuffer(worldProcsCount);
         converterByteBuffer = MPI.newByteBuffer(Integer.BYTES);
+    }
 
+    public static void testAllGatherv() throws MPIException {
+        int k = 6;
+        int r = 17;
+        int vertexMsgSize = (k+1)*(r+1);
+        int numVertices = 10000000; // 10mil
+        testAllGathervBuffer = MPI.newShortBuffer(numVertices*vertexMsgSize);
+        int offset = localVertexDisplas[worldProcRank]*vertexMsgSize;
+        for (int i = 0; i < localVertexCounts[worldProcRank]; ++i){
+            testAllGathervBuffer.put(offset+i, (short)worldProcRank);
+        }
+        int[] recvCounts = new int[worldProcsCount];
+        IntStream.range(0, worldProcsCount).forEach(i -> recvCounts[i] = localVertexCounts[i]*vertexMsgSize);
+        int[] displas = new int[worldProcsCount];
+        System.arraycopy(recvCounts, 0, displas, 1, worldProcsCount - 1);
+        Arrays.parallelPrefix(displas, (m, n) -> m + n);
+
+        long t = System.currentTimeMillis();
+        worldProcsComm.allGatherv(testAllGathervBuffer, recvCounts, displas, MPI.SHORT);
+        long duration = System.currentTimeMillis() - t;
+        if (worldProcRank == 0){
+            System.out.println("##TEST Allgatherv output from Rank " + worldProcRank + " took " + duration + " ms");
+            for (int i = 0; i < worldProcsCount; ++i){
+                System.out.println("  Rank: " + i + " put " + testAllGathervBuffer.get(displas[i]));
+            }
+        }
     }
 
     public static void tearDownParallelism() throws MPIException {
@@ -432,6 +460,8 @@ public class ParallelOps {
                 System.out.println(msg);
             }
         }
+
+        testAllGatherv();
     }
 
     public static String allReduce(String value, Intracomm comm) throws MPIException {
