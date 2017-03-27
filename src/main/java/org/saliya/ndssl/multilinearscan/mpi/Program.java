@@ -77,6 +77,11 @@ public class Program {
                 Constants.CMD_OPTION_LONG_TC, true,
                 Constants.CMD_OPTION_DESCRIPTION_TC);
 
+        programOptions.addOption(
+                String.valueOf(Constants.CMD_OPTION_SHORT_MMS),
+                Constants.CMD_OPTION_LONG_MMS, true,
+                Constants.CMD_OPTION_DESCRIPTION_MMS);
+
 
         programOptions.addOption(
                 Constants.CMD_OPTION_SHORT_MMAP_SCRATCH_DIR, true,
