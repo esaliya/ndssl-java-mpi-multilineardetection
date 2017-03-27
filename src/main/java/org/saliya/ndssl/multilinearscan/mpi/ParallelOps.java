@@ -8,6 +8,7 @@ import mpi.MPIException;
 import mpi.Request;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.nio.*;
 import java.nio.file.Files;
@@ -88,10 +89,24 @@ public class ParallelOps {
         vertexIntBuffer = MPI.newIntBuffer(vertexCount);
         vertexLongBuffer = MPI.newLongBuffer(vertexCount);
         vertexDoubleBuffer = MPI.newDoubleBuffer(vertexCount);
-        return simpleGraphPartition(file, vertexCount);
-        /*return !Strings.isNullOrEmpty(partitionFile)
-                ? metisGraphPartition(file, partitionFile, vertexCount)
-                : simpleGraphPartition(file, vertexCount);*/
+        String partitionMethod = "SimpleLoadBalance";
+        Vertex[] vertices;
+        if (Strings.isNullOrEmpty(partitionFile)){
+            vertices = simpleGraphPartition(file, vertexCount);
+        } else {
+            File f = new File(partitionFile);
+            if (f.exists()) {
+                partitionMethod = "Metis";
+                vertices = metisGraphPartition(file, partitionFile, vertexCount);
+            } else {
+                vertices = simpleGraphPartition(file, vertexCount);
+            }
+        }
+
+        if(worldProcRank == 0){
+            System.out.println("  Partitioning Method: " + partitionMethod);
+        }
+        return vertices;
     }
 
     private static Vertex[] metisGraphPartition(String graphFile, String partitionFile, int globalVertexCount) throws MPIException {
