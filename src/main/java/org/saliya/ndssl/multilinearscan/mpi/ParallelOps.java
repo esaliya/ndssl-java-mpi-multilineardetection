@@ -1,11 +1,12 @@
 package org.saliya.ndssl.multilinearscan.mpi;
 
 import com.google.common.base.Strings;
-import com.sun.jna.platform.win32.WinDef;
 import mpi.Intracomm;
 import mpi.MPI;
 import mpi.MPIException;
 import mpi.Request;
+import net.openhft.chronicle.bytes.Bytes;
+import net.openhft.chronicle.bytes.NativeBytes;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -76,6 +77,17 @@ public class ParallelOps {
         oneDoubleBuffer = MPI.newDoubleBuffer(1);
         worldIntBuffer = MPI.newIntBuffer(worldProcsCount);
         converterByteBuffer = MPI.newByteBuffer(Integer.BYTES);
+    }
+
+    public static void main(String[] args) {
+        int k = 6;
+        int r = 17;
+        int vertexMsgSize = (k+1)*(r+1);
+        long numVertices = 10000000; // 10mil
+        Bytes.allocateDirect(10);
+        NativeBytes<Void> nativeBytes = NativeBytes.nativeBytes(numVertices*vertexMsgSize*Short.BYTES);
+        nativeBytes.writeShort((numVertices*vertexMsgSize-1)*Short.BYTES, (short)134);
+        System.out.println(nativeBytes.readShort((numVertices*vertexMsgSize-1)*Short.BYTES));
     }
 
     public static void testAllGatherv() throws MPIException {
