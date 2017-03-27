@@ -19,6 +19,7 @@ import java.util.stream.IntStream;
 public class Program {
     private static Options programOptions = new Options();
     private static String inputFile;
+    private static String partsFile;
     private static int globalVertexCount;
     private static int k;
     private static double epsilon;
@@ -309,6 +310,10 @@ public class Program {
         inputFile = cmd.hasOption(Constants.CMD_OPTION_SHORT_INPUT) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_INPUT) :
                 cmd.getOptionValue(Constants.CMD_OPTION_LONG_INPUT);
+        partsFile = cmd.hasOption(Constants.CMD_OPTION_SHORT_PARTS) ?
+                cmd.getOptionValue(Constants.CMD_OPTION_SHORT_PARTS) :
+                cmd.getOptionValue(Constants.CMD_OPTION_LONG_PARTS);
+
         globalVertexCount = Integer.parseInt(cmd.hasOption(Constants.CMD_OPTION_SHORT_VC) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_VC) :
                 cmd.getOptionValue(Constants.CMD_OPTION_LONG_NUM_VC));

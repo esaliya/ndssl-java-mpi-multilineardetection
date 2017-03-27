@@ -82,12 +82,49 @@ public class ParallelOps {
 
     }
 
-    public static Vertex[] setParallelDecomposition(String file, int vertexCount) throws MPIException {
+    public static Vertex[] setParallelDecomposition(String file, int vertexCount, String partitionFile) throws
+            MPIException {
         /* Decompose input graph into processes */
         vertexIntBuffer = MPI.newIntBuffer(vertexCount);
         vertexLongBuffer = MPI.newLongBuffer(vertexCount);
         vertexDoubleBuffer = MPI.newDoubleBuffer(vertexCount);
-        return simpleGraphPartition(file, vertexCount);
+        return !Strings.isNullOrEmpty(partitionFile)
+                ? metisGraphPartition(file, partitionFile, vertexCount)
+                : simpleGraphPartition(file, vertexCount);
+    }
+
+    private static Vertex[] metisGraphPartition(String graphFile, String partitionFile, int globalVertexCount) throws MPIException {
+        try(BufferedReader graphReader = Files.newBufferedReader(Paths.get(graphFile));
+            BufferedReader partitionReader = Files.newBufferedReader(Paths.get(partitionFile))) {
+            TreeSet<Integer> myNodeIds = new TreeSet<>();
+            int nodeId = 0;
+            String line;
+            while (!Strings.isNullOrEmpty(line = partitionReader.readLine())){
+                int partitionId = Integer.parseInt(line);
+                if (partitionId == worldProcRank){
+                    myNodeIds.add(nodeId);
+                }
+                ++nodeId;
+            }
+
+            Vertex[] vertices = new Vertex[myNodeIds.size()];
+
+            nodeId = 0;
+            while ((line = graphReader.readLine()) != null){
+                if (Strings.isNullOrEmpty(line)) continue;
+                if (myNodeIds.contains(nodeId)){
+                    vertices[nodeId] = new Vertex(nodeId, line);
+                }
+                ++nodeId;
+            }
+
+            findNeighbors(globalVertexCount, vertices);
+            return vertices;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static Vertex[] simpleGraphPartition(String file, int globalVertexCount) throws MPIException {
