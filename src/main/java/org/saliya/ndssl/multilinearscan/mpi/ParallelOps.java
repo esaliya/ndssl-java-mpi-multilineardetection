@@ -111,14 +111,12 @@ public class ParallelOps {
             Vertex[] vertices = new Vertex[myNodeIds.size()];
 
             nodeId = 0;
+            int readNodes = 0;
             while ((line = graphReader.readLine()) != null){
                 if (Strings.isNullOrEmpty(line)) continue;
                 if (myNodeIds.contains(nodeId)){
-                    if (nodeId >= myNodeIds.size()){
-                        System.out.println("@@@@@@@@@@Rank: " + worldProcRank + " myNodeIds.size() " + myNodeIds.size
-                                () + " nodeId " + nodeId);
-                    }
-                    vertices[nodeId] = new Vertex(nodeId, line);
+                    vertices[readNodes] = new Vertex(nodeId, line);
+                    ++readNodes;
                 }
                 ++nodeId;
             }
