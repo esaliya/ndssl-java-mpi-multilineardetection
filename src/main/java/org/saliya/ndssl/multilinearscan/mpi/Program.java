@@ -63,6 +63,10 @@ public class Program {
                 String.valueOf(Constants.CMD_OPTION_SHORT_INPUT),
                 Constants.CMD_OPTION_LONG_INPUT, true,
                 Constants.CMD_OPTION_DESCRIPTION_INPUT);
+        programOptions.addOption(
+                String.valueOf(Constants.CMD_OPTION_SHORT_PARTS),
+                Constants.CMD_OPTION_LONG_PARTS, true,
+                Constants.CMD_OPTION_DESCRIPTION_PARTS);
 
         programOptions.addOption(
                 String.valueOf(Constants.CMD_OPTION_SHORT_NC),
@@ -110,7 +114,7 @@ public class Program {
         readConfiguration(cmd);
 
         ParallelOps.setupParallelism(args);
-        Vertex[] vertices = ParallelOps.setParallelDecomposition(inputFile, globalVertexCount);
+        Vertex[] vertices = ParallelOps.setParallelDecomposition(inputFile, globalVertexCount, partsFile);
 
         runProgram(vertices);
 

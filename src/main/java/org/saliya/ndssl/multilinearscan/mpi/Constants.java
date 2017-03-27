@@ -35,7 +35,7 @@ public class Constants {
 
     static final String CMD_OPTION_SHORT_PARTS = "p";
     static final String CMD_OPTION_LONG_PARTS = "parts";
-    static final String CMD_OPTION_DESCRIPTION_PARS = "Partition file";
+    static final String CMD_OPTION_DESCRIPTION_PARTS = "Partition file";
 
     static final String CMD_OPTION_SHORT_NC = "nc";
     static final String CMD_OPTION_LONG_NC = "nodeCount";
