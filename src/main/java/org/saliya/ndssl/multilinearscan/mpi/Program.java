@@ -233,10 +233,6 @@ public class Program {
         maxIterations = k-1; // the original pregel loop was from 2 to k (including k), so that's (k-2)+1 times
 
 
-        // TODO - Debug
-        if (ParallelOps.localVertexDisplas == null){
-            System.out.println("Rank: "+ParallelOps.worldProcRank + " can't be ");
-        }
         int myDisplas = ParallelOps.localVertexDisplas[ParallelOps.worldProcRank];
         // same as vertices.length
         int myLength = ParallelOps.localVertexCounts[ParallelOps.worldProcRank];
