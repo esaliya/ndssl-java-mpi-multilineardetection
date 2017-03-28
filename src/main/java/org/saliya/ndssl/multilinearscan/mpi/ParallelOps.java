@@ -158,7 +158,7 @@ public class ParallelOps {
         int q = length % threadCount;
         threadIdToVertexOffset = new int[threadCount];
         threadIdToVertexCount = new int[threadCount];
-        for (int i = 0; i < length; ++i){
+        for (int i = 0; i < threadCount; ++i){
             threadIdToVertexCount[i] = (i < q) ? (p+1) : p;
         }
         threadIdToVertexOffset[0] = 0;
