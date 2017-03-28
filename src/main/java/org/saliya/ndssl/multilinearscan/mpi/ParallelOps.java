@@ -95,7 +95,7 @@ public class ParallelOps {
         int k = 6;
         int r = 17;
         int vertexMsgSize = (k+1)*(r+1);
-        int numVertices = 10000000; // 10mil
+        long numVertices = 10000000; // 10mil
         testAllGathervBuffer = NativeBytes.nativeBytes(numVertices*vertexMsgSize*Short.BYTES);
         long offset = localVertexDisplas[worldProcRank]*vertexMsgSize;
         for (int i = 0; i < localVertexCounts[worldProcRank]; ++i){
