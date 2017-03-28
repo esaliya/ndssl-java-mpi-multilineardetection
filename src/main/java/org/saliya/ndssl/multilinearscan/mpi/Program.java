@@ -212,10 +212,11 @@ public class Program {
                 if (threadIdx == 0) {
                     receiveMessages(vertices, ss);
                 } else {
-                    // TODO - wait for thread 0
+                    System.out.println("Thread: " + threadIdx + " waiting in barrier. Iter: " + iter);
                     ParallelOps.threadComm.barrier();
                 }
             }
+            System.out.println("Thread: " + threadIdx + " came to compute. Iter: " + iter);
 
             compute(iter, vertices, ss, threadIdx);
 
