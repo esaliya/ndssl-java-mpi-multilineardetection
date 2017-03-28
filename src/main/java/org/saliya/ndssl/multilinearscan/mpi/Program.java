@@ -98,7 +98,7 @@ public class Program {
                 Constants.CMD_OPTION_DESCRIPTION_CPS);
     }
 
-    public static void main(String[] args) throws MPIException {
+    public static void main(String[] args) throws MPIException, BrokenBarrierException, InterruptedException {
         Optional<CommandLine> parserResult =
                 Utils.parseCommandLineArguments(args, programOptions);
 
@@ -147,7 +147,7 @@ public class Program {
         }
     }
 
-    private static void runProgram(Vertex[] vertices) throws MPIException {
+    private static void runProgram(Vertex[] vertices) throws MPIException, BrokenBarrierException, InterruptedException {
         putils = new ParallelUtils(0, ParallelOps.worldProcRank);
 
         putils.printMessage("\n== " + Constants.PROGRAM_NAME + " run started on " + new Date() + " ==\n");
@@ -177,20 +177,24 @@ public class Program {
                 startTime) + " ms ==\n");
     }
 
-    private static double runGraphComp(int loopNumber, Vertex[] vertices) throws MPIException {
+    private static double runGraphComp(int loopNumber, Vertex[] vertices) throws MPIException, BrokenBarrierException, InterruptedException {
         initLoop(vertices);
 
         long startTime = System.currentTimeMillis();
         //for (int iter = 0; iter < twoRaisedToK; ++iter) {
         for (int iter = 0; iter < 3; ++iter) {
             int finalIter = iter;
-            launchHabaneroApp(() ->forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
-                try {
-                    runSuperSteps(vertices, startTime, finalIter, threadIdx);
-                } catch (MPIException | InterruptedException | BrokenBarrierException e) {
-                    e.printStackTrace();
-                }
-            }));
+            if (ParallelOps.threadCount > 1) {
+                launchHabaneroApp(() -> forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
+                    try {
+                        runSuperSteps(vertices, startTime, finalIter, threadIdx);
+                    } catch (MPIException | InterruptedException | BrokenBarrierException e) {
+                        e.printStackTrace();
+                    }
+                }));
+            } else {
+                runSuperSteps(vertices, startTime, finalIter, 0);
+            }
         }
         double bestScore = finalizeIterations(vertices);
         ParallelOps.oneDoubleBuffer.put(0, bestScore);
