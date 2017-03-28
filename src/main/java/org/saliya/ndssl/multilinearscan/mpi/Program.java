@@ -409,7 +409,8 @@ public class Program {
                         epsilon,
                         delta,
                         alphaMax,
-                        "1x"+(ParallelOps.worldProcsCount/ParallelOps.nodeCount)+"x"+ParallelOps.nodeCount,
+                        ParallelOps.threadCount + "x"+(ParallelOps.worldProcsCount/ParallelOps.nodeCount)
+                        +"x"+ParallelOps.nodeCount,
                         };
 
         java.util.Optional<Integer> maxLength =
