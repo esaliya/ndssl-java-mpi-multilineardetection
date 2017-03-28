@@ -11,7 +11,11 @@ import org.saliya.ndssl.multilinearscan.GaloisField;
 import org.saliya.ndssl.multilinearscan.Polynomial;
 
 import java.util.*;
+import java.util.concurrent.BrokenBarrierException;
 import java.util.stream.IntStream;
+
+import static edu.rice.hj.Module0.launchHabaneroApp;
+import static edu.rice.hj.Module1.forallChunked;
 
 /**
  * Saliya Ekanayake on 2/21/17.
@@ -19,6 +23,7 @@ import java.util.stream.IntStream;
 public class Program {
     private static Options programOptions = new Options();
     private static String inputFile;
+    private static String partsFile;
     private static int globalVertexCount;
     private static int k;
     private static double epsilon;
@@ -62,6 +67,10 @@ public class Program {
                 String.valueOf(Constants.CMD_OPTION_SHORT_INPUT),
                 Constants.CMD_OPTION_LONG_INPUT, true,
                 Constants.CMD_OPTION_DESCRIPTION_INPUT);
+        programOptions.addOption(
+                String.valueOf(Constants.CMD_OPTION_SHORT_PARTS),
+                Constants.CMD_OPTION_LONG_PARTS, true,
+                Constants.CMD_OPTION_DESCRIPTION_PARTS);
 
         programOptions.addOption(
                 String.valueOf(Constants.CMD_OPTION_SHORT_NC),
@@ -71,6 +80,11 @@ public class Program {
                 String.valueOf(Constants.CMD_OPTION_SHORT_TC),
                 Constants.CMD_OPTION_LONG_TC, true,
                 Constants.CMD_OPTION_DESCRIPTION_TC);
+
+        programOptions.addOption(
+                String.valueOf(Constants.CMD_OPTION_SHORT_MMS),
+                Constants.CMD_OPTION_LONG_MMS, true,
+                Constants.CMD_OPTION_DESCRIPTION_MMS);
 
 
         programOptions.addOption(
@@ -109,7 +123,7 @@ public class Program {
         readConfiguration(cmd);
 
         ParallelOps.setupParallelism(args);
-        Vertex[] vertices = ParallelOps.setParallelDecomposition(inputFile, globalVertexCount);
+        Vertex[] vertices = ParallelOps.setParallelDecomposition(inputFile, globalVertexCount, partsFile);
 
         runProgram(vertices);
 
@@ -122,6 +136,7 @@ public class Program {
             msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
         }
         ParallelOps.sendMessages(msgSize);
+
     }
 
 
@@ -148,7 +163,8 @@ public class Program {
         double bestScore = Double.MIN_VALUE;
         long startTime = System.currentTimeMillis();
         initComp(vertices);
-        for (int i = 0; i < iter; ++i) {
+        //for (int i = 0; i < iter; ++i) {
+        for (int i = 0; i < 1; ++i) {
             putils.printMessage("  Start of Loop: " + i);
             long loopStartTime = System.currentTimeMillis();
             bestScore = Math.max(bestScore, runGraphComp(i, vertices));
@@ -165,25 +181,16 @@ public class Program {
         initLoop(vertices);
 
         long startTime = System.currentTimeMillis();
-        for (int iter = 0; iter < twoRaisedToK; ++iter) {
-            /* Super step loop*/
-            int workerSteps = maxIterations+1; // +1 to send initial values
-            for (int ss = 0; ss < workerSteps; ++ss) {
-                if (ss > 0) {
-                    receiveMessages(vertices, ss);
+        //for (int iter = 0; iter < twoRaisedToK; ++iter) {
+        for (int iter = 0; iter < 3; ++iter) {
+            int finalIter = iter;
+            launchHabaneroApp(() ->forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
+                try {
+                    runSuperSteps(vertices, startTime, finalIter, threadIdx);
+                } catch (MPIException | InterruptedException | BrokenBarrierException e) {
+                    e.printStackTrace();
                 }
-
-                compute(iter, vertices, ss);
-
-                if (ss < workerSteps - 1) {
-                    sendMessages(vertices, ss);
-                }
-            }
-            finalizeIteration(vertices);
-            if (iter%10 == 0 || iter == twoRaisedToK-1){
-                putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " elapsed " + (System
-                        .currentTimeMillis() - startTime) + " ms");
-            }
+            }));
         }
         double bestScore = finalizeIterations(vertices);
         ParallelOps.oneDoubleBuffer.put(0, bestScore);
@@ -191,6 +198,32 @@ public class Program {
         bestScore = ParallelOps.oneDoubleBuffer.get(0);
         putils.printMessage("    Loop "  +loopNumber + " best score: " + bestScore);
         return bestScore;
+    }
+
+    private static void runSuperSteps(Vertex[] vertices, long startTime, int iter, Integer threadIdx) throws MPIException, BrokenBarrierException, InterruptedException {
+    /* Super step loop*/
+        int workerSteps = maxIterations+1; // +1 to send initial values
+        for (int ss = 0; ss < workerSteps; ++ss) {
+            if (ss > 0) {
+                if (threadIdx == 0) {
+                    receiveMessages(vertices, ss);
+                } else {
+                    // TODO - wait for thread 0
+                    ParallelOps.threadComm.barrier();
+                }
+            }
+
+            compute(iter, vertices, ss, threadIdx);
+
+            if (ss < workerSteps - 1 && threadIdx == 0) {
+                sendMessages(vertices, ss);
+            }
+        }
+        finalizeIteration(vertices);
+        if (iter%10 == 0 || iter == twoRaisedToK-1){
+            putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " elapsed " + (System
+                    .currentTimeMillis() - startTime) + " ms");
+        }
     }
 
     private static double finalizeIterations(Vertex[] vertices) {
@@ -207,11 +240,15 @@ public class Program {
         }
     }
 
-    private static void compute(int iter, Vertex[] vertices, int ss) {
-//        for (Vertex vertex : vertices) {
-//            vertex.compute(ss, iter, completionVariables, randomAssignments);
-//        }
-        IntStream.range(0, vertices.length).parallel().forEach(i -> vertices[i].compute(ss, iter, completionVariables, randomAssignments));
+    private static void compute(int iter, Vertex[] vertices, int ss, Integer threadIdx) {
+        int offset = ParallelOps.threadIdToVertexOffset[threadIdx];
+        int count = ParallelOps.threadIdToVertexCount[threadIdx];
+        for (int i = 0; i < count; ++i){
+            vertices[offset+i].compute(ss, iter, completionVariables, randomAssignments);
+        }
+        /*for (Vertex vertex : vertices) {
+            vertex.compute(ss, iter, completionVariables, randomAssignments);
+        }*/
     }
 
     private static void initComp(Vertex[] vertices) throws MPIException {
@@ -307,6 +344,10 @@ public class Program {
         inputFile = cmd.hasOption(Constants.CMD_OPTION_SHORT_INPUT) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_INPUT) :
                 cmd.getOptionValue(Constants.CMD_OPTION_LONG_INPUT);
+        partsFile = cmd.hasOption(Constants.CMD_OPTION_SHORT_PARTS) ?
+                cmd.getOptionValue(Constants.CMD_OPTION_SHORT_PARTS) :
+                cmd.getOptionValue(Constants.CMD_OPTION_LONG_PARTS);
+
         globalVertexCount = Integer.parseInt(cmd.hasOption(Constants.CMD_OPTION_SHORT_VC) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_VC) :
                 cmd.getOptionValue(Constants.CMD_OPTION_LONG_NUM_VC));

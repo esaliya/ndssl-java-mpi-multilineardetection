@@ -1,17 +1,17 @@
 package org.saliya.ndssl.multilinearscan.mpi;
 
 import com.google.common.base.Strings;
+import com.sun.jna.platform.win32.WinDef;
 import mpi.Intracomm;
 import mpi.MPI;
 import mpi.MPIException;
 import mpi.Request;
+import org.saliya.ndssl.multilinearscan.ThreadCommunicator;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.nio.DoubleBuffer;
-import java.nio.IntBuffer;
-import java.nio.LongBuffer;
-import java.nio.ShortBuffer;
+import java.nio.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -46,23 +46,25 @@ public class ParallelOps {
     public static int MAX_MSG_SIZE = 500;
     public static TreeMap<Integer, ShortBuffer> recvfromRankToRecvBuffer;
     public static TreeMap<Integer, ShortBuffer> sendtoRankToSendBuffer;
-    // to store msg count and msg size
-    public static final int BUFFER_OFFSET = 2;
+    // to store msg count and msg size -- note msg count is stored as two shorts
+    public static final int BUFFER_OFFSET = 3;
     public static final int MSG_COUNT_OFFSET = 0;
-    public static final int MSG_SIZE_OFFSET = 1;
+    public static final int MSG_SIZE_OFFSET = 2;
 
     public static int msgSizeToReceive;
 
     public static TreeMap<Integer, Request> requests;
 
     private static boolean debug = false;
+    private static boolean debug2 = false;
     public static int[] localVertexCounts;
     public static int[] localVertexDisplas;
 
     public static Hashtable<Integer, Integer> vertexLabelToWorldRank;
-
+    public static ByteBuffer converterByteBuffer;
+    public static int[] threadIdToVertexCount;
     public static int[] threadIdToVertexOffset;
-    public static int[] threadIdToVertexLength;
+    public static ThreadCommunicator threadComm;
 
 
     public static void setupParallelism(String[] args) throws MPIException {
@@ -72,10 +74,13 @@ public class ParallelOps {
         worldProcRank = worldProcsComm.getRank();
         worldProcsCount = worldProcsComm.getSize();
 
+        threadComm = new ThreadCommunicator(threadCount);
+
         oneIntBuffer = MPI.newIntBuffer(1);
         oneLongBuffer = MPI.newLongBuffer(1);
         oneDoubleBuffer = MPI.newDoubleBuffer(1);
         worldIntBuffer = MPI.newIntBuffer(worldProcsCount);
+        converterByteBuffer = MPI.newByteBuffer(Integer.BYTES);
 
     }
 
@@ -84,14 +89,66 @@ public class ParallelOps {
 
     }
 
-    public static Vertex[] setParallelDecomposition(String file, int vertexCount) throws MPIException {
+    public static Vertex[] setParallelDecomposition(String file, int vertexCount, String partitionFile) throws
+            MPIException {
         /* Decompose input graph into processes */
         vertexIntBuffer = MPI.newIntBuffer(vertexCount);
         vertexLongBuffer = MPI.newLongBuffer(vertexCount);
         vertexDoubleBuffer = MPI.newDoubleBuffer(vertexCount);
-        Vertex[] vertices = simpleGraphPartition(file, vertexCount);
-        decomposeAmongThreads(vertices);
+        String partitionMethod = "SimpleLoadBalance";
+        Vertex[] vertices;
+        if (Strings.isNullOrEmpty(partitionFile)){
+            vertices = simpleGraphPartition(file, vertexCount);
+        } else {
+            File f = new File(partitionFile);
+            if (f.exists()) {
+                partitionMethod = "Metis";
+                vertices = metisGraphPartition(file, partitionFile, vertexCount);
+            } else {
+                vertices = simpleGraphPartition(file, vertexCount);
+            }
+        }
+
+        if(worldProcRank == 0){
+            System.out.println("  Partitioning Method: " + partitionMethod);
+        }
         return vertices;
+    }
+
+    private static Vertex[] metisGraphPartition(String graphFile, String partitionFile, int globalVertexCount) throws MPIException {
+        try(BufferedReader graphReader = Files.newBufferedReader(Paths.get(graphFile));
+            BufferedReader partitionReader = Files.newBufferedReader(Paths.get(partitionFile))) {
+            TreeSet<Integer> myNodeIds = new TreeSet<>();
+            int nodeId = 0;
+            String line;
+            while (!Strings.isNullOrEmpty(line = partitionReader.readLine())){
+                int partitionId = Integer.parseInt(line);
+                if (partitionId == worldProcRank){
+                    myNodeIds.add(nodeId);
+                }
+                ++nodeId;
+            }
+
+            Vertex[] vertices = new Vertex[myNodeIds.size()];
+
+            nodeId = 0;
+            int readNodes = 0;
+            while ((line = graphReader.readLine()) != null){
+                if (Strings.isNullOrEmpty(line)) continue;
+                if (myNodeIds.contains(nodeId)){
+                    vertices[readNodes] = new Vertex(nodeId, line);
+                    ++readNodes;
+                }
+                ++nodeId;
+            }
+
+            findNeighbors(globalVertexCount, vertices);
+            return vertices;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static void decomposeAmongThreads(Vertex[] vertices) {
@@ -99,12 +156,12 @@ public class ParallelOps {
         int p = length / threadCount;
         int q = length % threadCount;
         threadIdToVertexOffset = new int[threadCount];
-        threadIdToVertexLength = new int[threadCount];
+        threadIdToVertexCount = new int[threadCount];
         for (int i = 0; i < length; ++i){
-            threadIdToVertexLength[i] = (i < q) ? (p+1) : p;
+            threadIdToVertexCount[i] = (i < q) ? (p+1) : p;
         }
         threadIdToVertexOffset[0] = 0;
-        System.arraycopy(threadIdToVertexLength, 0, threadIdToVertexOffset, 1, length - 1);
+        System.arraycopy(threadIdToVertexCount, 0, threadIdToVertexOffset, 1, length - 1);
         Arrays.parallelPrefix(threadIdToVertexOffset, (m, n) -> m + n);
     }
 
@@ -403,7 +460,9 @@ public class ParallelOps {
             int msgCount = kv.getValue().get(0);
             // +2 to store msgCount and msgSize
             ShortBuffer b = MPI.newShortBuffer(BUFFER_OFFSET +msgCount*MAX_MSG_SIZE);
-            b.put(0, (short)msgCount);
+            converterByteBuffer.putInt(0, msgCount);
+            b.put(MSG_COUNT_OFFSET, converterByteBuffer.getShort(0));
+            b.put(MSG_COUNT_OFFSET+1, converterByteBuffer.getShort(Byte.BYTES));
             sendtoRankToSendBuffer.put(sendtoRank, b);
         });
 
@@ -422,6 +481,31 @@ public class ParallelOps {
                 vertexSendBuffer.setBuffer(sendtoRankToSendBuffer.get(outRank));
             });
 
+        }
+
+        if (debug2){
+            StringBuilder sb = new StringBuilder();
+            sb.append("--Rank: ").append(worldProcRank).append(" ");
+            int recvfromRankCount = recvfromRankToMsgCountAndforvertexLabels.size();
+            int recvMsgCount = 0;
+            for (List<Integer> l : recvfromRankToMsgCountAndforvertexLabels.values()){
+                recvMsgCount += l.get(0);
+            }
+            int sendtoRankCount = sendtoRankToMsgCountAndDestinedVertexLabels.size();
+            int sendMsgCount = 0;
+            for (List<Integer> l : sendtoRankToMsgCountAndDestinedVertexLabels.values()){
+                sendMsgCount += l.get(0);
+            }
+//            sb.append("  recvs from ").append(recvfromRankCount).append(" ranks -- totals ").append(recvMsgCount)
+//                    .append(" msgs \n");
+//            sb.append("  sends to ").append(sendtoRankCount).append(" ranks -- totals ").append(sendMsgCount)
+//                    .append(" msgs \n");
+            sb.append(recvfromRankCount).append(" ").append(recvMsgCount).append(" ").append(sendtoRankCount).append
+                    (" ").append(sendMsgCount);
+            String msg = allReduce(sb.toString(), worldProcsComm);
+            if (worldProcRank == 0) {
+                System.out.println(msg);
+            }
         }
     }
 
@@ -456,7 +540,15 @@ public class ParallelOps {
                     buffer.position(0);
                     b.put(buffer);
                 } else {
-                    worldProcsComm.iSend(buffer, BUFFER_OFFSET + buffer.get(MSG_COUNT_OFFSET) * msgSize, MPI.INT, sendtoRank,
+
+                    converterByteBuffer.putShort(0, buffer.get(MSG_COUNT_OFFSET));
+                    converterByteBuffer.putShort(Byte.BYTES, buffer.get(MSG_COUNT_OFFSET+1));
+                    int count = BUFFER_OFFSET + converterByteBuffer.getInt(0) * msgSize;
+                    if (count <= 0){
+                        System.out.println("Invalid Count Error - Rank: " + worldProcRank + "torank: " + sendtoRank +
+                                " count: " + count + " msgCount: " + buffer.get(MSG_COUNT_OFFSET) + " msgSize: " + msgSize);
+                    }
+                    worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
                             worldProcRank);
                 }
             } catch (MPIException e) {
@@ -472,7 +564,8 @@ public class ParallelOps {
             int msgCount = recvfromRankToMsgCountAndforvertexLabels.get(recvfromRank).get(0);
             try {
                 if (recvfromRank != worldProcRank) {
-                    requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET + msgCount * msgSizeToReceive, MPI.INT,
+                    requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET + msgCount *
+                                    msgSizeToReceive, MPI.SHORT,
                             recvfromRank, recvfromRank));
                 }
             } catch (MPIException e) {
@@ -480,13 +573,15 @@ public class ParallelOps {
             }
         });
 
-        requests.values().forEach(request -> {
+        requests.entrySet().forEach(recvfromRankToRequest -> {
             try {
+                Request request = recvfromRankToRequest.getValue();
                 request.waitFor();
             } catch (MPIException e) {
                 e.printStackTrace();
             }
         });
+
 
         // DEBUG
         if (debug) {
@@ -498,7 +593,9 @@ public class ParallelOps {
                 int recvdMsgSize = b.get(MSG_SIZE_OFFSET);
                 if (recvdMsgSize != msgSizeToReceive) throw new RuntimeException("recvd msg size " + recvdMsgSize  + " != " +
                         msgSizeToReceive + " msgSize");
-                int msgCount = b.get(MSG_COUNT_OFFSET);
+                converterByteBuffer.putShort(0, b.get(MSG_COUNT_OFFSET));
+                converterByteBuffer.putShort(Byte.BYTES, b.get(MSG_COUNT_OFFSET+1));
+                int msgCount = converterByteBuffer.getInt(0);
                 sb.append("\n recvd ").append(msgCount).append(" msgs from rank ").append(recvfromRank).append(" of " +
                         "size ").append(recvdMsgSize).append(" msg list: ");
                 IntStream.range(0, msgCount).forEach(i -> {
