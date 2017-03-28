@@ -112,6 +112,7 @@ public class ParallelOps {
         if(worldProcRank == 0){
             System.out.println("  Partitioning Method: " + partitionMethod);
         }
+        decomposeAmongThreads(vertices);
         return vertices;
     }
 
