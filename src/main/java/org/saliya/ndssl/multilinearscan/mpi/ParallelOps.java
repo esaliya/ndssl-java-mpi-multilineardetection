@@ -162,7 +162,7 @@ public class ParallelOps {
             threadIdToVertexCount[i] = (i < q) ? (p+1) : p;
         }
         threadIdToVertexOffset[0] = 0;
-        System.arraycopy(threadIdToVertexCount, 0, threadIdToVertexOffset, 1, length - 1);
+        System.arraycopy(threadIdToVertexCount, 0, threadIdToVertexOffset, 1, threadCount - 1);
         Arrays.parallelPrefix(threadIdToVertexOffset, (m, n) -> m + n);
     }
 
