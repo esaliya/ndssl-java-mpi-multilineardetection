@@ -211,12 +211,9 @@ public class Program {
             if (ss > 0) {
                 if (threadIdx == 0) {
                     receiveMessages(vertices, ss);
-                } else {
-                    System.out.println("Thread: " + threadIdx + " waiting in barrier. Iter: " + iter);
-                    ParallelOps.threadComm.barrier();
                 }
+                ParallelOps.threadComm.barrier();
             }
-            System.out.println("Thread: " + threadIdx + " came to compute. Iter: " + iter);
 
             compute(iter, vertices, ss, threadIdx);
 
