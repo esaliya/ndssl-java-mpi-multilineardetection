@@ -97,23 +97,23 @@ public class ParallelOps {
         int vertexMsgSize = (k+1)*(r+1);
         int numVertices = 10000000; // 10mil
         testAllGathervBuffer = NativeBytes.nativeBytes(numVertices*vertexMsgSize*Short.BYTES);
-        int offset = localVertexDisplas[worldProcRank]*vertexMsgSize;
+        long offset = localVertexDisplas[worldProcRank]*vertexMsgSize;
         for (int i = 0; i < localVertexCounts[worldProcRank]; ++i){
             testAllGathervBuffer.writeShort((offset+i)*Short.BYTES, (short)worldProcRank);
         }
         int[] recvCounts = new int[worldProcsCount];
-        IntStream.range(0, worldProcsCount).forEach(i -> recvCounts[i] = localVertexCounts[i]*vertexMsgSize*Short.BYTES);
+        IntStream.range(0, worldProcsCount).forEach(i -> recvCounts[i] = localVertexCounts[i]*vertexMsgSize);
         int[] displas = new int[worldProcsCount];
         System.arraycopy(recvCounts, 0, displas, 1, worldProcsCount - 1);
         Arrays.parallelPrefix(displas, (m, n) -> m + n);
 
         long t = System.currentTimeMillis();
-        worldProcsComm.allGatherv(testAllGathervBuffer, recvCounts, displas, MPI.BYTE);
+        worldProcsComm.allGatherv(testAllGathervBuffer, recvCounts, displas, MPI.SHORT);
         long duration = System.currentTimeMillis() - t;
         if (worldProcRank == 0){
             System.out.println("##TEST Allgatherv output from Rank " + worldProcRank + " took " + duration + " ms");
             for (int i = 0; i < worldProcsCount; ++i){
-                System.out.println("  Rank: " + i + " put " + testAllGathervBuffer.readShort(displas[i]));
+                System.out.println("  Rank: " + i + " put " + testAllGathervBuffer.readShort(displas[i]*Short.BYTES));
             }
         }
     }
