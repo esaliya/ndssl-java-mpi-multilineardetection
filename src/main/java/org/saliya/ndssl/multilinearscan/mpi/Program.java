@@ -223,8 +223,12 @@ public class Program {
         }
         finalizeIteration(vertices);
         if (iter%10 == 0 || iter == twoRaisedToK-1){
-            putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " elapsed " + (System
-                    .currentTimeMillis() - startTime) + " ms");
+            if (threadIdx == 0) {
+                putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
+                        "elapsed " +
+                        (System
+                                .currentTimeMillis() - startTime) + " ms");
+            }
         }
     }
 
