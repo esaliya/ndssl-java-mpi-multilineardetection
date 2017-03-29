@@ -3,6 +3,7 @@ package org.saliya.ndssl.multilinearscan.mpi;
 import com.google.common.base.Optional;
 import mpi.MPI;
 import mpi.MPIException;
+import net.openhft.affinity.Affinity;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
@@ -186,6 +187,10 @@ public class Program {
             int finalIter = iter;
             if (ParallelOps.threadCount > 1) {
                 launchHabaneroApp(() -> forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
+                    if (bind){
+                        BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
+                        Affinity.setAffinity(bitSet);
+                    }
                     try {
                         runSuperSteps(vertices, startTime, finalIter, threadIdx);
                     } catch (MPIException | InterruptedException | BrokenBarrierException e) {
