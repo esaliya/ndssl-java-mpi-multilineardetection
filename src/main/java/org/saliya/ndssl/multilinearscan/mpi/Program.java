@@ -143,7 +143,7 @@ public class Program {
 
     private static void receiveMessages(Vertex[] vertices, int superStep) throws MPIException {
         ParallelOps.recvMessages();
-        processRecvdMessages(vertices, superStep);
+//        processRecvdMessages(vertices, superStep);
     }
 
     private static void processRecvdMessages(Vertex[] vertices, int superStep) {
@@ -242,6 +242,8 @@ public class Program {
                 long t = System.currentTimeMillis();
                 ParallelOps.threadComm.barrier();
                 barrierDuration += (System.currentTimeMillis() - t);
+
+                processRecvdMessages(vertices, ss);
             }
 
             long t = System.currentTimeMillis();
