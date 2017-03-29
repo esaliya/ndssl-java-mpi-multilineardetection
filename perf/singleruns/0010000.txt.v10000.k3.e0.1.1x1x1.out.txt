@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------
+WARNING: a request was made to bind a process. While the system
+supports binding the process itself, at least one node does NOT
+support binding memory to the process location.
+
+  Node:  j-002
+
+This usually is due to not having the required NUMA support installed
+on the node. In some Linux distributions, the required support is
+contained in the libnumactl and libnumactl-devel packages.
+This is a warning only; your job will continue, though performance may be degraded.
+--------------------------------------------------------------------------
+[j-002:19203] MCW rank 0 is not bound (or bound to all available processors)
+java.nio.file.NoSuchFileException: /N/u/sekanaya/sali/projects/vt/giraph/random-er/0010000.txt.txt
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:86)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+	at sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:214)
+	at java.nio.file.Files.newByteChannel(Files.java:361)
+	at java.nio.file.Files.newByteChannel(Files.java:407)
+	at java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:384)
+	at java.nio.file.Files.newInputStream(Files.java:152)
+	at java.nio.file.Files.newBufferedReader(Files.java:2784)
+	at java.nio.file.Files.newBufferedReader(Files.java:2816)
+	at org.saliya.ndssl.multilinearscan.mpi.ParallelOps.simpleGraphPartition(ParallelOps.java:107)
+	at org.saliya.ndssl.multilinearscan.mpi.ParallelOps.setParallelDecomposition(ParallelOps.java:88)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:112)
+Exception in thread "main" java.lang.NullPointerException
+	at org.saliya.ndssl.multilinearscan.mpi.ParallelOps.findNeighbors(ParallelOps.java:131)
+	at org.saliya.ndssl.multilinearscan.mpi.ParallelOps.simpleGraphPartition(ParallelOps.java:124)
+	at org.saliya.ndssl.multilinearscan.mpi.ParallelOps.setParallelDecomposition(ParallelOps.java:88)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:112)
+-------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code.. Per user-direction, the job has been aborted.
+-------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[10982,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------

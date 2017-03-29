@@ -1,0 +1,35 @@
+[hsw005:04789] MCW rank 0 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]]: [B/B/./././././././././././././.][./././././././././././././././.]
+[hsw005:04789] MCW rank 1 bound to socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]]: [././B/B/./././././././././././.][./././././././././././././././.]
+[hsw005:04789] MCW rank 2 bound to socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]]: [././././B/B/./././././././././.][./././././././././././././././.]
+[hsw005:04789] MCW rank 3 bound to socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]]: [././././././B/B/./././././././.][./././././././././././././././.]
+[hsw005:04789] MCW rank 4 bound to socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]]: [././././././././B/B/./././././.][./././././././././././././././.]
+[hsw005:04789] MCW rank 5 bound to socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]]: [././././././././././B/B/./././.][./././././././././././././././.]
+[hsw005:04789] MCW rank 6 bound to socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]]: [././././././././././././B/B/./.][./././././././././././././././.]
+[hsw005:04789] MCW rank 7 bound to socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [././././././././././././././B/B][./././././././././././././././.]
+[hsw005:04789] MCW rank 8 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]]: [./././././././././././././././.][B/B/./././././././././././././.]
+[hsw005:04789] MCW rank 9 bound to socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]]: [./././././././././././././././.][././B/B/./././././././././././.]
+[hsw005:04789] MCW rank 10 bound to socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]]: [./././././././././././././././.][././././B/B/./././././././././.]
+[hsw005:04789] MCW rank 11 bound to socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]]: [./././././././././././././././.][././././././B/B/./././././././.]
+[hsw005:04789] MCW rank 12 bound to socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]]: [./././././././././././././././.][././././././././B/B/./././././.]
+[hsw005:04789] MCW rank 13 bound to socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]]: [./././././././././././././././.][././././././././././B/B/./././.]
+[hsw005:04789] MCW rank 14 bound to socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]]: [./././././././././././././././.][././././././././././././B/B/./.]
+[hsw005:04789] MCW rank 15 bound to socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][././././././././././././././B/B]
+--Rank: 0 16 80590 16 57407--Rank: 1 16 55801 16 57402--Rank: 2 16 55790 16 57184--Rank: 3 16 55784 16 57383--Rank: 4 16 55891 16 57463--Rank: 5 16 55869 16 57302--Rank: 6 16 55909 16 57252--Rank: 7 16 55913 16 57506--Rank: 8 16 55921 16 57419--Rank: 9 16 55808 16 57585--Rank: 10 16 56123 16 57505--Rank: 11 16 55566 16 57315--Rank: 12 16 55654 16 57316--Rank: 13 16 55815 16 57415--Rank: 14 16 56021 16 57332--Rank: 15 16 55683 16 57352
+
+== MultilinearScan run started on Mon Mar 20 10:38:49 EDT 2017 ==
+
+Parameters...
+           Input File: /localscratch/esaliya/sali/projects/vt/giraph/random-er/0100000.txt
+  Global Vertex Count: 80991
+                    K: 6
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 1x16x1
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 19015.0 r: 15
+
+  Start of Loop: 0
+      Iteration 1 of 64 elapsed 6055 ms

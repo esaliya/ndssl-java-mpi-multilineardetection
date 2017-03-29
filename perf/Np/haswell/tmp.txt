@@ -1,0 +1,88 @@
+Rank: 3 completed all recvs 
+Rank: 48 waiting to recv from rank 22
+Rank: 6 completed all recvs 
+Rank: 31 finished waiting recv from rank 49
+Rank: 10 completed all recvs 
+Rank: 31 completed all recvs 
+Rank: 2 finished waiting recv from rank 42
+Rank: 1 completed all recvs 
+Rank: 5 waiting to recv from rank 52
+Rank: 25 completed all recvs 
+Rank: 38 finished waiting recv from rank 26
+Rank: 22 completed all recvs 
+Rank: 60 finished waiting recv from rank 16
+Rank: 17 completed all recvs 
+Rank: 12 finished waiting recv from rank 48
+Rank: 5 completed all recvs 
+Rank: 11 completed all recvs 
+Rank: 13 finished waiting recv from rank 58
+Rank: 13 completed all recvs 
+Rank: 2 finished waiting recv from rank 46
+Rank: 2 completed all recvs 
+Rank: 30 completed all recvs 
+Rank: 24 completed all recvs 
+Rank: 56 waiting to recv from rank 14
+Rank: 9 completed all recvs 
+Rank: 26 finished waiting recv from rank 35
+Rank: 8 completed all recvs 
+Rank: 18 finished waiting recv from rank 61
+Rank: 18 completed all recvs 
+Rank: 14 completed all recvs 
+Rank: 21 finished waiting recv from rank 44
+Rank: 21 completed all recvs 
+Rank: 27 finished waiting recv from rank 49
+Rank: 7 completed all recvs 
+Rank: 19 finished waiting recv from rank 41
+Rank: 19 completed all recvs 
+Rank: 15 finished waiting recv from rank 50
+Rank: 15 completed all recvs 
+Rank: 12 finished waiting recv from rank 56
+Rank: 12 completed all recvs 
+Rank: 28 finished waiting recv from rank 63
+Rank: 28 completed all recvs 
+Rank: 29 completed all recvs 
+Rank: 27 completed all recvs 
+Rank: 4 completed all recvs 
+Rank: 23 finished waiting recv from rank 63
+Rank: 23 completed all recvs 
+Rank: 16 completed all recvs 
+Rank: 0 completed all recvs 
+Rank: 45 completed all recvs 
+Rank: 32 finished waiting recv from rank 21
+Rank: 47 completed all recvs 
+Rank: 42 finished waiting recv from rank 2
+Rank: 57 completed all recvs 
+Rank: 55 completed all recvs 
+Rank: 48 completed all recvs 
+Rank: 33 completed all recvs 
+Rank: 38 completed all recvs 
+Rank: 49 completed all recvs 
+Rank: 35 completed all recvs 
+Rank: 44 completed all recvs 
+Rank: 52 completed all recvs 
+Rank: 59 finished waiting recv from rank 45
+Rank: 54 completed all recvs 
+Rank: 59 completed all recvs 
+Rank: 37 finished waiting recv from rank 43
+Rank: 34 completed all recvs 
+Rank: 43 completed all recvs 
+Rank: 37 completed all recvs 
+Rank: 51 finished waiting recv from rank 53
+Rank: 51 completed all recvs 
+Rank: 46 completed all recvs 
+Rank: 50 finished waiting recv from rank 53
+Rank: 41 completed all recvs 
+Rank: 56 waiting to recv from rank 43
+Rank: 60 completed all recvs 
+Rank: 32 completed all recvs 
+Rank: 36 completed all recvs 
+Rank: 40 completed all recvs 
+Rank: 39 finished waiting recv from rank 50
+Rank: 50 completed all recvs 
+Rank: 56 completed all recvs 
+Rank: 39 waiting to recv from rank 55
+Rank: 39 completed all recvs 
+Rank: 58 completed all recvs 
+Rank: 42 completed all recvs 
+Rank: 26 completed all recvs 
+Rank: 53 completed all recvs 

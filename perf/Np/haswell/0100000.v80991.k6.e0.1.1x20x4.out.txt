@@ -1,0 +1,185 @@
+[hsw005:107077] MCW rank 0 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 1 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 2 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 3 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 4 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 5 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 6 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 7 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 8 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 9 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 10 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 11 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 12 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw005:107077] MCW rank 13 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw005:107077] MCW rank 14 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw005:107077] MCW rank 15 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw005:107077] MCW rank 16 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw005:107077] MCW rank 17 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw005:107077] MCW rank 18 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw005:107077] MCW rank 19 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw006:90488] MCW rank 20 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 40 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 21 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 41 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 22 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 42 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 23 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 43 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 24 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 44 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 25 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 45 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 26 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 46 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 27 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 47 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 28 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 48 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 29 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 49 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 30 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 50 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 31 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 51 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 32 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw007:42673] MCW rank 52 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw006:90488] MCW rank 33 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw007:42673] MCW rank 53 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw006:90488] MCW rank 34 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw007:42673] MCW rank 54 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw006:90488] MCW rank 35 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw007:42673] MCW rank 55 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw006:90488] MCW rank 36 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw007:42673] MCW rank 56 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw006:90488] MCW rank 37 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw007:42673] MCW rank 57 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw006:90488] MCW rank 38 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw007:42673] MCW rank 58 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw006:90488] MCW rank 39 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw007:42673] MCW rank 59 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw008:24385] MCW rank 60 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 61 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 62 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 63 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 64 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 65 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 66 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 67 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 68 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 69 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 70 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 71 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 72 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw008:24385] MCW rank 73 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw008:24385] MCW rank 74 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw008:24385] MCW rank 75 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw008:24385] MCW rank 76 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw008:24385] MCW rank 77 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw008:24385] MCW rank 78 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw008:24385] MCW rank 79 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+--Rank: 0 80 79996 80 17888--Rank: 1 80 17015 80 17768--Rank: 2 80 16780 80 17568--Rank: 3 80 17003 80 17697--Rank: 4 80 16557 80 17485--Rank: 5 80 16945 80 17753--Rank: 6 80 16744 80 17654--Rank: 7 80 16945 80 17680--Rank: 8 80 17016 80 17822--Rank: 9 80 16908 80 17591--Rank: 10 80 16739 80 17640--Rank: 11 80 16862 80 17559--Rank: 12 80 17037 80 17688--Rank: 13 80 16785 80 17561--Rank: 14 80 16993 80 17724--Rank: 15 80 16838 80 17605--Rank: 16 80 16868 80 17666--Rank: 17 80 16755 80 17609--Rank: 18 80 16897 80 17661--Rank: 19 80 17020 80 17775--Rank: 20 80 16813 80 17465--Rank: 21 80 17092 80 17865--Rank: 22 80 16905 80 17693--Rank: 23 80 16960 80 17632--Rank: 24 80 16875 80 17752--Rank: 25 80 16819 80 17589--Rank: 26 80 16878 80 17648--Rank: 27 80 17013 80 17818--Rank: 28 80 16731 80 17525--Rank: 29 80 17084 80 17832--Rank: 30 80 16852 80 17627--Rank: 31 80 16727 80 17501--Rank: 32 80 16921 80 17748--Rank: 33 80 16805 80 17537--Rank: 34 80 16938 80 17708--Rank: 35 80 16804 80 17586--Rank: 36 80 17059 80 17832--Rank: 37 80 17003 80 17816--Rank: 38 80 16762 80 17580--Rank: 39 80 16891 80 17762--Rank: 40 80 16778 80 17580--Rank: 41 80 16871 80 17639--Rank: 42 80 16822 80 17608--Rank: 43 80 16917 80 17660--Rank: 44 80 16972 80 17823--Rank: 45 80 16960 80 17833--Rank: 46 80 16866 80 17642--Rank: 47 80 16558 80 17415--Rank: 48 80 16939 80 17737--Rank: 49 80 17060 80 17915--Rank: 50 80 16921 80 17791--Rank: 51 80 17075 80 17815--Rank: 52 80 17113 80 17798--Rank: 53 80 16907 80 17675--Rank: 54 80 16813 80 17658--Rank: 55 80 16746 80 17616--Rank: 56 80 16836 80 17628--Rank: 57 80 16768 80 17497--Rank: 58 80 16830 80 17566--Rank: 59 80 16573 80 17445--Rank: 60 80 16806 80 17646--Rank: 61 80 16879 80 17694--Rank: 62 80 16806 80 17597--Rank: 63 80 16854 80 17642--Rank: 64 80 16674 80 17376--Rank: 65 80 16920 80 17731--Rank: 66 80 16874 80 17747--Rank: 67 80 16804 80 17530--Rank: 68 80 16911 80 17710--Rank: 69 80 16935 80 17748--Rank: 70 80 16894 80 17611--Rank: 71 80 16718 80 17594--Rank: 72 80 17071 80 17741--Rank: 73 80 17070 80 17828--Rank: 74 80 16958 80 17696--Rank: 75 80 16883 80 17676--Rank: 76 80 16879 80 17658--Rank: 77 80 16722 80 17642--Rank: 78 80 16923 80 17638--Rank: 79 80 16745 80 17530
+
+== MultilinearScan run started on Wed Mar 22 12:35:59 EDT 2017 ==
+
+Parameters...
+           Input File: /localscratch/esaliya/sali/projects/vt/giraph/random-er/0100000.txt
+  Global Vertex Count: 80991
+                    K: 6
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 1x20x4
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 19015.0 r: 15
+
+  Start of Loop: 0
+Rank: 18 recvd 17 from rank 17
+Rank: 19 recvd 18 from rank 18
+Rank: 37 recvd 36 from rank 36
+Rank: 38 recvd 37 from rank 37
+Rank: 57 recvd 56 from rank 56
+Rank: 58 recvd 57 from rank 57
+Rank: 59 recvd 58 from rank 58
+Rank: 39 recvd 38 from rank 38
+Rank: 1 recvd 0 from rank 0
+Rank: 6 recvd 5 from rank 5
+Rank: 7 recvd 6 from rank 6
+Rank: 10 recvd 9 from rank 9
+Rank: 15 recvd 14 from rank 14
+Rank: 4 recvd 3 from rank 3
+Rank: 5 recvd 4 from rank 4
+Rank: 8 recvd 7 from rank 7
+Rank: 9 recvd 8 from rank 8
+Rank: 20 recvd 19 from rank 19
+Rank: 3 recvd 2 from rank 2
+Rank: 21 recvd 20 from rank 20
+Rank: 22 recvd 21 from rank 21
+Rank: 23 recvd 22 from rank 22
+Rank: 24 recvd 23 from rank 23
+Rank: 60 recvd 59 from rank 59
+Rank: 2 recvd 1 from rank 1
+Rank: 25 recvd 24 from rank 24
+Rank: 61 recvd 60 from rank 60
+Rank: 14 recvd 13 from rank 13
+Rank: 31 recvd 30 from rank 30
+Rank: 13 recvd 12 from rank 12
+Rank: 11 recvd 10 from rank 10
+Rank: 12 recvd 11 from rank 11
+Rank: 16 recvd 15 from rank 15
+Rank: 17 recvd 16 from rank 16
+Rank: 64 recvd 63 from rank 63
+Rank: 34 recvd 33 from rank 33
+Rank: 0 recvd 79 from rank 79
+Rank: 51 recvd 50 from rank 50
+Rank: 55 recvd 54 from rank 54
+Rank: 56 recvd 55 from rank 55
+Rank: 32 recvd 31 from rank 31
+Rank: 33 recvd 32 from rank 32
+Rank: 35 recvd 34 from rank 34
+Rank: 36 recvd 35 from rank 35
+Rank: 40 recvd 39 from rank 39
+Rank: 41 recvd 40 from rank 40
+Rank: 44 recvd 43 from rank 43
+Rank: 45 recvd 44 from rank 44
+Rank: 46 recvd 45 from rank 45
+Rank: 47 recvd 46 from rank 46
+Rank: 48 recvd 47 from rank 47
+Rank: 49 recvd 48 from rank 48
+Rank: 50 recvd 49 from rank 49
+Rank: 42 recvd 41 from rank 41
+Rank: 43 recvd 42 from rank 42
+Rank: 54 recvd 53 from rank 53
+Rank: 52 recvd 51 from rank 51
+Rank: 53 recvd 52 from rank 52
+Rank: 26 recvd 25 from rank 25
+Rank: 27 recvd 26 from rank 26
+Rank: 28 recvd 27 from rank 27
+Rank: 29 recvd 28 from rank 28
+Rank: 30 recvd 29 from rank 29
+Rank: 62 recvd 61 from rank 61
+Rank: 63 recvd 62 from rank 62
+Rank: 70 recvd 69 from rank 69
+Rank: 71 recvd 70 from rank 70
+Rank: 77 recvd 76 from rank 76
+Rank: 78 recvd 77 from rank 77
+Rank: 79 recvd 78 from rank 78
+Rank: 65 recvd 64 from rank 64
+Rank: 66 recvd 65 from rank 65
+Rank: 67 recvd 66 from rank 66
+Rank: 68 recvd 67 from rank 67
+Rank: 69 recvd 68 from rank 68
+Rank: 72 recvd 71 from rank 71
+      Iteration 1 of 64 elapsed 25 ms
+Rank: 73 recvd 72 from rank 72
+Rank: 74 recvd 73 from rank 73
+Rank: 75 recvd 74 from rank 74
+Rank: 76 recvd 75 from rank 75
+    Loop 0 best score: 4.9E-324
+  End of Loop: 0 took 157 ms
+Best score: 4.9E-324
+
+== MultilinearScan run ended on Wed Mar 22 12:35:59 EDT 2017 took 186 ms ==
+

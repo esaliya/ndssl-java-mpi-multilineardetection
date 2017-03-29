@@ -1,0 +1,89 @@
+[hsw005:99100] MCW rank 0 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 1 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 2 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 3 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 4 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 5 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 6 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 7 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 8 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 9 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 10 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 11 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 12 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw005:99100] MCW rank 13 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw005:99100] MCW rank 14 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw005:99100] MCW rank 15 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw005:99100] MCW rank 16 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw005:99100] MCW rank 17 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw005:99100] MCW rank 18 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw005:99100] MCW rank 19 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw005:99100] MCW rank 20 bound to socket 1[core 20[hwt 0]]: [./././././././././././././././.][././././B/././././././././././.]
+[hsw005:99100] MCW rank 21 bound to socket 1[core 21[hwt 0]]: [./././././././././././././././.][./././././B/./././././././././.]
+[hsw005:99100] MCW rank 22 bound to socket 1[core 22[hwt 0]]: [./././././././././././././././.][././././././B/././././././././.]
+[hsw005:99100] MCW rank 23 bound to socket 1[core 23[hwt 0]]: [./././././././././././././././.][./././././././B/./././././././.]
+[hsw005:99100] MCW rank 24 bound to socket 1[core 24[hwt 0]]: [./././././././././././././././.][././././././././B/././././././.]
+[hsw005:99100] MCW rank 25 bound to socket 1[core 25[hwt 0]]: [./././././././././././././././.][./././././././././B/./././././.]
+[hsw005:99100] MCW rank 26 bound to socket 1[core 26[hwt 0]]: [./././././././././././././././.][././././././././././B/././././.]
+[hsw005:99100] MCW rank 27 bound to socket 1[core 27[hwt 0]]: [./././././././././././././././.][./././././././././././B/./././.]
+[hsw005:99100] MCW rank 28 bound to socket 1[core 28[hwt 0]]: [./././././././././././././././.][././././././././././././B/././.]
+[hsw005:99100] MCW rank 29 bound to socket 1[core 29[hwt 0]]: [./././././././././././././././.][./././././././././././././B/./.]
+[hsw005:99100] MCW rank 30 bound to socket 1[core 30[hwt 0]]: [./././././././././././././././.][././././././././././././././B/.]
+[hsw005:99100] MCW rank 31 bound to socket 1[core 31[hwt 0]]: [./././././././././././././././.][./././././././././././././././B]
+--Rank: 0 32 80274 32 37445--Rank: 1 32 35713 32 36950--Rank: 2 32 35753 32 37164--Rank: 3 32 35926 32 37291--Rank: 4 32 35747 32 37158--Rank: 5 32 35809 32 37128--Rank: 6 32 35739 32 37172--Rank: 7 32 35851 32 37178--Rank: 8 32 35835 32 37001--Rank: 9 32 35949 32 37398--Rank: 10 32 35808 32 37299--Rank: 11 32 35816 32 37161--Rank: 12 32 35868 32 37163--Rank: 13 32 35887 32 37114--Rank: 14 32 36070 32 37433--Rank: 15 32 35794 32 37236--Rank: 16 32 35821 32 37194--Rank: 17 32 35924 32 37309--Rank: 18 32 35716 32 37305--Rank: 19 32 35919 32 37478--Rank: 20 32 36148 32 37396--Rank: 21 32 35905 32 37378--Rank: 22 32 35664 32 37155--Rank: 23 32 35651 32 37084--Rank: 24 32 35694 32 37140--Rank: 25 32 35721 32 37057--Rank: 26 32 35857 32 37304--Rank: 27 32 35802 32 37201--Rank: 28 32 35750 32 37093--Rank: 29 32 36146 32 37325--Rank: 30 32 35831 32 37221--Rank: 31 32 35726 32 37183
+
+== MultilinearScan run started on Wed Mar 22 12:28:57 EDT 2017 ==
+
+Parameters...
+           Input File: /localscratch/esaliya/sali/projects/vt/giraph/random-er/0100000.txt
+  Global Vertex Count: 80991
+                    K: 6
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 1x32x1
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 19015.0 r: 15
+
+  Start of Loop: 0
+Rank: 26 recvd 25 from rank 25
+Rank: 29 recvd 28 from rank 28
+Rank: 30 recvd 29 from rank 29
+Rank: 31 recvd 30 from rank 30
+Rank: 1 recvd 0 from rank 0
+Rank: 2 recvd 1 from rank 1
+Rank: 6 recvd 5 from rank 5
+Rank: 9 recvd 8 from rank 8
+Rank: 10 recvd 9 from rank 9
+Rank: 14 recvd 13 from rank 13
+Rank: 0 recvd 31 from rank 31
+Rank: 11 recvd 10 from rank 10
+Rank: 27 recvd 26 from rank 26
+Rank: 28 recvd 27 from rank 27
+Rank: 3 recvd 2 from rank 2
+Rank: 7 recvd 6 from rank 6
+Rank: 8 recvd 7 from rank 7
+      Iteration 1 of 64 elapsed 15 ms
+Rank: 12 recvd 11 from rank 11
+Rank: 13 recvd 12 from rank 12
+Rank: 4 recvd 3 from rank 3
+Rank: 5 recvd 4 from rank 4
+Rank: 25 recvd 24 from rank 24
+Rank: 24 recvd 23 from rank 23
+Rank: 23 recvd 22 from rank 22
+Rank: 22 recvd 21 from rank 21
+Rank: 15 recvd 14 from rank 14
+Rank: 16 recvd 15 from rank 15
+Rank: 19 recvd 18 from rank 18
+Rank: 20 recvd 19 from rank 19
+Rank: 21 recvd 20 from rank 20
+Rank: 17 recvd 16 from rank 16
+Rank: 18 recvd 17 from rank 17
+    Loop 0 best score: 4.9E-324
+  End of Loop: 0 took 188 ms
+Best score: 4.9E-324
+
+== MultilinearScan run ended on Wed Mar 22 12:28:57 EDT 2017 took 242 ms ==
+

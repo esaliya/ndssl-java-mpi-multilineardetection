@@ -1,0 +1,26 @@
+[hsw005:17477] MCW rank 0 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+  Partitioning Method: SimpleLoadBalance
+
+== MultilinearScan run started on Wed Mar 29 13:21:47 EDT 2017 ==
+
+Parameters...
+           Input File: /localscratch/esaliya/sali/projects/vt/giraph/random-er/0100000.txt
+  Global Vertex Count: 80991
+                    K: 6
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 32x1x1
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 19015.0 r: 15
+
+  Start of Loop: 0
+      Iteration 1 of 64 elapsed 2967 ms
+    Loop 0 best score: 31082.41383237028
+  End of Loop: 0 took 7683 ms
+Best score: 31082.41383237028
+
+== MultilinearScan run ended on Wed Mar 29 13:21:55 EDT 2017 took 7707 ms ==
+
