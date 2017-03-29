@@ -226,12 +226,18 @@ public class Program {
     /* Super step loop*/
         int workerSteps = maxIterations+1; // +1 to send initial values
         long duration = 0;
+        long commDuration = 0;
+        long barrierDuration = 0;
         for (int ss = 0; ss < workerSteps; ++ss) {
             if (ss > 0) {
                 if (threadIdx == 0) {
+                    long t = System.currentTimeMillis();
                     receiveMessages(vertices, ss);
+                    commDuration += (System.currentTimeMillis() - t);
                 }
+                long t = System.currentTimeMillis();
                 ParallelOps.threadComm.barrier();
+                barrierDuration += (System.currentTimeMillis() - t);
             }
 
             long t = System.currentTimeMillis();
@@ -247,7 +253,8 @@ public class Program {
         finalizeIteration(vertices, threadIdx);
         duration += System.currentTimeMillis() - t;
 
-        System.out.println("Thread: " + threadIdx + " took " + duration + " ms to compute only");
+        System.out.println("Thread: " + threadIdx + " took " + duration + " ms to compute only " + commDuration + " " +
+                "ms comm only " + barrierDuration + " ms barrier");
 
         if (iter%10 == 0 || iter == twoRaisedToK-1){
             if (threadIdx == 0) {
