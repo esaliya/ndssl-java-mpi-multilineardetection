@@ -146,9 +146,11 @@ public class Program {
 //        processRecvdMessages(vertices, superStep);
     }
 
-    private static void processRecvdMessages(Vertex[] vertices, int superStep) {
-        for (Vertex vertex : vertices){
-            vertex.processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
+    private static void processRecvdMessages(Vertex[] vertices, int superStep, Integer threadIdx) {
+        int offset = ParallelOps.threadIdToVertexOffset[threadIdx];
+        int count = ParallelOps.threadIdToVertexCount[threadIdx];
+        for (int i = 0; i < count; ++i){
+            vertices[offset+i].processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
         }
     }
 
@@ -243,7 +245,7 @@ public class Program {
                 ParallelOps.threadComm.barrier();
                 barrierDuration += (System.currentTimeMillis() - t);
 
-                processRecvdMessages(vertices, ss);
+                processRecvdMessages(vertices, ss, threadIdx);
             }
 
             long t = System.currentTimeMillis();
