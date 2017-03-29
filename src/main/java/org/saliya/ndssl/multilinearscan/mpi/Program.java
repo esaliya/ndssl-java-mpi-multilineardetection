@@ -187,8 +187,9 @@ public class Program {
         initLoop(vertices);
 
         long startTime = System.currentTimeMillis();
-        //for (int iter = 0; iter < twoRaisedToK; ++iter) {
-        for (int iter = 0; iter < 3; ++iter) {
+//        int totalIterations = twoRaisedToK;
+        int totalIterations = 3;
+        for (int iter = 0; iter < totalIterations; ++iter) {
             int finalIter = iter;
             if (ParallelOps.threadCount > 1) {
                 try {
@@ -204,8 +205,8 @@ public class Program {
 
                             long t = System.currentTimeMillis();
                             runSuperSteps(vertices, startTime, finalIter, threadIdx);
-                            System.out.printf("Thread: " + threadIdx + " time with comm " + (System.currentTimeMillis
-                                    () - t) + " ms");
+//                            System.out.printf("Thread: " + threadIdx + " time with comm " + (System.currentTimeMillis
+//                                    () - t) + " ms");
 
                         } catch (MPIException | InterruptedException | BrokenBarrierException e) {
                             e.printStackTrace();
@@ -216,6 +217,11 @@ public class Program {
                 }
             } else {
                 runSuperSteps(vertices, startTime, finalIter, 0);
+            }
+
+            if (iter%10 == 0 || iter == totalIterations-1){
+                putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
+                        "elapsed " + (System.currentTimeMillis() - startTime) + " ms");
             }
 
         }
@@ -263,17 +269,10 @@ public class Program {
         finalizeIteration(vertices, threadIdx);
         computeDuration += System.currentTimeMillis() - t;
 
-        System.out.println("Thread: " + threadIdx + " took " + computeDuration + " ms to compute only " + recvCommDuration + " " +
-                "ms recvComm only " + barrierDuration + " ms barrier " + processRecvdDuration + " ms to process recvd");
+//        System.out.println("Thread: " + threadIdx + " took " + computeDuration + " ms to compute only " + recvCommDuration + " " +
+//                "ms recvComm only " + barrierDuration + " ms barrier " + processRecvdDuration + " ms to process recvd");
 
-        if (iter%10 == 0 || iter == twoRaisedToK-1){
-            if (threadIdx == 0) {
-                putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
-                        "elapsed " +
-                        (System
-                                .currentTimeMillis() - startTime) + " ms");
-            }
-        }
+
     }
 
     private static double finalizeIterations(Vertex[] vertices) {
