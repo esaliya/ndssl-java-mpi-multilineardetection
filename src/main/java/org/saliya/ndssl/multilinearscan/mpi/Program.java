@@ -192,7 +192,7 @@ public class Program {
                         System.out.println("Thread: " + threadIdx + " came here");
                         if (bind) {
                             BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
-                            Affinity.setAffinity(bitSet);
+//                            Affinity.setAffinity(bitSet);
                         }
                         System.out.println("Thread: " + threadIdx + " came here too bind: " + bind);
                         try {
