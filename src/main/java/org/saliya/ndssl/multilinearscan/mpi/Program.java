@@ -218,7 +218,7 @@ public class Program {
                 runSuperSteps(vertices, startTime, finalIter, 0);
             }
 
-            System.out.println("Iter: " + iter + " took " + (System.currentTimeMillis() - startTime) + " ms");
+            System.out.println("Iter: ");
 
 //            if (iter%10 == 0 || iter == twoRaisedToK-1){
 //                    putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
