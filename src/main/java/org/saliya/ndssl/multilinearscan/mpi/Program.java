@@ -233,6 +233,7 @@ public class Program {
         long computeDuration = 0;
         long recvCommDuration = 0;
         long barrierDuration = 0;
+        long processRecvdDuration = 0;
         for (int ss = 0; ss < workerSteps; ++ss) {
             if (ss > 0) {
                 if (threadIdx == 0) {
@@ -246,7 +247,7 @@ public class Program {
 
                 t = System.currentTimeMillis();
                 processRecvdMessages(vertices, ss, threadIdx);
-                computeDuration += (System.currentTimeMillis() - t);
+                processRecvdDuration += (System.currentTimeMillis() - t);
             }
 
             long t = System.currentTimeMillis();
@@ -263,7 +264,7 @@ public class Program {
         computeDuration += System.currentTimeMillis() - t;
 
         System.out.println("Thread: " + threadIdx + " took " + computeDuration + " ms to compute only " + recvCommDuration + " " +
-                "ms recvComm only " + barrierDuration + " ms barrier");
+                "ms recvComm only " + barrierDuration + " ms barrier " + processRecvdDuration + " ms to process recvd");
 
         if (iter%10 == 0 || iter == twoRaisedToK-1){
             if (threadIdx == 0) {
