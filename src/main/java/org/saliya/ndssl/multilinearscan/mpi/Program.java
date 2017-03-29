@@ -187,9 +187,8 @@ public class Program {
         initLoop(vertices);
 
         long startTime = System.currentTimeMillis();
-//        int totalIterations = twoRaisedToK;
-        int totalIterations = 3;
-        for (int iter = 0; iter < totalIterations; ++iter) {
+        //for (int iter = 0; iter < twoRaisedToK; ++iter) {
+        for (int iter = 0; iter < 3; ++iter) {
             int finalIter = iter;
             if (ParallelOps.threadCount > 1) {
                 try {
@@ -217,11 +216,6 @@ public class Program {
                 }
             } else {
                 runSuperSteps(vertices, startTime, finalIter, 0);
-            }
-
-            if (iter%10 == 0 || iter == totalIterations-1){
-                putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
-                        "elapsed " + (System.currentTimeMillis() - startTime) + " ms");
             }
 
         }
@@ -272,7 +266,14 @@ public class Program {
 //        System.out.println("Thread: " + threadIdx + " took " + computeDuration + " ms to compute only " + recvCommDuration + " " +
 //                "ms recvComm only " + barrierDuration + " ms barrier " + processRecvdDuration + " ms to process recvd");
 
-
+        if (iter%10 == 0 || iter == twoRaisedToK-1){
+            if (threadIdx == 0) {
+                putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
+                        "elapsed " +
+                        (System
+                                .currentTimeMillis() - startTime) + " ms");
+            }
+        }
     }
 
     private static double finalizeIterations(Vertex[] vertices) {
