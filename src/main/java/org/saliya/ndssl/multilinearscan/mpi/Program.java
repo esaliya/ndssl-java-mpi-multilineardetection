@@ -190,6 +190,9 @@ public class Program {
                     launchHabaneroApp(() -> forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
                         if (bind) {
                             BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
+                            Affinity.setThreadId();
+                            System.out.println("Thread: " + threadIdx + " id: " + Affinity.getThreadId() + " affinity" +
+                                    " " + bitSet);
                             Affinity.setAffinity(bitSet);
                         }
                         try {
