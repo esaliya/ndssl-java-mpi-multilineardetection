@@ -307,7 +307,8 @@ public class Program {
         }
 
         if (ss == 1){
-            System.out.println("Thread: " + threadIdx + " numOfRecvdMsgs: " + numRecvdMessages);
+            System.out.println("Thread: " + threadIdx + " numOfRecvdMsgs: " + numRecvdMessages + " vertexCount: " +
+                    count);
         }
     }
 
