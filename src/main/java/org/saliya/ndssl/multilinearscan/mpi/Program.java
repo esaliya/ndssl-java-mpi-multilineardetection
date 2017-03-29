@@ -196,10 +196,9 @@ public class Program {
                             Affinity.setAffinity(bitSet);
                         }
                         try {
-                            long t = System.currentTimeMillis();
+
                             runSuperSteps(vertices, startTime, finalIter, threadIdx);
-                            System.out.println("Thread: " + threadIdx + " took " + (System.currentTimeMillis() -t) +
-                                    " ms to compute only");
+
                         } catch (MPIException | InterruptedException | BrokenBarrierException e) {
                             e.printStackTrace();
                         }
@@ -223,6 +222,7 @@ public class Program {
     private static void runSuperSteps(Vertex[] vertices, long startTime, int iter, Integer threadIdx) throws MPIException, BrokenBarrierException, InterruptedException {
     /* Super step loop*/
         int workerSteps = maxIterations+1; // +1 to send initial values
+        long duration = 0;
         for (int ss = 0; ss < workerSteps; ++ss) {
             if (ss > 0) {
                 if (threadIdx == 0) {
@@ -231,13 +231,17 @@ public class Program {
                 ParallelOps.threadComm.barrier();
             }
 
+            long t = System.currentTimeMillis();
             compute(iter, vertices, ss, threadIdx);
+            duration += (System.currentTimeMillis() - t);
 
             if (ss < workerSteps - 1 && threadIdx == 0) {
                 sendMessages(vertices, ss);
             }
         }
-        finalizeIteration(vertices);
+        System.out.println("Thread: " + threadIdx + " took " + duration + " ms to compute only");
+
+        finalizeIteration(vertices, threadIdx);
         if (iter%10 == 0 || iter == twoRaisedToK-1){
             if (threadIdx == 0) {
                 putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
@@ -256,9 +260,11 @@ public class Program {
         return bestScore;
     }
 
-    private static void finalizeIteration(Vertex[] vertices) {
-        for (Vertex vertex : vertices){
-            vertex.finalizeIteration();
+    private static void finalizeIteration(Vertex[] vertices, int threadIdx) {
+        int offset = ParallelOps.threadIdToVertexOffset[threadIdx];
+        int count = ParallelOps.threadIdToVertexCount[threadIdx];
+        for (int i = 0; i < count; ++i){
+            vertices[offset+i].finalizeIteration();
         }
     }
 

@@ -57,6 +57,15 @@ public class ThreadBitAssigner {
         }
     }
 */
+
+    public static void main(String[] args) {
+        int rank = 0;
+        int threadIdx = 3; // the output should be {3}
+        int threadCount = 16;
+        int cps = 32;
+        BitSet bitSet = ThreadBitAssigner.getBitSet(rank, threadIdx, threadCount, cps);
+        System.out.println(bitSet);
+    }
     private static int[] getBitMask(int rank, int threadIdx, int tpp, int cps){
         int cpn = cps * spn;
         int ppn = cpn / tpp; // process per node
