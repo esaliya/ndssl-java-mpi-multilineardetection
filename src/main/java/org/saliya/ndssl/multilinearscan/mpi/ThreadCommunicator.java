@@ -1,4 +1,4 @@
-package org.saliya.ndssl.multilinearscan;
+package org.saliya.ndssl.multilinearscan.mpi;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;

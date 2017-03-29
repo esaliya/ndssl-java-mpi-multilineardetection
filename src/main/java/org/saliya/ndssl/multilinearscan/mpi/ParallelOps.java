@@ -1,12 +1,10 @@
 package org.saliya.ndssl.multilinearscan.mpi;
 
 import com.google.common.base.Strings;
-import com.sun.jna.platform.win32.WinDef;
 import mpi.Intracomm;
 import mpi.MPI;
 import mpi.MPIException;
 import mpi.Request;
-import org.saliya.ndssl.multilinearscan.ThreadCommunicator;
 
 import java.io.BufferedReader;
 import java.io.File;
