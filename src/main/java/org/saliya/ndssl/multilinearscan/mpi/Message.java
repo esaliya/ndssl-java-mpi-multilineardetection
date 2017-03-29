@@ -15,6 +15,10 @@ public class Message {
     private int msgSize;
     private short[][] data;
     private ShortBuffer serializedBytes = null;
+    private short dimA;
+    private short dimB;
+    private int readOffset;
+    private ShortBuffer buffer;
 
     public Message() {
 
@@ -31,7 +35,7 @@ public class Message {
         buffer.put(serializedBytes);
     }
 
-    public void loadFrom(ShortBuffer buffer, int offset, int recvdMsgSize){
+    /*public void loadFrom(ShortBuffer buffer, int offset, int recvdMsgSize){
         this.msgSize = recvdMsgSize;
         int dimA = buffer.get(offset);
         int dimB = buffer.get(offset+1);
@@ -39,6 +43,18 @@ public class Message {
         IntStream.range(0, dimA).forEach(i->IntStream.range(0,dimB).forEach(j->{
             data[i][j] = buffer.get(offset+2+(i*dimB+j));
         }));
+    }*/
+
+    public void loadFrom(ShortBuffer buffer, int offset, int recvdMsgSize){
+        this.msgSize = recvdMsgSize;
+        this.dimA = buffer.get(offset);
+        this.dimB = buffer.get(offset+1);
+        this.readOffset = offset+2;
+        this.buffer = buffer;
+    }
+
+    public short get(int i, int j){
+        return buffer.get(readOffset+(i*dimB+j));
     }
 
     public void pack(){

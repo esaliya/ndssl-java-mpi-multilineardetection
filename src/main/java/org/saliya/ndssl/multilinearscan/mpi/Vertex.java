@@ -84,36 +84,42 @@ public class Vertex {
                 // iterate through all the pairs of polynomials whose sizes add up to i
                 for (int iPrime = 1; iPrime < I; iPrime++) {
                     for (Message msg : recvdMessages) {
-                        short[][] neighborOptTable = msg.getData();
+//                        short[][] neighborOptTable = msg.getData();
                         if (l == 0) {
                             int weight = random.nextInt(fieldSize);
-                            int product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][0]);
+//                            int product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][0]);
+                            int product = gf.multiply(optTable[iPrime][0], msg.get(I - iPrime,0));
                             product = gf.multiply(weight, product);
                             polynomial = gf.add(polynomial, product);
                         } else if (l == 1) {
                             int weight = random.nextInt(fieldSize);
-                            int product = gf.multiply(optTable[iPrime][1], neighborOptTable[I - iPrime][0]);
+//                            int product = gf.multiply(optTable[iPrime][1], neighborOptTable[I - iPrime][0]);
+                            int product = gf.multiply(optTable[iPrime][1], msg.get(I - iPrime,0));
                             product = gf.multiply(weight, product);
                             polynomial = gf.add(polynomial, product);
 
                             weight = random.nextInt(fieldSize);
-                            product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][1]);
+//                            product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][1]);
+                            product = gf.multiply(optTable[iPrime][0], msg.get(I - iPrime,1));
                             product = gf.multiply(weight, product);
                             polynomial = gf.add(polynomial, product);
                         } else {
                             int weight = random.nextInt(fieldSize);
-                            int product = gf.multiply(optTable[iPrime][l - 1], neighborOptTable[I - iPrime][l -
-                                    1]);
+//                            int product = gf.multiply(optTable[iPrime][l - 1], neighborOptTable[I - iPrime][l -
+                            int product = gf.multiply(optTable[iPrime][l - 1], msg.get(I - iPrime,l -
+                                    1));
                             product = gf.multiply(weight, product);
                             polynomial = gf.add(polynomial, product);
 
                             weight = random.nextInt(fieldSize);
-                            product = gf.multiply(optTable[iPrime][l], neighborOptTable[I - iPrime][0]);
+//                            product = gf.multiply(optTable[iPrime][l], neighborOptTable[I - iPrime][0]);
+                            product = gf.multiply(optTable[iPrime][l], msg.get(I - iPrime,0));
                             product = gf.multiply(weight, product);
                             polynomial = gf.add(polynomial, product);
 
                             weight = random.nextInt(fieldSize);
-                            product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][l]);
+//                            product = gf.multiply(optTable[iPrime][0], neighborOptTable[I - iPrime][l]);
+                            product = gf.multiply(optTable[iPrime][0], msg.get(I - iPrime,l));
                             product = gf.multiply(weight, product);
                             polynomial = gf.add(polynomial, product);
                         }
