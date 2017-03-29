@@ -217,12 +217,13 @@ public class Program {
             } else {
                 runSuperSteps(vertices, startTime, finalIter, 0);
             }
-            if (iter%10 == 0 || iter == twoRaisedToK-1){
-                    putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
-                            "elapsed " +
-                            (System
-                                    .currentTimeMillis() - startTime) + " ms");
-            }
+
+//            if (iter%10 == 0 || iter == twoRaisedToK-1){
+//                    putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
+//                            "elapsed " +
+//                            (System
+//                                    .currentTimeMillis() - startTime) + " ms");
+//            }
 
         }
         double bestScore = finalizeIterations(vertices);
