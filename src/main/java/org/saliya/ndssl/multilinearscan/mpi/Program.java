@@ -197,7 +197,10 @@ public class Program {
                         }
                         try {
 
+                            long t = System.currentTimeMillis();
                             runSuperSteps(vertices, startTime, finalIter, threadIdx);
+                            System.out.printf("Thread: " + threadIdx + " time with comm " + (System.currentTimeMillis
+                                    () - t) + " ms");
 
                         } catch (MPIException | InterruptedException | BrokenBarrierException e) {
                             e.printStackTrace();
