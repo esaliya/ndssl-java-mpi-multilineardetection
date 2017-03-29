@@ -186,12 +186,15 @@ public class Program {
         for (int iter = 0; iter < 3; ++iter) {
             int finalIter = iter;
             if (ParallelOps.threadCount > 1) {
+                System.out.println("came here");
                 try {
                     launchHabaneroApp(() -> forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
+                        System.out.println("Thread: " + threadIdx + " came here");
                         if (bind) {
                             BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
                             Affinity.setAffinity(bitSet);
                         }
+                        System.out.println("Thread: " + threadIdx + " came here too bind: " + bind);
                         try {
                             runSuperSteps(vertices, startTime, finalIter, threadIdx);
                         } catch (MPIException | InterruptedException | BrokenBarrierException e) {
