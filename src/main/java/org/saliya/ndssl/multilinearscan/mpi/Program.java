@@ -217,16 +217,6 @@ public class Program {
             } else {
                 runSuperSteps(vertices, startTime, finalIter, 0);
             }
-
-            System.out.println("Iter: " + finalIter + " " );
-
-//            if (iter%10 == 0 || iter == twoRaisedToK-1){
-//                    putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
-//                            "elapsed " +
-//                            (System
-//                                    .currentTimeMillis() - startTime) + " ms");
-//            }
-
         }
         double bestScore = finalizeIterations(vertices);
         ParallelOps.oneDoubleBuffer.put(0, bestScore);
@@ -275,14 +265,14 @@ public class Program {
 //        System.out.println("Thread: " + threadIdx + " took " + computeDuration + " ms to compute only " + recvCommDuration + " " +
 //                "ms recvComm only " + barrierDuration + " ms barrier " + processRecvdDuration + " ms to process recvd");
 
-        /*if (iter%10 == 0 || iter == twoRaisedToK-1){
+        if (iter%10 == 0 || iter == twoRaisedToK-1){
             if (threadIdx == 0) {
                 putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
                         "elapsed " +
                         (System
                                 .currentTimeMillis() - startTime) + " ms");
             }
-        }*/
+        }
     }
 
     private static double finalizeIterations(Vertex[] vertices) {
