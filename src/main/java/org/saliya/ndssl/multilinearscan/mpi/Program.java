@@ -239,9 +239,13 @@ public class Program {
                 sendMessages(vertices, ss);
             }
         }
+
+        long t = System.currentTimeMillis();
+        finalizeIteration(vertices, threadIdx);
+        duration += System.currentTimeMillis() - t;
+
         System.out.println("Thread: " + threadIdx + " took " + duration + " ms to compute only");
 
-        finalizeIteration(vertices, threadIdx);
         if (iter%10 == 0 || iter == twoRaisedToK-1){
             if (threadIdx == 0) {
                 putils.printMessage("      Iteration " + (iter+1)  + " of " + twoRaisedToK + " " +
