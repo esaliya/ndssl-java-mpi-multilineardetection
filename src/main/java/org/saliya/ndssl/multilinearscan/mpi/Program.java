@@ -223,6 +223,13 @@ public class Program {
         return bestScore;
     }
 
+    private static void receiveMessages(Vertex[] vertices, int superStep) throws MPIException {
+        ParallelOps.recvMessages();
+        for (Vertex vertex : vertices){
+            vertex.processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
+        }
+    }
+
     private static void runSuperSteps(Vertex[] vertices, long startTime, int iter, Integer threadIdx) throws MPIException, BrokenBarrierException, InterruptedException {
     /* Super step loop*/
         int workerSteps = maxIterations+1; // +1 to send initial values
@@ -233,16 +240,17 @@ public class Program {
             if (ss > 0) {
                 if (threadIdx == 0) {
                     long t = System.currentTimeMillis();
-                    ParallelOps.recvMessages();
+//                    ParallelOps.recvMessages();
+                    receiveMessages(vertices, ss);
                     recvCommDuration += (System.currentTimeMillis() - t);
                 }
                 long t = System.currentTimeMillis();
                 ParallelOps.threadComm.barrier();
                 barrierDuration += (System.currentTimeMillis() - t);
 
-                t = System.currentTimeMillis();
-                processRecvdMessages(vertices, ss, threadIdx);
-                computeDuration += (System.currentTimeMillis() - t);
+//                t = System.currentTimeMillis();
+//                processRecvdMessages(vertices, ss, threadIdx);
+//                computeDuration += (System.currentTimeMillis() - t);
             }
 
             long t = System.currentTimeMillis();
