@@ -1,0 +1,696 @@
+--------------------------------------------------------------------------
+WARNING: a request was made to bind a process. While the system
+supports binding the process itself, at least one node does NOT
+support binding memory to the process location.
+
+  Node:  j-001
+
+This usually is due to not having the required NUMA support installed
+on the node. In some Linux distributions, the required support is
+contained in the libnumactl and libnumactl-devel packages.
+This is a warning only; your job will continue, though performance may be degraded.
+--------------------------------------------------------------------------
+[j-044:64401] MCW rank 30 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-036:68308] MCW rank 15 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-036:68308] MCW rank 14 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-044:64401] MCW rank 31 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-001:26897] MCW rank 0 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-019:68290] MCW rank 7 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-001:26897] MCW rank 1 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-019:68290] MCW rank 6 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-040:64460] MCW rank 23 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-040:64460] MCW rank 22 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-017:68310] MCW rank 2 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-017:68310] MCW rank 3 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-020:69384] MCW rank 9 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-020:69384] MCW rank 8 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-018:68192] MCW rank 4 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-037:65741] MCW rank 17 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-029:68203] MCW rank 11 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-018:68192] MCW rank 5 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-037:65741] MCW rank 16 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-029:68203] MCW rank 10 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-035:68744] MCW rank 13 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-035:68744] MCW rank 12 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-038:63420] MCW rank 19 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-038:63420] MCW rank 18 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-041:63927] MCW rank 25 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-042:63906] MCW rank 27 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-041:63927] MCW rank 24 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-042:63906] MCW rank 26 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-039:64024] MCW rank 21 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-039:64024] MCW rank 20 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+[j-043:64116] MCW rank 29 bound to socket 1[core 12[hwt 0-1]], socket 1[core 13[hwt 0-1]], socket 1[core 14[hwt 0-1]], socket 1[core 15[hwt 0-1]], socket 1[core 16[hwt 0-1]], socket 1[core 17[hwt 0-1]], socket 1[core 18[hwt 0-1]], socket 1[core 19[hwt 0-1]], socket 1[core 20[hwt 0-1]], socket 1[core 21[hwt 0-1]], socket 1[core 22[hwt 0-1]], socket 1[core 23[hwt 0-1]]: [../../../../../../../../../../../..][BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB]
+[j-043:64116] MCW rank 28 bound to socket 0[core 0[hwt 0-1]], socket 0[core 1[hwt 0-1]], socket 0[core 2[hwt 0-1]], socket 0[core 3[hwt 0-1]], socket 0[core 4[hwt 0-1]], socket 0[core 5[hwt 0-1]], socket 0[core 6[hwt 0-1]], socket 0[core 7[hwt 0-1]], socket 0[core 8[hwt 0-1]], socket 0[core 9[hwt 0-1]], socket 0[core 10[hwt 0-1]], socket 0[core 11[hwt 0-1]]: [BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB/BB][../../../../../../../../../../../..]
+
+== MultilinearScan run started on Fri Mar 10 00:35:13 EST 2017 ==
+
+Parameters...
+           Input File: /N/u/sekanaya/sali/projects/vt/giraph/random-er/10000000.txt
+  Global Vertex Count: 10000000
+                    K: 7
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 1x2x16
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 139990.0 r: 18
+
+  Start of Loop: 0
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+-------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code.. Per user-direction, the job has been aborted.
+-------------------------------------------------------
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Exception in thread "main" Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 1java.lang.ArrayIndexOutOfBoundsException
+
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.util.concurrent.ForkJoinTask.doInvoke(ForkJoinTask.java:401)	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:734)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)Exception in thread "main" 
+java.lang.ArrayIndexOutOfBoundsException	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinTask.doInvoke(ForkJoinTask.java:401)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:734)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+Exception in thread "main" Exception in thread "main" Exception in thread "main" java.lang.ArrayIndexOutOfBoundsExceptionjava.lang.ArrayIndexOutOfBoundsExceptionjava.lang.ArrayIndexOutOfBoundsException
+
+
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+
+
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+
+Exception in thread "main" 	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)java.lang.ArrayIndexOutOfBoundsException
+Exception in thread "main" 
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)java.lang.ArrayIndexOutOfBoundsException: 1	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+
+
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)Exception in thread "main" 
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)java.lang.ArrayIndexOutOfBoundsException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+
+
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+
+	at java.util.concurrent.ForkJoinTask.doInvoke(ForkJoinTask.java:401)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:734)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+
+
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)Exception in thread "main" 	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+
+java.lang.ArrayIndexOutOfBoundsException	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+
+
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Exception in thread "main" 	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)java.lang.ArrayIndexOutOfBoundsException
+
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+Exception in thread "main" 	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+java.lang.ArrayIndexOutOfBoundsException	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Exception in thread "main" 	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+java.lang.ArrayIndexOutOfBoundsException	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinTask.doInvoke(ForkJoinTask.java:401)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:734)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at java.util.concurrent.ForkJoinTask.getThrowableException(ForkJoinTask.java:598)
+	at java.util.concurrent.ForkJoinTask.reportException(ForkJoinTask.java:677)
+	at java.util.concurrent.ForkJoinTask.invoke(ForkJoinTask.java:735)
+	at java.util.stream.ForEachOps$ForEachOp.evaluateParallel(ForEachOps.java:160)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.evaluateParallel(ForEachOps.java:189)
+	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:233)
+	at java.util.stream.IntPipeline.forEach(IntPipeline.java:404)
+	at java.util.stream.IntPipeline$Head.forEach(IntPipeline.java:560)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.compute(Program.java:214)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:154)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: 1
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.compute(Vertex.java:90)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.lambda$compute$0(Program.java:214)
+	at java.util.stream.ForEachOps$ForEachOp$OfInt.accept(ForEachOps.java:205)
+	at java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:110)
+	at java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:693)
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+	at java.util.stream.ForEachOps$ForEachTask.compute(ForEachOps.java:291)
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:731)
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056)
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692)
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:157)
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[3933,1],22]
+  Exit code:    1
+--------------------------------------------------------------------------

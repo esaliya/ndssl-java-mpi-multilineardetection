@@ -1,0 +1,93 @@
+[hsw005:110000] MCW rank 0 is not bound (or bound to all available processors)
+[hsw008:49650] MCW rank 3 is not bound (or bound to all available processors)
+[hsw007:67940] MCW rank 2 is not bound (or bound to all available processors)
+[hsw009:37952] MCW rank 4 is not bound (or bound to all available processors)
+[hsw010:45954] MCW rank 5 is not bound (or bound to all available processors)
+[hsw006:87943] MCW rank 1 is not bound (or bound to all available processors)
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[hsw005][[46315,1],0][btl_tcp_frag.c:130:mca_btl_tcp_frag_send] mca_btl_tcp_frag_send: writev error (0x2aaabcca06fa, 210000042)
+	Bad address(1)
+
+[hsw005:110014] pml_ob1_sendreq.c:304 FATAL
+[hsw005][[46315,1],0][btl_tcp_frag.c:130:mca_btl_tcp_frag_send] mca_btl_tcp_frag_send: writev error (0x2aaabcca06fa, 131040)
+	Bad address(1)
+
+--------------------------------------------------------------------------
+An MPI communication peer process has unexpectedly disconnected.  This
+usually indicates a failure in the peer process (e.g., a crash or
+otherwise exiting without calling MPI_FINALIZE first).
+
+Although this local MPI process will likely now behave unpredictably
+(it may even hang or crash), the root cause of this problem is the
+failure of the peer -- that is what you need to investigate.  For
+example, there may be a core file that you can examine.  More
+generally: such peer hangups are frequently caused by application bugs
+or other external events.
+
+  Local host: hsw007
+  Local PID:  67944
+  Peer host:  hsw006
+--------------------------------------------------------------------------
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00002aaaabb9daad, pid=67944, tid=0x00002ac3d8d78700
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_121-b13) (build 1.8.0_121-b13)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.121-b13 mixed mode linux-amd64 )
+# Problematic frame:
+# V  [libjvm.so+0x502aad]  DefNewGeneration::copy_to_survivor_space(oopDesc*)+0xcd
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# An error report file with more information is saved as:
+# /home/esaliya/sali/git/github/esaliya/java/ndssl-java-mpi-multilineardetection/perf/Np/haswell/hs_err_pid67944.log
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+[hsw007:67944] *** Process received signal ***
+[hsw007:67944] Signal: Aborted (6)
+[hsw007:67944] Signal code:  (-6)
+[hsw007:67944] [ 0] /lib64/libpthread.so.0(+0xf7e0)[0x2aaaaacdc7e0]
+[hsw007:67944] [ 1] /lib64/libc.so.6(gsignal+0x35)[0x2aaaab3375e5]
+[hsw007:67944] [ 2] /lib64/libc.so.6(abort+0x175)[0x2aaaab338dc5]
+[hsw007:67944] [ 3] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x9250b5)[0x2aaaabfc00b5]
+[hsw007:67944] [ 4] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0xac7443)[0x2aaaac162443]
+[hsw007:67944] [ 5] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0xac792e)[0x2aaaac16292e]
+[hsw007:67944] [ 6] /lib64/libpthread.so.0(+0xf7e0)[0x2aaaaacdc7e0]
+[hsw007:67944] [ 7] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x9e8e07)[0x2aaaac083e07]
+[hsw007:67944] [ 8] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x5fb29e)[0x2aaaabc9629e]
+[hsw007:67944] [ 9] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x500355)[0x2aaaabb9b355]
+[hsw007:67944] [10] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x5f928e)[0x2aaaabc9428e]
+[hsw007:67944] [11] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x91b597)[0x2aaaabfb6597]
+[hsw007:67944] [12] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x929f6b)[0x2aaaabfc4f6b]
+[hsw007:67944] [13] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0xac5ac3)[0x2aaaac160ac3]
+[hsw007:67944] [14] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0xac703a)[0x2aaaac16203a]
+[hsw007:67944] [15] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(JVM_handle_linux_signal+0x14f)[0x2aaaabfc55bf]
+[hsw007:67944] [16] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x920b03)[0x2aaaabfbbb03]
+[hsw007:67944] [17] /lib64/libpthread.so.0(+0xf7e0)[0x2aaaaacdc7e0]
+[hsw007:67944] [18] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x502aad)[0x2aaaabb9daad]
+[hsw007:67944] [19] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x502fe9)[0x2aaaabb9dfe9]
+[hsw007:67944] [20] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x64c184)[0x2aaaabce7184]
+[hsw007:67944] [21] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x9e96c7)[0x2aaaac0846c7]
+[hsw007:67944] [22] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x9e6a8f)[0x2aaaac081a8f]
+[hsw007:67944] [23] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x9e6933)[0x2aaaac081933]
+[hsw007:67944] [24] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x4027c7)[0x2aaaaba9d7c7]
+[hsw007:67944] [25] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x400c04)[0x2aaaaba9bc04]
+[hsw007:67944] [26] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x402560)[0x2aaaaba9d560]
+[hsw007:67944] [27] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x5fa560)[0x2aaaabc95560]
+[hsw007:67944] [28] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x5e97c9)[0x2aaaabc847c9]
+[hsw007:67944] [29] /home/esaliya/sali/software/jdk1.8.0_121/jre/lib/amd64/server/libjvm.so(+0x503a2c)[0x2aaaabb9ea2c]
+[hsw007:67944] *** End of error message ***
