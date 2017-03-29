@@ -141,10 +141,11 @@ public class Program {
     }
 
 
-    private static void receiveMessages(Vertex[] vertices, int superStep) throws MPIException {
-        ParallelOps.recvMessages();
-        for (Vertex vertex : vertices){
-            vertex.processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
+    private static void processRecvdMessages(Vertex[] vertices, int superStep, int threadIdx) {
+        int offset = ParallelOps.threadIdToVertexOffset[threadIdx];
+        int count = ParallelOps.threadIdToVertexCount[threadIdx];
+        for (int i = 0; i < count; ++i){
+            vertices[offset+i].processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
         }
     }
 
@@ -225,24 +226,28 @@ public class Program {
     private static void runSuperSteps(Vertex[] vertices, long startTime, int iter, Integer threadIdx) throws MPIException, BrokenBarrierException, InterruptedException {
     /* Super step loop*/
         int workerSteps = maxIterations+1; // +1 to send initial values
-        long duration = 0;
-        long commDuration = 0;
+        long computeDuration = 0;
+        long recvCommDuration = 0;
         long barrierDuration = 0;
         for (int ss = 0; ss < workerSteps; ++ss) {
             if (ss > 0) {
                 if (threadIdx == 0) {
                     long t = System.currentTimeMillis();
-                    receiveMessages(vertices, ss);
-                    commDuration += (System.currentTimeMillis() - t);
+                    ParallelOps.recvMessages();
+                    recvCommDuration += (System.currentTimeMillis() - t);
                 }
                 long t = System.currentTimeMillis();
                 ParallelOps.threadComm.barrier();
                 barrierDuration += (System.currentTimeMillis() - t);
+
+                t = System.currentTimeMillis();
+                processRecvdMessages(vertices, ss, threadIdx);
+                computeDuration += (System.currentTimeMillis() - t);
             }
 
             long t = System.currentTimeMillis();
             compute(iter, vertices, ss, threadIdx);
-            duration += (System.currentTimeMillis() - t);
+            computeDuration += (System.currentTimeMillis() - t);
 
             if (ss < workerSteps - 1 && threadIdx == 0) {
                 sendMessages(vertices, ss);
@@ -251,10 +256,10 @@ public class Program {
 
         long t = System.currentTimeMillis();
         finalizeIteration(vertices, threadIdx);
-        duration += System.currentTimeMillis() - t;
+        computeDuration += System.currentTimeMillis() - t;
 
-        System.out.println("Thread: " + threadIdx + " took " + duration + " ms to compute only " + commDuration + " " +
-                "ms comm only " + barrierDuration + " ms barrier");
+        System.out.println("Thread: " + threadIdx + " took " + computeDuration + " ms to compute only " + recvCommDuration + " " +
+                "ms recvComm only " + barrierDuration + " ms barrier");
 
         if (iter%10 == 0 || iter == twoRaisedToK-1){
             if (threadIdx == 0) {
