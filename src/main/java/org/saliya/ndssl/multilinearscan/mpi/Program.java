@@ -186,20 +186,25 @@ public class Program {
         for (int iter = 0; iter < 3; ++iter) {
             int finalIter = iter;
             if (ParallelOps.threadCount > 1) {
-                launchHabaneroApp(() -> forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
-                    if (bind){
-                        BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
-                        Affinity.setAffinity(bitSet);
-                    }
-                    try {
-                        runSuperSteps(vertices, startTime, finalIter, threadIdx);
-                    } catch (MPIException | InterruptedException | BrokenBarrierException e) {
-                        e.printStackTrace();
-                    }
-                }));
+                try {
+                    launchHabaneroApp(() -> forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
+                        if (bind) {
+                            BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
+                            Affinity.setAffinity(bitSet);
+                        }
+                        try {
+                            runSuperSteps(vertices, startTime, finalIter, threadIdx);
+                        } catch (MPIException | InterruptedException | BrokenBarrierException e) {
+                            e.printStackTrace();
+                        }
+                    }));
+                }catch (Exception e){
+                    throw new RuntimeException(e);
+                }
             } else {
                 runSuperSteps(vertices, startTime, finalIter, 0);
             }
+
         }
         double bestScore = finalizeIterations(vertices);
         ParallelOps.oneDoubleBuffer.put(0, bestScore);
