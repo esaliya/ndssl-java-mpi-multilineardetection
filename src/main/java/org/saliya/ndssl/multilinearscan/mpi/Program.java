@@ -143,6 +143,10 @@ public class Program {
 
     private static void receiveMessages(Vertex[] vertices, int superStep) throws MPIException {
         ParallelOps.recvMessages();
+        processRecvdMessages(vertices, superStep);
+    }
+
+    private static void processRecvdMessages(Vertex[] vertices, int superStep) {
         for (Vertex vertex : vertices){
             vertex.processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
         }
