@@ -191,12 +191,15 @@ public class Program {
                         if (bind) {
                             BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
                             Affinity.setThreadId();
-                            System.out.println("Thread: " + threadIdx + " id: " + Affinity.getThreadId() + " affinity" +
-                                    " " + bitSet);
+//                            System.out.println("Thread: " + threadIdx + " id: " + Affinity.getThreadId() + " affinity" +
+//                                    " " + bitSet);
                             Affinity.setAffinity(bitSet);
                         }
                         try {
+                            long t = System.currentTimeMillis();
                             runSuperSteps(vertices, startTime, finalIter, threadIdx);
+                            System.out.println("Thread: " + threadIdx + " took " + (System.currentTimeMillis() -t) +
+                                    " ms to compute only");
                         } catch (MPIException | InterruptedException | BrokenBarrierException e) {
                             e.printStackTrace();
                         }
