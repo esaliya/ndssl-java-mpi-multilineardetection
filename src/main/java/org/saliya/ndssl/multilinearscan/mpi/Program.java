@@ -239,7 +239,8 @@ public class Program {
                     recvCommDuration += (System.currentTimeMillis() - t);
                 }
                 long t = System.currentTimeMillis();
-                System.out.println("Rank: " + ParallelOps.worldProcRank + " thread: " + threadIdx + " in barrier");
+                System.out.println("Rank: " + ParallelOps.worldProcRank + " Thread: " + threadIdx + " in barrier SS: " +
+                        "" + ss);
                 ParallelOps.threadComm.barrier();
                 barrierDuration += (System.currentTimeMillis() - t);
 
