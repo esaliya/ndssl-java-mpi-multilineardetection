@@ -306,6 +306,7 @@ public class Program {
             numRecvdMessages += vertices[offset+i].recvdMessages.size();
         }
 
+        // TODO debug
         if (ss == 1){
             System.out.println("Thread: " + threadIdx + " numOfRecvdMsgs: " + numRecvdMessages + " vertexCount: " +
                     count);
