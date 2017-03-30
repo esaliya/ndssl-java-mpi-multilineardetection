@@ -65,6 +65,9 @@ public class ParallelOps {
     public static int[] threadIdToVertexOffset;
     public static ThreadCommunicator threadComm;
 
+    public static int recvRequestOffset;
+    public static Request[] sendRecvRequests;
+
 
     public static void setupParallelism(String[] args) throws MPIException {
         MPI.Init(args);
@@ -522,6 +525,15 @@ public class ParallelOps {
                 System.out.println(msg);
             }
         }
+
+        int numOfsendtoRanks = sendtoRankToSendBuffer.containsKey(worldProcRank)
+                                ? sendtoRankToSendBuffer.size() - 1
+                                : sendtoRankToSendBuffer.size();
+        int numOfrecvfromRanks = recvfromRankToRecvBuffer.containsKey(worldProcRank)
+                ? recvfromRankToRecvBuffer.size() - 1
+                : recvfromRankToRecvBuffer.size();
+        recvRequestOffset = numOfsendtoRanks;
+        sendRecvRequests = new Request[numOfsendtoRanks+numOfrecvfromRanks];
     }
 
     public static String allReduce(String value, Intracomm comm) throws MPIException {
@@ -542,7 +554,8 @@ public class ParallelOps {
 
     public static void sendMessages(int msgSize) {
         msgSizeToReceive = msgSize;
-        sendtoRankToSendBuffer.entrySet().forEach(kv -> {
+        int requestCount = 0;
+        for (Map.Entry<Integer, ShortBuffer> kv : sendtoRankToSendBuffer.entrySet()){
             int sendtoRank = kv.getKey();
             ShortBuffer buffer = kv.getValue();
             buffer.put(MSG_SIZE_OFFSET, (short)msgSize);
@@ -563,39 +576,35 @@ public class ParallelOps {
                         System.out.println("Invalid Count Error - Rank: " + worldProcRank + "torank: " + sendtoRank +
                                 " count: " + count + " msgCount: " + buffer.get(MSG_COUNT_OFFSET) + " msgSize: " + msgSize);
                     }
-                    worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
+                    sendRecvRequests[requestCount] = worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
                             worldProcRank);
+                    ++requestCount;
                 }
             } catch (MPIException e) {
                 e.printStackTrace();
             }
-        });
+        }
     }
 
     public static void recvMessages() throws MPIException {
-        recvfromRankToRecvBuffer.entrySet().forEach(kv -> {
+        int requestCount = 0;
+        for (Map.Entry<Integer, ShortBuffer> kv : recvfromRankToRecvBuffer.entrySet()){
             int recvfromRank = kv.getKey();
             ShortBuffer buffer = kv.getValue();
             int msgCount = recvfromRankToMsgCountAndforvertexLabels.get(recvfromRank).get(0);
             try {
                 if (recvfromRank != worldProcRank) {
-                    requests.put(recvfromRank, worldProcsComm.iRecv(buffer, BUFFER_OFFSET + msgCount *
+                    sendRecvRequests[requestCount+recvRequestOffset] = worldProcsComm.iRecv(buffer, BUFFER_OFFSET + msgCount *
                                     msgSizeToReceive, MPI.SHORT,
-                            recvfromRank, recvfromRank));
+                            recvfromRank, recvfromRank);
+                    ++requestCount;
                 }
             } catch (MPIException e) {
                 e.printStackTrace();
             }
-        });
+        }
 
-        requests.entrySet().forEach(recvfromRankToRequest -> {
-            try {
-                Request request = recvfromRankToRequest.getValue();
-                request.waitFor();
-            } catch (MPIException e) {
-                e.printStackTrace();
-            }
-        });
+        Request.waitAll(sendRecvRequests);
 
 
         // DEBUG
