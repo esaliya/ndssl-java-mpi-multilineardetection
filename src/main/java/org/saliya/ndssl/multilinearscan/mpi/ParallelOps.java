@@ -55,6 +55,7 @@ public class ParallelOps {
 
     private static boolean debug = false;
     private static boolean debug2 = false;
+    private static boolean debug3 = true;
     public static int[] localVertexCounts;
     public static int[] localVertexDisplas;
 
@@ -89,10 +90,16 @@ public class ParallelOps {
 
     public static Vertex[] setParallelDecomposition(String file, int vertexCount, String partitionFile) throws
             MPIException {
+        long t = System.currentTimeMillis();
         /* Decompose input graph into processes */
         vertexIntBuffer = MPI.newIntBuffer(vertexCount);
         vertexLongBuffer = MPI.newLongBuffer(vertexCount);
         vertexDoubleBuffer = MPI.newDoubleBuffer(vertexCount);
+
+        if (debug3 && worldProcRank == 0){
+            System.out.println("Rank: 0 allocate vertex buffers: " + (System.currentTimeMillis() - t) + " ms");
+        }
+
         String partitionMethod = "SimpleLoadBalance";
         Vertex[] vertices;
         if (Strings.isNullOrEmpty(partitionFile)){
