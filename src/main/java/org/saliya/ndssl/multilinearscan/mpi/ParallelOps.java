@@ -122,7 +122,7 @@ public class ParallelOps {
             String line;
             while (!Strings.isNullOrEmpty(line = partitionReader.readLine())){
                 int partitionId = Integer.parseInt(line);
-                if (partitionId == worldProcRank){
+                if ((partitionId/threadCount) == worldProcRank){
                     myNodeIds.add(nodeId);
                 }
                 ++nodeId;
