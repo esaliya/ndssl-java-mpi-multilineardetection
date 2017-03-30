@@ -1,7 +1,8 @@
 package org.saliya.ndssl;
 
-import com.google.common.base.Optional;
 import org.apache.commons.cli.*;
+
+import java.util.Optional;
 
 /**
  * Saliya Ekanayake on 2/22/17.
@@ -20,19 +21,19 @@ public class Utils {
         CommandLineParser optParser = new GnuParser();
 
         try {
-            return Optional.fromNullable(optParser.parse(opts, args));
+            return Optional.ofNullable(optParser.parse(opts, args));
         }
         catch (ParseException e) {
             e.printStackTrace();
         }
-        return Optional.fromNullable(null);
+        return Optional.empty();
     }
 
     public static double BJ(double alpha, int anomalousCount, int setSize) {
         return setSize * KL(((double) anomalousCount) / setSize, alpha);
     }
 
-    public static double KL(double a, double b) {
+    private static double KL(double a, double b) {
         assert(a >= 0 && a <= 1);
         assert(b > 0 && b < 1);
 

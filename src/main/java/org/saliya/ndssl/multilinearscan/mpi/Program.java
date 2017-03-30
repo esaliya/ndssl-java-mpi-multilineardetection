@@ -1,6 +1,5 @@
 package org.saliya.ndssl.multilinearscan.mpi;
 
-import com.google.common.base.Optional;
 import mpi.MPI;
 import mpi.MPIException;
 import net.openhft.affinity.Affinity;
@@ -196,8 +195,6 @@ public class Program {
                         if (bind) {
                             BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
                             Affinity.setThreadId();
-//                            System.out.println("Thread: " + threadIdx + " id: " + Affinity.getThreadId() + " affinity" +
-//                                    " " + bitSet);
                             Affinity.setAffinity(bitSet);
                         }
                         try {
@@ -265,9 +262,9 @@ public class Program {
         finalizeIteration(vertices, threadIdx);
         computeDuration += System.currentTimeMillis() - t;
 
-        /*System.out.println("Thread: " + threadIdx + " comp: " + computeDuration + " | recvComm: " +
+        System.out.println("Thread: " + threadIdx + " comp: " + computeDuration + " | recvComm: " +
                 recvCommDuration + " | barrier: " + barrierDuration + " | procRecvd: " + processRecvdDuration +
-                " | sendComm: " + sendCommDuration);*/
+                " | sendComm: " + sendCommDuration);
 
         if (iter%10 == 0 || iter == twoRaisedToK-1){
             if (threadIdx == 0) {
@@ -393,13 +390,9 @@ public class Program {
         }
         System.out.println(sb.toString());*/
 
-        /*moved to initComp*/
-//        randomAssignments = new TreeMap<>();
         ParallelOps.vertexLabelToWorldRank.keySet().forEach(
                 vertexLabel -> randomAssignments.put(
                         vertexLabel, random.nextInt(twoRaisedToK)));
-        /*moved to initComp*/
-//        completionVariables = new int[k-1];
         IntStream.range(0,k-1).forEach(i->completionVariables[i] = random.nextInt(twoRaisedToK));
         for (Vertex vertex : vertices) {
             vertex.init(k, r, gf);
@@ -476,7 +469,7 @@ public class Program {
                         +"x"+ParallelOps.nodeCount,
                         };
 
-        java.util.Optional<Integer> maxLength =
+        Optional<Integer> maxLength =
                 Arrays.stream(params).map(String::length).reduce(Math::max);
         if (!maxLength.isPresent()) { return ""; }
         final int max = maxLength.get();
