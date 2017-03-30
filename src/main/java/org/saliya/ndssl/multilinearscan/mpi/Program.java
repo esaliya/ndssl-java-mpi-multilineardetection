@@ -357,6 +357,9 @@ public class Program {
         if (r < 0) {
             throw new IllegalArgumentException("  r must be a positive integer or 0");
         }
+
+        randomAssignments = new TreeMap<>();
+        completionVariables = new int[k-1];
     }
 
     private static void initLoop(Vertex[] vertices) throws MPIException {
@@ -390,11 +393,13 @@ public class Program {
         }
         System.out.println(sb.toString());*/
 
-        randomAssignments = new TreeMap<>();
+        /*moved to initComp*/
+//        randomAssignments = new TreeMap<>();
         ParallelOps.vertexLabelToWorldRank.keySet().forEach(
                 vertexLabel -> randomAssignments.put(
                         vertexLabel, random.nextInt(twoRaisedToK)));
-        completionVariables = new int[k-1];
+        /*moved to initComp*/
+//        completionVariables = new int[k-1];
         IntStream.range(0,k-1).forEach(i->completionVariables[i] = random.nextInt(twoRaisedToK));
         for (Vertex vertex : vertices) {
             vertex.init(k, r, gf);

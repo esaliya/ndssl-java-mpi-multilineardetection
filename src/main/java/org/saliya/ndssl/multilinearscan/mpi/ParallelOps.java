@@ -33,7 +33,7 @@ public class ParallelOps {
     public static DoubleBuffer oneDoubleBuffer;
     public static IntBuffer worldIntBuffer;
     public static IntBuffer vertexIntBuffer;
-    public static LongBuffer vertexLongBuffer;
+//    public static LongBuffer vertexLongBuffer;
     public static DoubleBuffer vertexDoubleBuffer;
 
     // Will include same rank as well
@@ -93,7 +93,7 @@ public class ParallelOps {
         long t = System.currentTimeMillis();
         /* Decompose input graph into processes */
         vertexIntBuffer = MPI.newIntBuffer(vertexCount);
-        vertexLongBuffer = MPI.newLongBuffer(vertexCount);
+//        vertexLongBuffer = MPI.newLongBuffer(vertexCount);
         vertexDoubleBuffer = MPI.newDoubleBuffer(vertexCount);
 
         if (debug3 && worldProcRank == 0){
