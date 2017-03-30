@@ -549,7 +549,10 @@ public class ParallelOps {
         return  new String(recv);
     }
 
-    public static void sendMessages(int msgSize) {
+    public static void sendMessages(int msgSize) throws MPIException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nRank: ").append(worldProcRank).append(" sent msgs to ranks ");
+
         msgSizeToReceive = msgSize;
         int requestCount = 0;
         for (Map.Entry<Integer, ShortBuffer> kv : sendtoRankToSendBuffer.entrySet()){
@@ -575,10 +578,18 @@ public class ParallelOps {
                     }
                     sendRecvRequests[requestCount] = worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
                             worldProcRank);
+                    sb.append(sendtoRank).append(" ");
                     ++requestCount;
                 }
             } catch (MPIException e) {
                 e.printStackTrace();
+            }
+        }
+
+        if (debug3){
+            String msg = allReduce(sb.toString(), worldProcsComm);
+            if (worldProcRank == 0) {
+                System.out.println(msg);
             }
         }
     }
