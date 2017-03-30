@@ -550,13 +550,10 @@ public class ParallelOps {
     }
 
     public static void sendMessages(int msgSize) throws MPIException {
-        System.out.println("Rank: " + worldProcRank + " came to sendMesages");
-        return;
+//        System.out.println("Rank: " + worldProcRank + " came to sendMesages");
 
-        /*
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nRank: ").append(worldProcRank).append(" sent msgs to ranks ");
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("\nRank: ").append(worldProcRank).append(" sent msgs to ranks ");
 
         msgSizeToReceive = msgSize;
         int requestCount = 0;
@@ -583,7 +580,7 @@ public class ParallelOps {
                     }
                     sendRecvRequests[requestCount] = worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
                             worldProcRank);
-                    sb.append(sendtoRank).append(" ");
+//                    sb.append(sendtoRank).append(" ");
                     ++requestCount;
                 }
             } catch (MPIException e) {
@@ -591,14 +588,12 @@ public class ParallelOps {
             }
         }
 
-        if (debug3){
+        /*if (debug3){
             String msg = allReduce(sb.toString(), worldProcsComm);
             if (worldProcRank == 0) {
                 System.out.println(msg);
             }
-        }
-
-        */
+        }*/
     }
 
     public static void recvMessages() throws MPIException {
@@ -620,14 +615,14 @@ public class ParallelOps {
         }
 
 
-        boolean flag = true;
+        /*boolean flag = true;
         while (flag){
             int[] idxs = Request.testSome(sendRecvRequests);
             if (idxs.length > 0) {
                 System.out.println("Rank: " + worldProcRank + " recvd from " + (Arrays.toString(idxs)));
             }
         }
-
+*/
         Request.waitAll(sendRecvRequests);
 
 
