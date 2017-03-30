@@ -208,7 +208,12 @@ public class ParallelOps {
         if (debug3 && worldProcRank == 0){
             System.out.println("Rank: 0 readgraph: "+ (System.currentTimeMillis() - t) + " ms");
         }
+
+        t = System.currentTimeMillis();
         findNeighbors(globalVertexCount, vertices);
+        if (debug3 && worldProcRank == 0){
+            System.out.println("Rank: 0 findNbrs: "+ (System.currentTimeMillis() - t) + " ms");
+        }
         return vertices;
     }
 
