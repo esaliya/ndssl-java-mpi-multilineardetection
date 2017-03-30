@@ -551,6 +551,10 @@ public class ParallelOps {
 
     public static void sendMessages(int msgSize) throws MPIException {
         System.out.println("Rank: " + worldProcRank + " came to sendMesages");
+        return;
+
+        /*
+
         StringBuilder sb = new StringBuilder();
         sb.append("\nRank: ").append(worldProcRank).append(" sent msgs to ranks ");
 
@@ -593,6 +597,8 @@ public class ParallelOps {
                 System.out.println(msg);
             }
         }
+
+        */
     }
 
     public static void recvMessages() throws MPIException {
