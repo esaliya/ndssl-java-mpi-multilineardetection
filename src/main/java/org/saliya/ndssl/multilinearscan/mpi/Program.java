@@ -265,9 +265,9 @@ public class Program {
         finalizeIteration(vertices, threadIdx);
         computeDuration += System.currentTimeMillis() - t;
 
-        System.out.println("Thread: " + threadIdx + " comp: " + computeDuration + " | recvComm: " +
+        /*System.out.println("Thread: " + threadIdx + " comp: " + computeDuration + " | recvComm: " +
                 recvCommDuration + " | barrier: " + barrierDuration + " | procRecvd: " + processRecvdDuration +
-                " | sendComm: " + sendCommDuration);
+                " | sendComm: " + sendCommDuration);*/
 
         if (iter%10 == 0 || iter == twoRaisedToK-1){
             if (threadIdx == 0) {
@@ -300,17 +300,17 @@ public class Program {
         int count = ParallelOps.threadIdToVertexCount[threadIdx];
 
         // TODO debug
-        int numRecvdMessages = 0;
+//        int numRecvdMessages = 0;
         for (int i = 0; i < count; ++i){
             vertices[offset+i].compute(ss, iter, completionVariables, randomAssignments);
-            numRecvdMessages += vertices[offset+i].recvdMessages.size();
+//            numRecvdMessages += vertices[offset+i].recvdMessages.size();
         }
 
         // TODO debug
-        if (ss == 1){
+        /*if (ss == 1){
             System.out.println("Thread: " + threadIdx + " numOfRecvdMsgs: " + numRecvdMessages + " vertexCount: " +
                     count);
-        }
+        }*/
     }
 
     private static void initComp(Vertex[] vertices) throws MPIException {
