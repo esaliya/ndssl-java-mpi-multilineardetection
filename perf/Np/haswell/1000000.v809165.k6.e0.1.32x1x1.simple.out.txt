@@ -1,7 +1,7 @@
-[hsw005:19567] MCW rank 0 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw005:34153] MCW rank 0 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
   Partitioning Method: SimpleLoadBalance
 
-== MultilinearScan run started on Wed Mar 29 13:51:33 EDT 2017 ==
+== MultilinearScan run started on Thu Mar 30 00:18:32 EDT 2017 ==
 
 Parameters...
            Input File: /localscratch/esaliya/sali/projects/vt/giraph/random-er/1000000.txt
@@ -17,36 +17,10 @@ Parameters...
   Max Weight: 190834.0 r: 18
 
   Start of Loop: 0
-Thread: 4 comp: 9143 | recvComm: 0 | barrier: 11478 | procRecvd: 432 | sendComm: 0
-Thread: 15 comp: 8893 | recvComm: 0 | barrier: 11727 | procRecvd: 433 | sendComm: 0
-Thread: 12 comp: 8863 | recvComm: 0 | barrier: 11773 | procRecvd: 421 | sendComm: 0
-Thread: 7 comp: 8948 | recvComm: 0 | barrier: 11684 | procRecvd: 425 | sendComm: 0
-Thread: 9 comp: 9033 | recvComm: 0 | barrier: 11602 | procRecvd: 422 | sendComm: 0
-Thread: 10 comp: 9011 | recvComm: 0 | barrier: 11618 | procRecvd: 428 | sendComm: 0
-Thread: 6 comp: 9101 | recvComm: 0 | barrier: 11528 | procRecvd: 429 | sendComm: 0
-Thread: 1 comp: 9124 | recvComm: 0 | barrier: 11506 | procRecvd: 429 | sendComm: 0
-Thread: 8 comp: 8996 | recvComm: 0 | barrier: 11632 | procRecvd: 429 | sendComm: 0
-Thread: 13 comp: 8995 | recvComm: 0 | barrier: 11639 | procRecvd: 422 | sendComm: 1
-Thread: 11 comp: 8895 | recvComm: 0 | barrier: 11743 | procRecvd: 419 | sendComm: 0
-Thread: 5 comp: 9085 | recvComm: 0 | barrier: 11542 | procRecvd: 430 | sendComm: 0
-Thread: 3 comp: 9115 | recvComm: 0 | barrier: 11508 | procRecvd: 434 | sendComm: 0
-Thread: 2 comp: 9170 | recvComm: 0 | barrier: 11469 | procRecvd: 420 | sendComm: 0
-Thread: 14 comp: 8916 | recvComm: 0 | barrier: 11709 | procRecvd: 431 | sendComm: 0
-Thread: 26 comp: 9271 | recvComm: 0 | barrier: 11186 | procRecvd: 687 | sendComm: 0
-Thread: 24 comp: 9387 | recvComm: 0 | barrier: 11080 | procRecvd: 687 | sendComm: 0
-Thread: 25 comp: 9398 | recvComm: 0 | barrier: 11073 | procRecvd: 686 | sendComm: 0
-Thread: 21 comp: 9406 | recvComm: 0 | barrier: 11067 | procRecvd: 689 | sendComm: 0
-Thread: 27 comp: 9362 | recvComm: 0 | barrier: 11116 | procRecvd: 684 | sendComm: 0
-Thread: 20 comp: 9434 | recvComm: 0 | barrier: 11036 | procRecvd: 677 | sendComm: 0
-Thread: 23 comp: 9394 | recvComm: 0 | barrier: 11088 | procRecvd: 686 | sendComm: 0
-Thread: 22 comp: 9425 | recvComm: 0 | barrier: 11059 | procRecvd: 684 | sendComm: 0
-Thread: 17 comp: 9432 | recvComm: 0 | barrier: 11051 | procRecvd: 687 | sendComm: 0
-Thread: 28 comp: 9394 | recvComm: 0 | barrier: 11093 | procRecvd: 687 | sendComm: 0
-Thread: 16 comp: 9375 | recvComm: 0 | barrier: 11126 | procRecvd: 674 | sendComm: 0
-Thread: 19 comp: 9453 | recvComm: 0 | barrier: 11033 | procRecvd: 686 | sendComm: 0
-Thread: 18 comp: 9451 | recvComm: 0 | barrier: 11036 | procRecvd: 688 | sendComm: 0
-Thread: 29 comp: 9414 | recvComm: 0 | barrier: 11088 | procRecvd: 674 | sendComm: 0
-Thread: 30 comp: 9373 | recvComm: 0 | barrier: 11119 | procRecvd: 687 | sendComm: 0
-Thread: 31 comp: 9458 | recvComm: 0 | barrier: 11025 | procRecvd: 700 | sendComm: 0
-Thread: 0 comp: 22741 | recvComm: 2 | barrier: 0 | procRecvd: 531 | sendComm: 2195
-      Iteration 1 of 64 elapsed 36217 ms
+      Iteration 1 of 64 elapsed 36178 ms
+    Loop 0 best score: 248659.31065896223
+  End of Loop: 0 took 86830 ms
+Best score: 248659.31065896223
+
+== MultilinearScan run ended on Thu Mar 30 00:19:59 EDT 2017 took 86901 ms ==
+

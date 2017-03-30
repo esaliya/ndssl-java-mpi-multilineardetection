@@ -1,0 +1,36 @@
+[hsw005:20055] MCW rank 0 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+  Partitioning Method: SimpleLoadBalance
+
+== MultilinearScan run started on Wed Mar 29 14:29:54 EDT 2017 ==
+
+Parameters...
+           Input File: /localscratch/esaliya/sali/projects/vt/giraph/random-er/10000000.txt
+  Global Vertex Count: 10000000
+                    K: 6
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 32x1x1
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 119992.0 r: 17
+
+  Start of Loop: 0
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.init(Vertex.java:163)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.initLoop(Program.java:393)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:187)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:176)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:129)
+-------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code.. Per user-direction, the job has been aborted.
+-------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[22285,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------

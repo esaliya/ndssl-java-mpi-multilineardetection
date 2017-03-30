@@ -4,7 +4,7 @@
 for i in 1
 do
   #./haswell.run.all.sh core $i 1 $1 16 true
-  ./haswell.run.all.sh socket $i 1 $1 32 true
+  ./haswell.run.all.sh socket $i 16 $1 16 true
 done
 
 #./juliet.run.all.sh corepack 64 4

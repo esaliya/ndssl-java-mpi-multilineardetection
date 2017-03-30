@@ -19,12 +19,12 @@ COMMENT
 #v=80991
 
 #1mil
-#fn=1000000
-#v=809165
+fn=1000000
+v=809165
 
 #10mil
-fn=10000000
-v=10000000
+#fn=10000000
+#v=10000000
 
 dir=/localscratch/esaliya/sali/projects/vt/giraph/random-er
 
