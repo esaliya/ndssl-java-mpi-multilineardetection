@@ -593,7 +593,7 @@ public class ParallelOps {
                 if (recvfromRank != worldProcRank) {
                     sendRecvRequests[requestCount+recvRequestOffset] = worldProcsComm.iRecv(buffer, BUFFER_OFFSET + msgCount *
                                     msgSizeToReceive, MPI.SHORT,
-                            recvfromRank, MPI.ANY_TAG);
+                            recvfromRank, recvfromRank);
                     ++requestCount;
                 }
             } catch (MPIException e) {
@@ -602,13 +602,13 @@ public class ParallelOps {
         }
 
 
-//        boolean flag = true;
-//        while (flag){
-//            Status[] statuses = Request.wa(sendRecvRequests);
-//            for(Status s : statuses){
-//                s.
-//            }
-//        }
+        boolean flag = true;
+        while (flag){
+            int[] idxs = Request.testSome(sendRecvRequests);
+            if (idxs.length > 0) {
+                System.out.println("Rank: " + worldProcRank + " recvd from " + (Arrays.toString(idxs)));
+            }
+        }
 
         Request.waitAll(sendRecvRequests);
 
