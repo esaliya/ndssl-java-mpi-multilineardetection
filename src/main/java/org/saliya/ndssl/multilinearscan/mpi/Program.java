@@ -133,14 +133,11 @@ public class Program {
     private static void sendMessages(Vertex[] vertices, int superStep) throws MPIException {
         int msgSize = -1;
 
-        // TODO uncomment after debugging
-        /*for (Vertex vertex : vertices){
+        for (Vertex vertex : vertices){
             msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
-        }*/
+        }
         ParallelOps.sendMessages(msgSize);
 
-        // TODO Debug
-        ParallelOps.worldProcsComm.barrier();
     }
 
 
@@ -300,18 +297,9 @@ public class Program {
         int offset = ParallelOps.threadIdToVertexOffset[threadIdx];
         int count = ParallelOps.threadIdToVertexCount[threadIdx];
 
-        // TODO debug
-//        int numRecvdMessages = 0;
         for (int i = 0; i < count; ++i){
-//            vertices[offset+i].compute(ss, iter, completionVariables, randomAssignments);
-//            numRecvdMessages += vertices[offset+i].recvdMessages.size();
+            vertices[offset+i].compute(ss, iter, completionVariables, randomAssignments);
         }
-
-        // TODO debug
-        /*if (ss == 1){
-            System.out.println("Thread: " + threadIdx + " numOfRecvdMsgs: " + numRecvdMessages + " vertexCount: " +
-                    count);
-        }*/
     }
 
     private static void initComp(Vertex[] vertices) throws MPIException {
