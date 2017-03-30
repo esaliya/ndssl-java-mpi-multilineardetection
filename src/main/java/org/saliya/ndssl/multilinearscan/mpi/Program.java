@@ -130,7 +130,7 @@ public class Program {
         ParallelOps.tearDownParallelism();
     }
 
-    private static void sendMessages(Vertex[] vertices, int superStep) {
+    private static void sendMessages(Vertex[] vertices, int superStep) throws MPIException {
         int msgSize = -1;
         for (Vertex vertex : vertices){
             msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
