@@ -187,6 +187,7 @@ public class ParallelOps {
 
         // DEBUG
         //System.out.println("Rank: " + worldProcRank + " q: " + q + " r: " + r + " myVertexCount: " + myVertexCount);
+        long t = System.currentTimeMillis();
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(file))){
             String line;
             while ((line = reader.readLine()) != null){
@@ -203,6 +204,9 @@ public class ParallelOps {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if (debug3 && worldProcRank == 0){
+            System.out.println("Rank: 0 readgraph: "+ (System.currentTimeMillis() - t) + " ms");
         }
         findNeighbors(globalVertexCount, vertices);
         return vertices;
