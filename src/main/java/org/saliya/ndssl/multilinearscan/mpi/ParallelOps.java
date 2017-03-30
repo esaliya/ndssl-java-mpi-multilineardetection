@@ -1,10 +1,7 @@
 package org.saliya.ndssl.multilinearscan.mpi;
 
 import com.google.common.base.Strings;
-import mpi.Intracomm;
-import mpi.MPI;
-import mpi.MPIException;
-import mpi.Request;
+import mpi.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -596,13 +593,22 @@ public class ParallelOps {
                 if (recvfromRank != worldProcRank) {
                     sendRecvRequests[requestCount+recvRequestOffset] = worldProcsComm.iRecv(buffer, BUFFER_OFFSET + msgCount *
                                     msgSizeToReceive, MPI.SHORT,
-                            recvfromRank, recvfromRank);
+                            recvfromRank, MPI.ANY_TAG);
                     ++requestCount;
                 }
             } catch (MPIException e) {
                 e.printStackTrace();
             }
         }
+
+
+//        boolean flag = true;
+//        while (flag){
+//            Status[] statuses = Request.wa(sendRecvRequests);
+//            for(Status s : statuses){
+//                s.
+//            }
+//        }
 
         Request.waitAll(sendRecvRequests);
 
