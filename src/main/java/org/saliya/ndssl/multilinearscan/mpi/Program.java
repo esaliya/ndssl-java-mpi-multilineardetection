@@ -132,9 +132,11 @@ public class Program {
 
     private static void sendMessages(Vertex[] vertices, int superStep) throws MPIException {
         int msgSize = -1;
-        for (Vertex vertex : vertices){
+
+        // TODO uncomment after debugging
+        /*for (Vertex vertex : vertices){
             msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
-        }
+        }*/
         ParallelOps.sendMessages(msgSize);
 
         // TODO Debug
