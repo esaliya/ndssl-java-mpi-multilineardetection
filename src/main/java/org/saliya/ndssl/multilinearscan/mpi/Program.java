@@ -137,6 +137,8 @@ public class Program {
         }
         ParallelOps.sendMessages(msgSize);
 
+        // TODO Debug
+        ParallelOps.worldProcsComm.barrier();
     }
 
 
@@ -299,7 +301,7 @@ public class Program {
         // TODO debug
 //        int numRecvdMessages = 0;
         for (int i = 0; i < count; ++i){
-            vertices[offset+i].compute(ss, iter, completionVariables, randomAssignments);
+//            vertices[offset+i].compute(ss, iter, completionVariables, randomAssignments);
 //            numRecvdMessages += vertices[offset+i].recvdMessages.size();
         }
 
