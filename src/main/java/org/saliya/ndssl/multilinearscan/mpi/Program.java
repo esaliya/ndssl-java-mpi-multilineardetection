@@ -142,7 +142,7 @@ public class Program {
 
 
 //        System.out.println("    Rank: " + ParallelOps.worldProcRank + " came before sendMessages");
-        ParallelOps.sendMessages(msgSize);
+//        ParallelOps.sendMessages(msgSize);
 
         ParallelOps.worldIntBuffer.put(0, 1);
         ParallelOps.worldProcsComm.allReduce(ParallelOps.worldIntBuffer, 1, MPI.INT, MPI.SUM);
