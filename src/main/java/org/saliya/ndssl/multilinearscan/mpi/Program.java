@@ -239,7 +239,7 @@ public class Program {
                     recvCommDuration += (System.currentTimeMillis() - t);
                 }
                 long t = System.currentTimeMillis();
-                ParallelOps.threadComm.barrier();
+                ParallelOps.threadComm.cyclicBarrier();
                 barrierDuration += (System.currentTimeMillis() - t);
 
                 t = System.currentTimeMillis();
@@ -258,9 +258,9 @@ public class Program {
             // we have to change send buffers to support threads.
             // So for now let's try the barrier
 
-//            System.out.println("Rank: " + ParallelOps.worldProcRank + " thread " + threadIdx +" came b4 barrier");
+            t = System.currentTimeMillis();
             ParallelOps.threadComm.cyclicBarrier();
-
+            barrierDuration += (System.currentTimeMillis() - t);
 
             t = System.currentTimeMillis();
             if (ss < workerSteps - 1 && threadIdx == 0) {
@@ -273,9 +273,9 @@ public class Program {
         finalizeIteration(vertices, threadIdx);
         computeDuration += System.currentTimeMillis() - t;
 
-        System.out.println("Thread: " + threadIdx + " comp: " + computeDuration + " | recvComm: " +
-                recvCommDuration + " | barrier: " + barrierDuration + " | procRecvd: " + processRecvdDuration +
-                " | sendComm: " + sendCommDuration);
+//        System.out.println("Thread: " + threadIdx + " comp: " + computeDuration + " | recvComm: " +
+//                recvCommDuration + " | barrier: " + barrierDuration + " | procRecvd: " + processRecvdDuration +
+//                " | sendComm: " + sendCommDuration);
 
         if (iter%10 == 0 || iter == twoRaisedToK-1){
             if (threadIdx == 0) {
