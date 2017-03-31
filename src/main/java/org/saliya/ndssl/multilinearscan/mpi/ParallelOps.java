@@ -563,7 +563,7 @@ public class ParallelOps {
             buffer.put(MSG_SIZE_OFFSET, (short)msgSize);
 
             try {
-                /*if (sendtoRank == worldProcRank){
+                if (sendtoRank == worldProcRank){
                     // local copy
                     ShortBuffer b = recvfromRankToRecvBuffer.get(worldProcRank);
                     b.position(0);
@@ -582,7 +582,7 @@ public class ParallelOps {
                             worldProcRank);
 //                    sb.append(sendtoRank).append(" ");
                     ++requestCount;
-                }*/
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

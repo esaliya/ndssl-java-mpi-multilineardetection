@@ -133,16 +133,16 @@ public class Program {
     private static void sendMessages(Vertex[] vertices, int superStep) throws MPIException {
 
 
-        int msgSize = -1;
+//        int msgSize = -1;
 
 //        System.out.println("      Rank: " + ParallelOps.worldProcRank + " came before prepareSend");
-        for (Vertex vertex : vertices){
-            msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
-        }
+//        for (Vertex vertex : vertices){
+//            msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
+//        }
 
 
 //        System.out.println("    Rank: " + ParallelOps.worldProcRank + " came before sendMessages");
-        ParallelOps.sendMessages(msgSize);
+//        ParallelOps.sendMessages(msgSize);
 
         ParallelOps.worldIntBuffer.put(0, 1);
         ParallelOps.worldProcsComm.allReduce(ParallelOps.worldIntBuffer, 1, MPI.INT, MPI.SUM);
