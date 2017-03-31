@@ -138,13 +138,12 @@ public class Program {
         for (Vertex vertex : vertices){
             msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
         }
-        System.out.println("--Rank: " + ParallelOps.worldProcRank + " came to program.sendMessages");
-        return;
 
-        /*
+
         ParallelOps.sendMessages(msgSize);
 
-        */
+        System.out.println("--Rank: " + ParallelOps.worldProcRank + " came to program.sendMessages");
+        return;
 
     }
 
@@ -275,6 +274,8 @@ public class Program {
 
             // Just to make sure
             ParallelOps.threadComm.barrier();
+
+
 
             sendCommDuration += (System.currentTimeMillis() - t);
         }
