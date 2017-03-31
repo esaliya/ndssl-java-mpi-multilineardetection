@@ -142,7 +142,7 @@ public class Program {
 
 
 //        System.out.println("    Rank: " + ParallelOps.worldProcRank + " came before sendMessages");
-//        ParallelOps.sendMessages(msgSize);
+        ParallelOps.sendMessages(msgSize);
 
         ParallelOps.worldIntBuffer.put(0, 1);
         ParallelOps.worldProcsComm.allReduce(ParallelOps.worldIntBuffer, 1, MPI.INT, MPI.SUM);
@@ -270,6 +270,9 @@ public class Program {
             // we have to change send buffers to support threads.
             // So for now let's try the barrier
             ParallelOps.threadComm.barrier();
+            if (threadIdx == 0){
+                ParallelOps.worldProcsComm.barrier();
+            }
 
             t = System.currentTimeMillis();
             if (ss < workerSteps - 1 && threadIdx == 0) {
@@ -278,6 +281,9 @@ public class Program {
 
             // Just to make sure
             ParallelOps.threadComm.barrier();
+            if (threadIdx == 0){
+                ParallelOps.worldProcsComm.barrier();
+            }
 
 
 
