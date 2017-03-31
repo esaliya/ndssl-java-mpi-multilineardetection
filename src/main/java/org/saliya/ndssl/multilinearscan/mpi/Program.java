@@ -133,16 +133,16 @@ public class Program {
     private static void sendMessages(Vertex[] vertices, int superStep) throws MPIException {
 
 
-//        int msgSize = -1;
+        int msgSize = -1;
 
-//        System.out.println("      Rank: " + ParallelOps.worldProcRank + " came before prepareSend");
-//        for (Vertex vertex : vertices){
-//            msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
-//        }
+        System.out.println("      Rank: " + ParallelOps.worldProcRank + " came before prepareSend");
+        for (Vertex vertex : vertices){
+            msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
+        }
 
 
 //        System.out.println("    Rank: " + ParallelOps.worldProcRank + " came before sendMessages");
-//        ParallelOps.sendMessages(msgSize);
+        ParallelOps.sendMessages(msgSize);
 
         ParallelOps.worldIntBuffer.put(0, 1);
         ParallelOps.worldProcsComm.allReduce(ParallelOps.worldIntBuffer, 1, MPI.INT, MPI.SUM);
@@ -251,7 +251,7 @@ public class Program {
                     recvCommDuration += (System.currentTimeMillis() - t);
                 }
                 long t = System.currentTimeMillis();
-                ParallelOps.threadComm.barrier();
+                ParallelOps.threadComm.cyclicBarrier();
                 barrierDuration += (System.currentTimeMillis() - t);
 
                 t = System.currentTimeMillis();
@@ -278,8 +278,6 @@ public class Program {
             if (ss < workerSteps - 1 && threadIdx == 0) {
                 sendMessages(vertices, ss);
             }
-
-            ParallelOps.threadComm.barrier();
 
             sendCommDuration += (System.currentTimeMillis() - t);
         }
