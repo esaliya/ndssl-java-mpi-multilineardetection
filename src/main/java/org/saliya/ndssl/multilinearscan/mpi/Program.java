@@ -142,7 +142,7 @@ public class Program {
 
         ParallelOps.sendMessages(msgSize);
 
-        ParallelOps.worldIntBuffer.put(0, ParallelOps.worldProcRank);
+        ParallelOps.worldIntBuffer.put(0, 1);
         ParallelOps.worldProcsComm.allReduce(ParallelOps.worldIntBuffer, 1, MPI.INT, MPI.SUM);
         if (ParallelOps.worldProcRank == 0){
             System.out.println("==> " + ParallelOps.worldIntBuffer.get(0) + " ranks completed send for ss " + superStep);
