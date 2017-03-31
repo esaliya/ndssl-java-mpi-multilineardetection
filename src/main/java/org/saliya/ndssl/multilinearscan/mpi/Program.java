@@ -270,20 +270,14 @@ public class Program {
             // we have to change send buffers to support threads.
             // So for now let's try the barrier
             ParallelOps.threadComm.barrier();
-            if (threadIdx == 0){
-                ParallelOps.worldProcsComm.barrier();
-            }
+
 
             t = System.currentTimeMillis();
             if (ss < workerSteps - 1 && threadIdx == 0) {
                 sendMessages(vertices, ss);
             }
 
-            // Just to make sure
-            ParallelOps.threadComm.barrier();
-            if (threadIdx == 0){
-                ParallelOps.worldProcsComm.barrier();
-            }
+
 
 
 
