@@ -271,7 +271,7 @@ public class Program {
             // So for now let's try the barrier
 
 //            System.out.println("Rank: " + ParallelOps.worldProcRank + " thread " + threadIdx +" came b4 barrier");
-            ParallelOps.threadComm.barrier();
+            ParallelOps.threadComm.cyclicBarrier();
 
 
             t = System.currentTimeMillis();
