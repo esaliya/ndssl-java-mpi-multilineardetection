@@ -135,11 +135,13 @@ public class Program {
 
         int msgSize = -1;
 
+        System.out.println("      Rank: " + ParallelOps.worldProcRank + " came before prepareSend");
         for (Vertex vertex : vertices){
             msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
         }
 
 
+        System.out.println("    Rank: " + ParallelOps.worldProcRank + " came before sendMessages");
         ParallelOps.sendMessages(msgSize);
 
         ParallelOps.worldIntBuffer.put(0, 1);
