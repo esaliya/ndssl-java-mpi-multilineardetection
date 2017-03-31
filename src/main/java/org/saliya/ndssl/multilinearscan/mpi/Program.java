@@ -142,9 +142,11 @@ public class Program {
 
         ParallelOps.sendMessages(msgSize);
 
-        System.out.println("--Rank: " + ParallelOps.worldProcRank + " came to program.sendMessages");
-        return;
-
+        ParallelOps.worldIntBuffer.put(0, ParallelOps.worldProcRank);
+        ParallelOps.worldProcsComm.allReduce(ParallelOps.worldIntBuffer, 1, MPI.INT, MPI.SUM);
+        if (ParallelOps.worldProcRank == 0){
+            System.out.println("==> " + ParallelOps.worldIntBuffer.get(0) + " ranks completed send for ss " + superStep);
+        }
     }
 
 
