@@ -246,8 +246,6 @@ public class Program {
         for (int ss = 0; ss < workerSteps; ++ss) {
             if (ss > 0) {
                 if (threadIdx == 0) {
-                    ParallelOps.worldProcsComm.barrier();
-
                     long t = System.currentTimeMillis();
                     receiveMessages(vertices, ss);
                     recvCommDuration += (System.currentTimeMillis() - t);
