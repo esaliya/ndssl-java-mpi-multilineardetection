@@ -266,6 +266,10 @@ public class Program {
             if (ss < workerSteps - 1 && threadIdx == 0) {
                 sendMessages(vertices, ss);
             }
+
+            // Just to make sure
+            ParallelOps.threadComm.barrier();
+
             sendCommDuration += (System.currentTimeMillis() - t);
         }
 
