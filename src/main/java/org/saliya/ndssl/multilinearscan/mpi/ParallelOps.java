@@ -563,7 +563,7 @@ public class ParallelOps {
             buffer.put(MSG_SIZE_OFFSET, (short)msgSize);
 
             try {
-                if (sendtoRank == worldProcRank){
+                /*if (sendtoRank == worldProcRank){
                     // local copy
                     ShortBuffer b = recvfromRankToRecvBuffer.get(worldProcRank);
                     b.position(0);
@@ -578,11 +578,11 @@ public class ParallelOps {
                         System.out.println("Invalid Count Error - Rank: " + worldProcRank + "torank: " + sendtoRank +
                                 " count: " + count + " msgCount: " + buffer.get(MSG_COUNT_OFFSET) + " msgSize: " + msgSize);
                     }
-//                    sendRecvRequests[requestCount] = worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
-//                            worldProcRank);
+                    sendRecvRequests[requestCount] = worldProcsComm.iSend(buffer, count, MPI.SHORT, sendtoRank,
+                            worldProcRank);
 //                    sb.append(sendtoRank).append(" ");
                     ++requestCount;
-                }
+                }*/
             } catch (Exception e) {
                 e.printStackTrace();
             }
