@@ -131,14 +131,17 @@ public class Program {
     }
 
     private static void sendMessages(Vertex[] vertices, int superStep) throws MPIException {
-//        System.out.println("--Rank: " + ParallelOps.worldProcRank + " came to program.sendMessages");
-
+        System.out.println("--Rank: " + ParallelOps.worldProcRank + " came to program.sendMessages");
+        return;
+/*
         int msgSize = -1;
 
         for (Vertex vertex : vertices){
             msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
         }
         ParallelOps.sendMessages(msgSize);
+
+        */
 
     }
 
