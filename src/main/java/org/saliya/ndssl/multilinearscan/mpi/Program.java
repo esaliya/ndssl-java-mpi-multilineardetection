@@ -270,7 +270,7 @@ public class Program {
             // we have to change send buffers to support threads.
             // So for now let's try the barrier
 
-            System.out.println("Rank: " + ParallelOps.worldProcRank + " thread " + threadIdx +" came b4 barrier");
+//            System.out.println("Rank: " + ParallelOps.worldProcRank + " thread " + threadIdx +" came b4 barrier");
             ParallelOps.threadComm.barrier();
 
 
