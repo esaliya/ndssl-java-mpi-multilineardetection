@@ -269,7 +269,7 @@ public class Program {
             // so their compute() are known to have finished, but that means
             // we have to change send buffers to support threads.
             // So for now let's try the barrier
-//            ParallelOps.threadComm.barrier();
+            ParallelOps.threadComm.barrier();
 
 
             t = System.currentTimeMillis();
