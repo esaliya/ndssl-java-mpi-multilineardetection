@@ -251,6 +251,17 @@ public class Program {
             compute(iter, vertices, ss, threadIdx);
             computeDuration += (System.currentTimeMillis() - t);
 
+            // This barrier is necessary because sendMessages is done by thread0 only
+            // and if some threads have not completed compute then prepareSend can't progress
+            // The way to avoid this barrier would be to make sendMessages by all threads,
+            // so their compute() are known to have finished, but that means
+            // we have to change send buffers to support threads.
+            // So for now let's try the barrier
+
+//            System.out.println("Rank: " + ParallelOps.worldProcRank + " thread " + threadIdx +" came b4 barrier");
+            ParallelOps.threadComm.cyclicBarrier();
+
+
             t = System.currentTimeMillis();
             if (ss < workerSteps - 1 && threadIdx == 0) {
                 sendMessages(vertices, ss);
@@ -296,18 +307,9 @@ public class Program {
         int offset = ParallelOps.threadIdToVertexOffset[threadIdx];
         int count = ParallelOps.threadIdToVertexCount[threadIdx];
 
-        // TODO debug
-//        int numRecvdMessages = 0;
         for (int i = 0; i < count; ++i){
             vertices[offset+i].compute(ss, iter, completionVariables, randomAssignments);
-//            numRecvdMessages += vertices[offset+i].recvdMessages.size();
         }
-
-        // TODO debug
-        /*if (ss == 1){
-            System.out.println("Thread: " + threadIdx + " numOfRecvdMsgs: " + numRecvdMessages + " vertexCount: " +
-                    count);
-        }*/
     }
 
     private static void initComp(Vertex[] vertices) throws MPIException {
