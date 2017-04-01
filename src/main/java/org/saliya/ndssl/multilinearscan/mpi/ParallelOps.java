@@ -31,6 +31,7 @@ public class ParallelOps {
     public static IntBuffer oneIntBuffer;
     public static LongBuffer oneLongBuffer;
     public static DoubleBuffer oneDoubleBuffer;
+    public static ByteBuffer oneByteBuffer;
     public static IntBuffer worldIntBuffer;
     public static IntBuffer vertexIntBuffer;
 //    public static LongBuffer vertexLongBuffer;
@@ -79,6 +80,7 @@ public class ParallelOps {
         threadComm = new ThreadCommunicator(threadCount);
 
         oneIntBuffer = MPI.newIntBuffer(1);
+        oneByteBuffer = MPI.newByteBuffer(1);
         oneLongBuffer = MPI.newLongBuffer(1);
         oneDoubleBuffer = MPI.newDoubleBuffer(1);
         worldIntBuffer = MPI.newIntBuffer(worldProcsCount);

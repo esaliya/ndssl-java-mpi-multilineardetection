@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 public class Message {
     private int originalVertexLabel;
     private int msgSize;
-    private short[][] data;
+    private short[] data;
     private ShortBuffer serializedBytes = null;
     private short dimA;
     private short dimB;
@@ -48,22 +48,22 @@ public class Message {
     public void loadFrom(ShortBuffer buffer, int offset, int recvdMsgSize){
         this.msgSize = recvdMsgSize;
         this.dimA = buffer.get(offset);
-        this.dimB = buffer.get(offset+1);
-        this.readOffset = offset+2;
+        this.readOffset = offset+1;
         this.buffer = buffer;
     }
 
-    public short get(int i, int j){
-        return buffer.get(readOffset+(i*dimB+j));
+    public short get(int i){
+        return buffer.get(readOffset+i);
     }
 
     public void pack(){
         serializedBytes.position(0);
         serializedBytes.put((short)data.length);
-        serializedBytes.put((short)((data.length > 0) ? data[0].length : 0));
-        for (short[] arr : data){
-            serializedBytes.put(arr);
-        }
+        serializedBytes.position(1);
+        serializedBytes.put(data);
+//        for (short i : data){
+//            serializedBytes.put(i);
+//        }
     }
 
     public int getOriginalVertexLabel() {
@@ -78,14 +78,14 @@ public class Message {
         return msgSize;
     }
 
-    public short[][] getData() {
+    public short[] getData() {
         return data;
     }
 
-    public void setDataAndMsgSize(short[][] data, int msgSize) {
+    public void setDataAndMsgSize(short[] data, int msgSize) {
         this.data = data;
         // +2 to store dimensions
-        this.msgSize = msgSize+2;
+        this.msgSize = msgSize+1;
 
         if (serializedBytes == null || serializedBytes.capacity() < this.msgSize){
             serializedBytes = MPI.newShortBuffer(this.msgSize);
@@ -93,9 +93,9 @@ public class Message {
     }
 
     public StringBuffer toString(StringBuffer sb) {
-        sb.append("[");
-        for(short[] arr : data){
-            sb.append(Arrays.toString(arr));
+        sb.append("[ ");
+        for(short i : data){
+            sb.append(" " + i);
         }
         sb.append("]");
         return sb;
