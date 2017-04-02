@@ -34,8 +34,6 @@ public class ParallelOps {
     public static ByteBuffer oneByteBuffer;
     public static IntBuffer worldIntBuffer;
     public static IntBuffer vertexIntBuffer;
-//    public static LongBuffer vertexLongBuffer;
-    public static DoubleBuffer vertexDoubleBuffer;
 
     // Will include same rank as well
     public static TreeMap<Integer, List<Integer>> recvfromRankToMsgCountAndforvertexLabels;
@@ -69,6 +67,10 @@ public class ParallelOps {
     public static int recvRequestOffset;
     public static Request[] sendRecvRequests;
 
+    public static String partitionMethod;
+    private static int simplePartitioningQ;
+    private static int simplePartitioningR;
+
 
     public static void setupParallelism(String[] args) throws MPIException {
         MPI.Init(args);
@@ -98,21 +100,19 @@ public class ParallelOps {
         long t = System.currentTimeMillis();
         /* Decompose input graph into processes */
         vertexIntBuffer = MPI.newIntBuffer(vertexCount);
-//        vertexLongBuffer = MPI.newLongBuffer(vertexCount);
-        vertexDoubleBuffer = MPI.newDoubleBuffer(vertexCount);
 
         if (debug3 && worldProcRank == 0){
             System.out.println("Rank: 0 allocate vertex buffers: " + (System.currentTimeMillis() - t) + " ms");
         }
 
-        String partitionMethod = "SimpleLoadBalance";
+        partitionMethod = Constants.SIMPLE_PARTITION;
         Vertex[] vertices;
         if (Strings.isNullOrEmpty(partitionFile)){
             vertices = simpleGraphPartition(file, vertexCount);
         } else {
             File f = new File(partitionFile);
             if (f.exists()) {
-                partitionMethod = "Metis";
+                partitionMethod = Constants.METIS_PARTITION;
                 vertices = metisGraphPartition(file, partitionFile, vertexCount);
             } else {
                 vertices = simpleGraphPartition(file, vertexCount);
@@ -182,11 +182,11 @@ public class ParallelOps {
         * Also, this assumes all vertices have out edges, otherwise we can't skip
         * lines like here.*/
 
-        int q = globalVertexCount / worldProcsCount;
-        int r = globalVertexCount % worldProcsCount;
-        int myVertexCount = (worldProcRank < r) ? q+1: q;
+        simplePartitioningQ = globalVertexCount / worldProcsCount;
+        simplePartitioningR = globalVertexCount % worldProcsCount;
+        int myVertexCount = (worldProcRank < simplePartitioningR) ? simplePartitioningQ+1: simplePartitioningQ;
         Vertex[] vertices = new Vertex[myVertexCount];
-        int skipVertexCount = q*worldProcRank + (worldProcRank < r ? worldProcRank : r);
+        int skipVertexCount = simplePartitioningQ*worldProcRank + (worldProcRank < simplePartitioningR ? worldProcRank : simplePartitioningR);
         int readCount = 0;
         int i = 0;
 
@@ -222,12 +222,34 @@ public class ParallelOps {
         return vertices;
     }
 
+    private static int getVertexLabelToRank(int vertexLabel){
+        if (!Constants.SIMPLE_PARTITION.equals(partitionMethod)){
+            return vertexLabelToWorldRank.get(vertexLabel);
+        }
+
+        int x = (simplePartitioningQ+1)*simplePartitioningR;
+        if (vertexLabel < x){
+            return vertexLabel/(simplePartitioningQ+1);
+        } else {
+            return (vertexLabel - simplePartitioningR) / simplePartitioningQ;
+        }
+
+    }
+
+    private static void printDebug3Msgs(String msg){
+        if (debug3 && worldProcRank == 0){
+            System.out.println(msg);
+        }
+    }
+
     public static void findNeighbors(int globalVertexCount, Vertex[] vertices) throws MPIException {
+
         TreeMap<Integer, Vertex> vertexLabelToVertex = new TreeMap<>();
-        for (Vertex vertex : vertices){
+        for (Vertex vertex : vertices) {
             vertexLabelToVertex.put(vertex.vertexLabel, vertex);
         }
-        oneIntBuffer.put(0,vertices.length);
+
+        oneIntBuffer.put(0, vertices.length);
         worldProcsComm.allGather(oneIntBuffer, 1, MPI.INT, worldIntBuffer, 1, MPI.INT);
         localVertexCounts = new int[worldProcsCount];
         worldIntBuffer.position(0);
@@ -237,69 +259,61 @@ public class ParallelOps {
         System.arraycopy(localVertexCounts, 0, localVertexDisplas, 1, worldProcsCount - 1);
         Arrays.parallelPrefix(localVertexDisplas, (m, n) -> m + n);
 
-        // DEBUG - check localVertexCounts
-        //if (worldProcRank == 1){
-        //    for (int i = 0; i < worldProcsCount; ++i){
-        //        System.out.println("Rank: " + i + " has " + worldIntBuffer.get(i) + " vertices");
-        //    }
-        //}
+        printDebug3Msgs("FindNbrs - 1");
+
+        if (!Constants.SIMPLE_PARTITION.equals(partitionMethod)) {
+            int displacement = localVertexDisplas[worldProcRank];
+            for (int i = 0; i < vertices.length; ++i) {
+                vertexIntBuffer.put(i + displacement, vertices[i].vertexLabel);
+            }
+            worldProcsComm.allGatherv(vertexIntBuffer, localVertexCounts, localVertexDisplas, MPI.INT);
 
 
-        // DEBUG - check localVertexDisplas
-        //if (worldProcRank == 1) {
-        //    System.out.println("Rank: " + worldProcRank + " displacements");
-        //    for (int i = 0; i < worldProcsCount; ++i) {
-        //        System.out.print(localVertexDisplas[i] + " ");
-        //    }
-        //}
+            // DEBUG - see what ranks have what vertices
+            if (debug && worldProcRank == 0) {
+                int rank = 0;
+                do {
+                    System.out.print("\n\nRank: " + rank + " has ");
+                    int length = localVertexCounts[rank];
+                    displacement = localVertexDisplas[rank];
+                    for (int i = 0; i < length; ++i) {
+                        System.out.print(vertexIntBuffer.get(i + displacement) + " ");
+                    }
+                    ++rank;
 
-        int displacement = localVertexDisplas[worldProcRank];
-        for (int i = 0; i < vertices.length; ++i){
-            vertexIntBuffer.put(i+displacement, vertices[i].vertexLabel);
-        }
-        worldProcsComm.allGatherv(vertexIntBuffer, localVertexCounts, localVertexDisplas, MPI.INT);
-
-
-        // DEBUG - see what ranks have what vertices
-        if (debug && worldProcRank == 0){
-            int rank = 0;
-            do{
-                System.out.print("\n\nRank: " + rank + " has ");
-                int length = localVertexCounts[rank];
-                displacement = localVertexDisplas[rank];
-                for (int i = 0; i < length; ++i){
-                    System.out.print(vertexIntBuffer.get(i+displacement) + " ");
-                }
-                ++rank;
-
-            } while (rank < worldProcsCount);
-        }
+                } while (rank < worldProcsCount);
+            }
 
 
         /* Just keep in mind this table and the vertexIntBuffer can be really large
         * Think of optimizations if this becomes a bottleneck */
-        vertexLabelToWorldRank = new Hashtable<>();
-        {
-            int rank = 0;
-            do {
-                int length = localVertexCounts[rank];
-                displacement = localVertexDisplas[rank];
-                for (int i = 0; i < length; ++i) {
-                    vertexLabelToWorldRank.put(vertexIntBuffer.get(i + displacement), rank);
-                }
-                ++rank;
-            } while (rank < worldProcsCount);
+            vertexLabelToWorldRank = new Hashtable<>();
+            {
+                int rank = 0;
+                do {
+                    int length = localVertexCounts[rank];
+                    displacement = localVertexDisplas[rank];
+                    for (int i = 0; i < length; ++i) {
+                        vertexLabelToWorldRank.put(vertexIntBuffer.get(i + displacement), rank);
+                    }
+                    ++rank;
+                } while (rank < worldProcsCount);
+            }
         }
+
+        printDebug3Msgs("FindNbrs - 2");
 
         // Set where out-neighbors of vertices live
         for (Vertex v : vertices){
             TreeMap<Integer, Integer> outNeighborLabelToWorldRank = v.outNeighborLabelToWorldRank;
             for (int label : outNeighborLabelToWorldRank.keySet()){
-                Integer rank = vertexLabelToWorldRank.get(label);
+                Integer rank = getVertexLabelToRank(label);
                 outNeighborLabelToWorldRank.put(label, rank);
                 v.outrankToSendBuffer.put(rank, new VertexBuffer());
             }
         }
+
+        printDebug3Msgs("FindNbrs - 3");
 
         // ----------------
         sendtoRankToMsgCountAndDestinedVertexLabels = new TreeMap<>();
@@ -338,6 +352,9 @@ public class ParallelOps {
                 }
             });
         }
+
+        printDebug3Msgs("FindNbrs - 4");
+
         // DEBUG - print how many message counts and what are destined vertex labels (in order) for each rank from me
         if (debug){
             StringBuilder sb = new StringBuilder();
@@ -403,6 +420,8 @@ public class ParallelOps {
                 }
             }
         }
+
+        printDebug3Msgs("FindNbrs - 5");
 
         // DEBUG - print how many message counts and what are destined vertex labels (in order) for each rank from me
         if (debug){

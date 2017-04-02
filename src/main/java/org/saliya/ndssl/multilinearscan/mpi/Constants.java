@@ -9,6 +9,9 @@ public class Constants {
 
     public static String PROGRAM_NAME = "MultilinearScan";
 
+    public static final String SIMPLE_PARTITION = "SimpleLoadBalance";
+    public static final String METIS_PARTITION = "Metis";
+
     static final String CMD_OPTION_SHORT_VC = "v";
     static final String CMD_OPTION_LONG_NUM_VC = "vertexCount";
     static final String CMD_OPTION_DESCRIPTION_NUM_VC = "Vertex count";

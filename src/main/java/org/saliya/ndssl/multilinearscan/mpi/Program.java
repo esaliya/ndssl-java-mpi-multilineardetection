@@ -398,9 +398,14 @@ public class Program {
         }
         System.out.println(sb.toString());*/
 
-        ParallelOps.vertexLabelToWorldRank.keySet().forEach(
-                vertexLabel -> randomAssignments.put(
-                        vertexLabel, random.nextInt(twoRaisedToK)));
+        if (!Constants.SIMPLE_PARTITION.equals(ParallelOps.partitionMethod)) {
+            ParallelOps.vertexLabelToWorldRank.keySet().forEach(
+                    vertexLabel -> randomAssignments.put(
+                            vertexLabel, random.nextInt(twoRaisedToK)));
+        } else {
+            IntStream.range(0, globalVertexCount).forEach(vertexLabel -> randomAssignments.put(
+                    vertexLabel, random.nextInt(twoRaisedToK)));
+        }
         IntStream.range(0,k-1).forEach(i->completionVariables[i] = random.nextInt(twoRaisedToK));
         for (Vertex vertex : vertices) {
             vertex.init(k, r, gf);
