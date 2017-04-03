@@ -52,7 +52,7 @@ public class ParallelOps {
 
     public static TreeMap<Integer, Request> requests;
 
-    private static boolean debug = false;
+    private static boolean debug = true;
     private static boolean debug2 = false;
     private static boolean debug3 = true;
     public static int[] localVertexCounts;
