@@ -302,7 +302,7 @@ public class Program {
         		bestWeight = (int) bestForVertex[2];
         	}        	
         }
-        putils.printMessage("Best score is " + bestScore + " for polynomial P(" + bestVertex + ", " + bestSize + ", " + bestWeight + ")");
+        putils.printMessage("Best score is " + bestScore + " for polynomial P(" + bestVertex.vertexId + ", " + bestSize + ", " + bestWeight + ")");
         return bestScore;
     }
 
