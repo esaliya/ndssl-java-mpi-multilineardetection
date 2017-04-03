@@ -295,9 +295,9 @@ public class Program {
         	if (vertexScore > bestScore) {
         		bestScore = vertexScore;
         		bestVertex = vertex;
-        	}
-        	putils.printMessage("Best score is " + bestScore + " for vertex " + bestVertex);
+        	}        	
         }
+        putils.printMessage("Best score is " + bestScore + " for vertex " + bestVertex.vertexId);
         return bestScore;
     }
 
