@@ -86,6 +86,14 @@ public class Program {
                 Constants.CMD_OPTION_LONG_MMS, true,
                 Constants.CMD_OPTION_DESCRIPTION_MMS);
 
+        programOptions.addOption(
+                String.valueOf(Constants.CMD_OPTION_SHORT_PI),
+                Constants.CMD_OPTION_LONG_PI, true,
+                Constants.CMD_OPTION_DESCRIPTION_PI);
+        programOptions.addOption(
+                String.valueOf(Constants.CMD_OPTION_SHORT_PIC),
+                Constants.CMD_OPTION_LONG_PIC, true,
+                Constants.CMD_OPTION_DESCRIPTION_PIC);
 
         programOptions.addOption(
                 Constants.CMD_OPTION_SHORT_MMAP_SCRATCH_DIR, true,
@@ -192,9 +200,10 @@ public class Program {
         initLoop(vertices);
 
         long startTime = System.currentTimeMillis();
-        //for (int iter = 0; iter < twoRaisedToK; ++iter) {
-        for (int iter = 0; iter < 3; ++iter) {
-            int finalIter = iter;
+        // assume twoRaisedToK can be divisible by ParallelOps.parallelInstanceCount
+        int iterationsPerParallelInstance = twoRaisedToK / ParallelOps.parallelInstanceCount;
+        for (int iter = 0; iter < iterationsPerParallelInstance; ++iter) {
+            int finalIter = iter+(ParallelOps.parallelInstance*iterationsPerParallelInstance);
             if (ParallelOps.threadCount > 1) {
                 try {
                     launchHabaneroApp(() -> forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
@@ -450,6 +459,19 @@ public class Program {
                 : cmd.hasOption(Constants.CMD_OPTION_LONG_MMS)
                 ? Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_LONG_MMS))
                 : 500;
+
+        ParallelOps.parallelInstance = cmd.hasOption(Constants.CMD_OPTION_SHORT_PI)
+                ? Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_SHORT_PI))
+                : cmd.hasOption(Constants.CMD_OPTION_LONG_PI)
+                ? Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_LONG_PI))
+                : 0;
+
+        ParallelOps.parallelInstanceCount = cmd.hasOption(Constants.CMD_OPTION_SHORT_PIC)
+                ? Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_SHORT_PIC))
+                : cmd.hasOption(Constants.CMD_OPTION_LONG_PIC)
+                ? Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_LONG_PIC))
+                : 1;
+
 
         bind = !cmd.hasOption(Constants.CMD_OPTION_SHORT_BIND_THREADS) ||
                 Boolean.parseBoolean(cmd.getOptionValue(Constants.CMD_OPTION_SHORT_BIND_THREADS));

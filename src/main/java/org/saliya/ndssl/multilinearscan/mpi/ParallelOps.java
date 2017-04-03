@@ -68,6 +68,10 @@ public class ParallelOps {
 
     public static int recvRequestOffset;
     public static Request[] sendRecvRequests;
+    // The number of parallel copies we are running, so we can cutdown the number of
+    // iterations to do in the program
+    public static int parallelInstance;
+    public static int parallelInstanceCount;
 
 
     public static void setupParallelism(String[] args) throws MPIException {

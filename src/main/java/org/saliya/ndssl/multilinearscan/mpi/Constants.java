@@ -49,6 +49,14 @@ public class Constants {
     static final String CMD_OPTION_LONG_MMS = "maxMsgSize";
     static final String CMD_OPTION_DESCRIPTION_MMS = "Maximum message size (#shorts)";
 
+    static final String CMD_OPTION_SHORT_PI = "pi";
+    static final String CMD_OPTION_LONG_PI = "parallelInstance";
+    static final String CMD_OPTION_DESCRIPTION_PI = "Parallel instance";
+
+    static final String CMD_OPTION_SHORT_PIC = "pic";
+    static final String CMD_OPTION_LONG_PIC = "parallelInstanceCount";
+    static final String CMD_OPTION_DESCRIPTION_PIC = "Parallel instance count";
+
     public static final String CMD_OPTION_SHORT_MMAP_SCRATCH_DIR = "mmapdir";
     public static final String
             CMD_OPTION_DESCRIPTION_MMAP_SCRATCH_DIR =
