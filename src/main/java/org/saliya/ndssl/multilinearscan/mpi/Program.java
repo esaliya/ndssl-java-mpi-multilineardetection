@@ -116,11 +116,11 @@ public class Program {
         ParallelOps.recvMessages();
     }
 
-    private static void processRecvdMessages(Vertex[] vertices, int superStep, Integer threadIdx) {
-        int offset = ParallelOps.threadIdToVertexOffset[threadIdx];
-        int count = ParallelOps.threadIdToVertexCount[threadIdx];
+    private static void processRecvdMessages(Vertex[] vertices, int dagLevel, Integer threadIdx) {
+        int offset = ParallelOps.dagLevelToThreadIdToVertexOffset[dagLevel][threadIdx];
+        int count = ParallelOps.dagLevelToThreadIdToVertexCount[dagLevel][threadIdx];
         for (int i = 0; i < count; ++i){
-            vertices[offset+i].processRecvd(superStep, ParallelOps.BUFFER_OFFSET);
+            vertices[offset+i].processRecvd(dagLevel, ParallelOps.BUFFER_OFFSET);
         }
     }
 
@@ -232,12 +232,12 @@ public class Program {
 
     }
 
-    private static void compute(Vertex[] vertices, int ss, Integer threadIdx) {
-        int offset = ParallelOps.threadIdToVertexOffset[threadIdx];
-        int count = ParallelOps.threadIdToVertexCount[threadIdx];
+    private static void compute(Vertex[] vertices, int dagLevel, Integer threadIdx) {
+        int offset = ParallelOps.dagLevelToThreadIdToVertexOffset[dagLevel][threadIdx];
+        int count = ParallelOps.dagLevelToThreadIdToVertexCount[dagLevel][threadIdx];
 
         for (int i = 0; i < count; ++i){
-            vertices[offset+i].compute(ss);
+            vertices[offset+i].compute(dagLevel);
         }
     }
 

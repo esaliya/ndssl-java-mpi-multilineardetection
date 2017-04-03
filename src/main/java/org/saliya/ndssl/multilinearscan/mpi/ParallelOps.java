@@ -66,8 +66,8 @@ public class ParallelOps {
     public static int[][] dagLevelToThreadIdToVertexCount;
     public static int[][] dagLevelToThreadIdToVertexOffset;
 
-    public static int[] threadIdToVertexCount;
-    public static int[] threadIdToVertexOffset;
+//    public static int[] threadIdToVertexCount;
+//    public static int[] threadIdToVertexOffset;
     public static ThreadCommunicator threadComm;
 
     public static int recvRequestOffset;
