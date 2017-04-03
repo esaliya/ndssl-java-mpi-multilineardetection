@@ -13,22 +13,6 @@ public class Constants {
     static final String CMD_OPTION_LONG_NUM_VC = "vertexCount";
     static final String CMD_OPTION_DESCRIPTION_NUM_VC = "Vertex count";
 
-    static final String CMD_OPTION_SHORT_K = "k";
-    static final String CMD_OPTION_LONG_K = "k";
-    static final String CMD_OPTION_DESCRIPTION_K = "Motif size";
-
-    static final String CMD_OPTION_SHORT_DELTA = "d";
-    static final String CMD_OPTION_LONG_DELTA = "delta";
-    static final String CMD_OPTION_DESCRIPTION_DELTA = "Delta";
-
-    static final String CMD_OPTION_SHORT_ALPHA = "a";
-    static final String CMD_OPTION_LONG_ALPHA = "alpha";
-    static final String CMD_OPTION_DESCRIPTION_ALPHA = "Alpha max";
-
-    static final String CMD_OPTION_SHORT_EPSILON = "e";
-    static final String CMD_OPTION_LONG_EPSILON = "epsilon";
-    static final String CMD_OPTION_DESCRIPTION_EPSILON = "Epsilon";
-
     static final String CMD_OPTION_SHORT_INPUT = "i";
     static final String CMD_OPTION_LONG_INPUT = "input";
     static final String CMD_OPTION_DESCRIPTION_INPUT = "Input file";
