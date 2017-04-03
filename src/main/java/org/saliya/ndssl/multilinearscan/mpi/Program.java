@@ -290,14 +290,19 @@ public class Program {
     private static double finalizeIterations(Vertex[] vertices) {
         double bestScore = Double.MIN_VALUE;
         Vertex bestVertex = null;
+        int bestSize = 0;
+        int bestWeight = 0;
         for (Vertex vertex : vertices) {
-        	double vertexScore = vertex.finalizeIterations(alphaMax, roundingFactor);
+        	double[] bestForVertex = vertex.finalizeIterations(alphaMax, roundingFactor);
+        	double vertexScore = bestForVertex[0];
         	if (vertexScore > bestScore) {
         		bestScore = vertexScore;
         		bestVertex = vertex;
+        		bestSize = (int) bestForVertex[1];
+        		bestWeight = (int) bestForVertex[2];
         	}        	
         }
-        putils.printMessage("Best score is " + bestScore + " for vertex " + bestVertex.vertexId);
+        putils.printMessage("Best score is " + bestScore + " for polynomial P(" + bestVertex + ", " + bestSize + ", " + bestWeight + ")");
         return bestScore;
     }
 

@@ -214,7 +214,7 @@ public class Vertex {
         }
     }
 
-    public double finalizeIterations(double alphaMax, int roundingFactor) {
+    public double[] finalizeIterations(double alphaMax, int roundingFactor) {
         // Now, we can change the totalSumTable to the decisionTable
         for (int kPrime = 0; kPrime <= k; kPrime++) {
             for (int rPrime = 0; rPrime <= r; rPrime++) {
@@ -227,8 +227,10 @@ public class Vertex {
     // This is node local best score, not the global best
     // to get the global best we have to find the max of these local best scores,
     // which we'll do in the master using aggregation
-    private double getScoreFromTablePower(int[][] existenceForNode, double alpha, int roundingFactor) {
+    private double[] getScoreFromTablePower(int[][] existenceForNode, double alpha, int roundingFactor) {
         double nodeLocalBestScore = 0;
+        double nodeLocalBestSize = 0;
+        double nodeLocalBestWeight = 0;
         for (int kPrime = 1; kPrime < existenceForNode.length; kPrime++) {
             for (int rPrime = 0; rPrime < existenceForNode[0].length; rPrime++) {
                 if (existenceForNode[kPrime][rPrime] == 1) {
@@ -239,10 +241,14 @@ public class Vertex {
                     int unroundedSize = Math.max(kPrime, unroundedPrize);
                     double score = Utils.BJ(alpha, unroundedPrize, unroundedSize);
                     //System.out.println("Score is " + score);
-                    nodeLocalBestScore = Math.max(nodeLocalBestScore, score);
+                    if (score > nodeLocalBestScore) {
+                    	nodeLocalBestScore = score;
+                    	nodeLocalBestSize = kPrime;
+                    	nodeLocalBestWeight = rPrime;
+                    }
                 }
             }
         }
-        return nodeLocalBestScore;
+        return new double[] { nodeLocalBestScore, nodeLocalBestSize, nodeLocalBestWeight};
     }
 }
