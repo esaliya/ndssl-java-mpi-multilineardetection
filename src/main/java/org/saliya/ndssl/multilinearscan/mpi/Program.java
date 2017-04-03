@@ -186,8 +186,8 @@ public class Program {
         initLoop(vertices);
 
         long startTime = System.currentTimeMillis();
-        //for (int iter = 0; iter < twoRaisedToK; ++iter) {
-        for (int iter = 0; iter < 3; ++iter) {
+        for (int iter = 0; iter < twoRaisedToK; ++iter) {
+        //for (int iter = 0; iter < 3; ++iter) {
             int finalIter = iter;
             if (ParallelOps.threadCount > 1) {
                 try {
@@ -289,8 +289,14 @@ public class Program {
 
     private static double finalizeIterations(Vertex[] vertices) {
         double bestScore = Double.MIN_VALUE;
-        for (Vertex vertex : vertices){
-            bestScore = Math.max(bestScore, vertex.finalizeIterations(alphaMax, roundingFactor));
+        Vertex bestVertex = null;
+        for (Vertex vertex : vertices) {
+        	double vertexScore = vertex.finalizeIterations(alphaMax, roundingFactor);
+        	if (vertexScore > bestScore) {
+        		bestScore = vertexScore;
+        		bestVertex = vertex;
+        	}
+        	putils.printMessage("Best score is " + bestScore + " for vertex " + bestVertex);
         }
         return bestScore;
     }
