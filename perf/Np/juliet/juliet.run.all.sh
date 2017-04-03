@@ -12,23 +12,51 @@ v=4843864
 dir=/N/u/sekanaya/sali/projects/vt/giraph
 COMMENT
 
-#fn=0010000
-#v=8109
+#dir=random-er
+
+#100k
 #fn=0100000
 #v=80991
-#fn=1000000
-#v=809165
-fn=10000000
-v=10000000
-dir=/N/u/sekanaya/sali/projects/vt/giraph/random-er
+
+#1mil
+fn=1000000
+v=809165
+
+#10mil
+#fn=10000000
+#v=10000000
+
+#dir=/N/u/sekanaya/sali/projects/vt/giraph/random-er
+
+#friendstar
+#fn=com-friendster.ungraph
+#v=65608366
+
+#Orkut
+fn=com-orkut.ungraph
+v=3072441
+dir=/N/u/sekanaya
+
 
 i=$dir/"$fn".txt
-k=6
+k=12
 e=0.1
 
 nodes=$3
 ppn=$2
-xmx=20g
+tpp=$5
+bind=$6
+xmx=65g
+
+totalPar=$(($nodes*$ppn*$tpp))
+partMethod=$4
+if [ "$partMethod" == 'simple' ] 
+ then
+  #make a non existent file name
+  partsFile=$dir/"$fn".txt.simple.$totalPar
+else
+  partsFile=$dir/"$fn".txt.part.$totalPar
+fi
 
 cps=12
 spn=2
@@ -37,4 +65,4 @@ nodefile=nodes."$nodes"n.txt
 #can be core/socket/none
 procbind=$1
 
-./juliet.run.generic.sh 1 $ppn $cps $spn $fn $nodes $nodefile $xmx $procbind $i $v $k $e -mms 5000
+./juliet.run.generic.sh $tpp $ppn $cps $spn $fn $nodes $nodefile $xmx $procbind $i $v $k $e 1 $partsFile $partMethod $bind

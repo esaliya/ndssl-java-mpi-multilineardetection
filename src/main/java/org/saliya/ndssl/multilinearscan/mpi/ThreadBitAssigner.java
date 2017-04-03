@@ -5,12 +5,12 @@ import java.util.BitSet;
 
 public class ThreadBitAssigner {
     /* Hard coded values for Juliet*/
-//    private static int spn = 2; // sockets per node
-//    private static int htpc = 2; // hyper threads per core
+    private static int spn = 2; // sockets per node
+    private static int htpc = 2; // hyper threads per core
 
     /* Hard coded values for Haswell(VT)*/
-    private static int spn = 2; // sockets per node
-    private static int htpc = 1; // hyper threads per core
+//    private static int spn = 2; // sockets per node
+//    private static int htpc = 1; // hyper threads per core
 
     // below are based on juliet settings
     /*public static void main(String[] args) {
