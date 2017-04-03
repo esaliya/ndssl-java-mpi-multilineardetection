@@ -57,6 +57,10 @@ public class Constants {
     static final String CMD_OPTION_LONG_PIC = "parallelInstanceCount";
     static final String CMD_OPTION_DESCRIPTION_PIC = "Parallel instance count";
 
+    static final String CMD_OPTION_SHORT_RF = "rf";
+    static final String CMD_OPTION_LONG_RF = "rankFile";
+    static final String CMD_OPTION_DESCRIPTION_RF = "Rank file";
+
     public static final String CMD_OPTION_SHORT_MMAP_SCRATCH_DIR = "mmapdir";
     public static final String
             CMD_OPTION_DESCRIPTION_MMAP_SCRATCH_DIR =
@@ -68,6 +72,12 @@ public class Constants {
 
     public static final String CMD_OPTION_SHORT_CPS = "cps";
     public static final String CMD_OPTION_DESCRIPTION_CPS = "Cores per socket";
+
+    public static final String CMD_OPTION_SHORT_SPN = "spn";
+    public static final String CMD_OPTION_DESCRIPTION_SPN = "Sockets per node";
+
+    public static final String CMD_OPTION_SHORT_HTPC = "htpc";
+    public static final String CMD_OPTION_DESCRIPTION_HTPC = "Hyper threads per core";
 
 
 

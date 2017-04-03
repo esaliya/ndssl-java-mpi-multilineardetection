@@ -1,5 +1,6 @@
 package org.saliya.ndssl.multilinearscan.mpi;
 
+import com.google.common.base.Strings;
 import mpi.MPI;
 import mpi.MPIException;
 import net.openhft.affinity.Affinity;
@@ -30,7 +31,10 @@ public class Program {
     private static int delta;
     private static double alphaMax;
     private static boolean bind;
+    private static int spn;
     private static int cps;
+    private static int htpc;
+    private static ThreadBitAssigner tba;
 
     private static int roundingFactor;
     private static int r;
@@ -94,6 +98,10 @@ public class Program {
                 String.valueOf(Constants.CMD_OPTION_SHORT_PIC),
                 Constants.CMD_OPTION_LONG_PIC, true,
                 Constants.CMD_OPTION_DESCRIPTION_PIC);
+        programOptions.addOption(
+                String.valueOf(Constants.CMD_OPTION_SHORT_RF),
+                Constants.CMD_OPTION_LONG_RF, true,
+                Constants.CMD_OPTION_DESCRIPTION_RF);
 
         programOptions.addOption(
                 Constants.CMD_OPTION_SHORT_MMAP_SCRATCH_DIR, true,
@@ -104,6 +112,12 @@ public class Program {
         programOptions.addOption(
                 Constants.CMD_OPTION_SHORT_CPS, true,
                 Constants.CMD_OPTION_DESCRIPTION_CPS);
+        programOptions.addOption(
+                Constants.CMD_OPTION_SHORT_SPN, true,
+                Constants.CMD_OPTION_DESCRIPTION_SPN);
+        programOptions.addOption(
+                Constants.CMD_OPTION_SHORT_HTPC, true,
+                Constants.CMD_OPTION_DESCRIPTION_HTPC);
     }
 
     public static void main(String[] args) throws MPIException, BrokenBarrierException, InterruptedException {
@@ -208,7 +222,7 @@ public class Program {
                 try {
                     launchHabaneroApp(() -> forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
                         if (bind) {
-                            BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
+                            BitSet bitSet = tba.getBitSet(ParallelOps.worldProcRank, threadIdx);
                             Affinity.setThreadId();
                             Affinity.setAffinity(bitSet);
                         }
@@ -472,12 +486,30 @@ public class Program {
                 ? Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_LONG_PIC))
                 : 1;
 
+        String rankFile = cmd.hasOption(Constants.CMD_OPTION_SHORT_RF)
+                ? (cmd.getOptionValue(Constants.CMD_OPTION_SHORT_RF))
+                : cmd.hasOption(Constants.CMD_OPTION_LONG_RF)
+                ? (cmd.getOptionValue(Constants.CMD_OPTION_LONG_RF))
+                : "";
+
 
         bind = !cmd.hasOption(Constants.CMD_OPTION_SHORT_BIND_THREADS) ||
                 Boolean.parseBoolean(cmd.getOptionValue(Constants.CMD_OPTION_SHORT_BIND_THREADS));
         cps = (cmd.hasOption(Constants.CMD_OPTION_SHORT_CPS)) ?
                 Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_SHORT_CPS)) :
-                -1;
+                1;
+
+        spn = (cmd.hasOption(Constants.CMD_OPTION_SHORT_SPN)) ?
+                Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_SHORT_SPN)) :
+                1;
+
+        htpc = (cmd.hasOption(Constants.CMD_OPTION_SHORT_HTPC)) ?
+                Integer.parseInt(cmd.getOptionValue(Constants.CMD_OPTION_SHORT_HTPC)) :
+                1;
+
+        tba = !Strings.isNullOrEmpty(rankFile)
+                ? new ThreadBitAssigner(spn, cps, htpc, rankFile)
+                : new ThreadBitAssigner(spn, cps, htpc, ParallelOps.threadCount);
     }
 
     public static String configPrettyString(boolean centerAligned) {

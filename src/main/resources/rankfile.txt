@@ -1,0 +1,4 @@
+rank 0=j-001 slot=8,9,10,11,12,13,14,15
+rank 1=j-001 slot=1
+rank 2=j-001 slot=2
+rank 3=j-001 slot=3

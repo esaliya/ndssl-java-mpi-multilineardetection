@@ -1,92 +1,106 @@
 package org.saliya.ndssl.multilinearscan.mpi;
 
-import java.util.Arrays;
+import com.google.common.base.Strings;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class ThreadBitAssigner {
-    /* Hard coded values for Juliet*/
-//    private static int spn = 2; // sockets per node
-//    private static int htpc = 2; // hyper threads per core
+    private int spn; // sockets per node
+    private int cps; // cores per socket
+    private int htpc; // hyper threads per core
+    private int tpp; // threads per process
+    private String rankFile; // rank file
+    private boolean useRankFile = false;
+    private Hashtable<Integer, List<Integer>> rankToCoreIds = new Hashtable<>();
 
-    /* Hard coded values for Haswell(VT)*/
-    private static int spn = 2; // sockets per node
-    private static int htpc = 1; // hyper threads per core
+    public ThreadBitAssigner(int spn, int cps, int htpc, int tpp) {
+        this.spn = spn;
+        this.cps = cps;
+        this.htpc = htpc;
+        this.tpp = tpp;
+    }
 
-    // below are based on juliet settings
-    /*public static void main(String[] args) {
-        *//* The 24 core patterns are
-         * 1x24
-         * 2x12
-         * 3x8
-         * 4x6
-         * 6x4
-         * 8x3
-         * 12x2
-         * 24x1
-         *//*
-        *//*int cps = 12;*//*
-        *//*int[] tppArray = new int[]{1,2,3,4,6,8,12,24};*//*
-
-        *//* The 36 core patterns are
-         * 1x36
-         * 2x18
-         * 3x12
-         * 4x9
-         * 6x6
-         * 9x4
-         * 12x3
-         * 18x2
-         * 36x1
-         *//*
-        int cps = 18;
-        int[] tppArray = new int[]{1,2,3,4,6,9,12,18,36};
-        int nodes = 1;
-
-        int cpn = cps * spn;
-        for (int tpp : tppArray) {
-            int ppn = cpn / tpp; // process per node
-            int procs = ppn * nodes;
-            System.out.println("-----" + tpp + "x" + ppn + "x" + nodes + "-----");
-            for (int rank = 0; rank < procs; ++rank) {
-                System.out.println("  Rank: " + rank);
-                for (int threadIdx = 0; threadIdx < tpp; ++threadIdx) {
-                    int[] bitset = getBitMask(rank, threadIdx, tpp, cps);
-                    System.out.println("    Thread: " + threadIdx + "  " +Arrays.toString(bitset));
-                }
-            }
+    public ThreadBitAssigner(int spn, int cps, int htpc, String rankFile) {
+        this.spn = spn;
+        this.cps = cps;
+        this.htpc = htpc;
+        this.rankFile = rankFile;
+        useRankFile = (!Strings.isNullOrEmpty(rankFile) && new File(rankFile).exists());
+        if(useRankFile){
+            readRankFile(rankFile);
         }
     }
-*/
+
+    private void readRankFile(String rankFile) {
+        String pat = "[ =,]";
+        Pattern sep = Pattern.compile(pat);
+        try(BufferedReader reader = Files.newBufferedReader(Paths.get(rankFile))){
+            String line;
+            while (!Strings.isNullOrEmpty(line = reader.readLine())){
+                String[] splits = sep.split(line);
+                int rank = Integer.parseInt(splits[1]);
+                List<Integer> coreIds = new ArrayList<>();
+                for (int i = 4; i < splits.length; ++i){
+                    coreIds.add(Integer.parseInt(splits[i]));
+                }
+                rankToCoreIds.put(rank, coreIds);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         int rank = 0;
-        int threadIdx = 3; // the output should be {3}
-        int threadCount = 16;
-        int cps = 32;
-        BitSet bitSet = ThreadBitAssigner.getBitSet(rank, threadIdx, threadCount, cps);
+        int threadIdx = 3;
+
+        int spn=2;
+        int cps=12;
+        int htpc=2;
+        int tpp = 8;
+        ThreadBitAssigner tba = new ThreadBitAssigner(spn, cps, htpc, tpp);
+        BitSet bitSet = tba.getBitSet(rank, threadIdx);
+        System.out.println(bitSet);
+
+        tba = new ThreadBitAssigner(spn, cps, htpc, "src/main/resources/rankfile.txt");
+        bitSet = tba.getBitSet(rank, threadIdx);
         System.out.println(bitSet);
     }
-    private static int[] getBitMask(int rank, int threadIdx, int tpp, int cps){
-        int cpn = cps * spn;
-        int ppn = cpn / tpp; // process per node
-
-        // Assuming continuous ranking within a node
-        int nodeLocalRank = rank % ppn;
-
+    private int[] getBitMask(int rank, int threadIdx){
         int[] bitset = new int[htpc];
-        int idx = 0;
-        for (int j = 0; j < htpc; ++j) {
-            bitset[idx++] = nodeLocalRank * tpp + threadIdx + (cpn * j);
-        }
+        int cpn = cps * spn;
+        if (!useRankFile) {
+            int ppn = cpn / tpp; // process per node
 
+            // Assuming continuous ranking within a node
+            int nodeLocalRank = rank % ppn;
+
+            for (int j = 0; j < htpc; ++j) {
+                bitset[j] = nodeLocalRank * tpp + threadIdx + (cpn * j);
+            }
+        } else {
+            int coreId = rankToCoreIds.get(rank).get(threadIdx);
+            for (int j = 0; j < htpc; ++j) {
+                bitset[j] = coreId + (cpn * j);
+            }
+        }
         return bitset;
     }
 
-    public static BitSet getBitSet(int rank, int threadIdx, int tpp, int cps){
-        int cpn = cps * spn;
-        int[] bitMask = getBitMask(rank, threadIdx, tpp, cps);
-        BitSet bitSet = new BitSet(cpn);
-        for(int mask: bitMask){
+    public BitSet getBitSet(int rank, int threadIdx){
+        int cun = htpc*cps*spn; // computing units per node (including hts)
+        int[] bitMask = getBitMask(rank, threadIdx);
+        BitSet bitSet = new BitSet(cun);
+        for (int mask : bitMask) {
             bitSet.set(mask);
         }
         return bitSet;
