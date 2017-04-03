@@ -19,8 +19,8 @@ COMMENT
 #v=80991
 
 #1mil
-fn=1000000
-v=809165
+#fn=1000000
+#v=809165
 
 #10mil
 #fn=10000000
@@ -33,14 +33,16 @@ v=809165
 #v=65608366
 
 #Orkut
-fn=com-orkut.ungraph
-v=3072441
-dir=/N/u/sekanaya
+#fn=com-orkut.ungraph
+#v=3072441
+#dir=/N/u/sekanaya
 
+#DAG
+fn=karate-circuit
+v=259
+dir=/N/u/sekanaya/sali/git/github/esaliya/java/ndssl-java-mpi-multilineardetection_threaded/src/main/resources/dag
 
 i=$dir/"$fn".txt
-k=12
-e=0.1
 
 nodes=$3
 ppn=$2
@@ -65,4 +67,4 @@ nodefile=nodes."$nodes"n.txt
 #can be core/socket/none
 procbind=$1
 
-./juliet.run.generic.sh $tpp $ppn $cps $spn $fn $nodes $nodefile $xmx $procbind $i $v $k $e 1 $partsFile $partMethod $bind
+./juliet.run.generic.sh $tpp $ppn $cps $spn $fn $nodes $nodefile $xmx $procbind $i $v 500 $partsFile $partMethod $bind
