@@ -8,6 +8,7 @@ import mpi.MPIException;
 import mpi.Request;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.nio.*;
 import java.nio.file.Files;
@@ -54,7 +55,7 @@ public class ParallelOps {
     public static TreeMap<Integer, Request> requests;
 
     private static boolean debug = false;
-    private static boolean debug2 = true;
+    private static boolean debug2 = false;
     public static int[] localVertexCounts;
     public static int[] localVertexDisplas;
 
@@ -82,12 +83,66 @@ public class ParallelOps {
 
     }
 
-    public static Vertex[] setParallelDecomposition(String file, int vertexCount) throws MPIException {
+    public static Vertex[] setParallelDecomposition(String file, int vertexCount, String partitionFile) throws
+            MPIException {
         /* Decompose input graph into processes */
         vertexIntBuffer = MPI.newIntBuffer(vertexCount);
         vertexLongBuffer = MPI.newLongBuffer(vertexCount);
         vertexDoubleBuffer = MPI.newDoubleBuffer(vertexCount);
-        return simpleGraphPartition(file, vertexCount);
+        String partitionMethod = "SimpleLoadBalance";
+        Vertex[] vertices;
+        if (Strings.isNullOrEmpty(partitionFile)){
+            vertices = simpleGraphPartition(file, vertexCount);
+        } else {
+            File f = new File(partitionFile);
+            if (f.exists()) {
+                partitionMethod = "Metis";
+                vertices = metisGraphPartition(file, partitionFile, vertexCount);
+            } else {
+                vertices = simpleGraphPartition(file, vertexCount);
+            }
+        }
+
+        if(worldProcRank == 0){
+            System.out.println("  Partitioning Method: " + partitionMethod);
+        }
+        return vertices;
+    }
+
+    private static Vertex[] metisGraphPartition(String graphFile, String partitionFile, int globalVertexCount) throws MPIException {
+        try(BufferedReader graphReader = Files.newBufferedReader(Paths.get(graphFile));
+            BufferedReader partitionReader = Files.newBufferedReader(Paths.get(partitionFile))) {
+            TreeSet<Integer> myNodeIds = new TreeSet<>();
+            int nodeId = 0;
+            String line;
+            while (!Strings.isNullOrEmpty(line = partitionReader.readLine())){
+                int partitionId = Integer.parseInt(line);
+                if (partitionId == worldProcRank){
+                    myNodeIds.add(nodeId);
+                }
+                ++nodeId;
+            }
+
+            Vertex[] vertices = new Vertex[myNodeIds.size()];
+
+            nodeId = 0;
+            int readNodes = 0;
+            while ((line = graphReader.readLine()) != null){
+                if (Strings.isNullOrEmpty(line)) continue;
+                if (myNodeIds.contains(nodeId)){
+                    vertices[readNodes] = new Vertex(nodeId, line);
+                    ++readNodes;
+                }
+                ++nodeId;
+            }
+
+            findNeighbors(globalVertexCount, vertices);
+            return vertices;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static Vertex[] simpleGraphPartition(String file, int globalVertexCount) throws MPIException {
@@ -498,13 +553,15 @@ public class ParallelOps {
             }
         });
 
-        requests.values().forEach(request -> {
+        requests.entrySet().forEach(recvfromRankToRequest -> {
             try {
+                Request request = recvfromRankToRequest.getValue();
                 request.waitFor();
             } catch (MPIException e) {
                 e.printStackTrace();
             }
         });
+
 
         // DEBUG
         if (debug) {

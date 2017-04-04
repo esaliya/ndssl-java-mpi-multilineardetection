@@ -19,6 +19,7 @@ import java.util.stream.IntStream;
 public class Program {
     private static Options programOptions = new Options();
     private static String inputFile;
+    private static String partsFile;
     private static int globalVertexCount;
     private static int k;
     private static double epsilon;
@@ -62,6 +63,10 @@ public class Program {
                 String.valueOf(Constants.CMD_OPTION_SHORT_INPUT),
                 Constants.CMD_OPTION_LONG_INPUT, true,
                 Constants.CMD_OPTION_DESCRIPTION_INPUT);
+        programOptions.addOption(
+                String.valueOf(Constants.CMD_OPTION_SHORT_PARTS),
+                Constants.CMD_OPTION_LONG_PARTS, true,
+                Constants.CMD_OPTION_DESCRIPTION_PARTS);
 
         programOptions.addOption(
                 String.valueOf(Constants.CMD_OPTION_SHORT_NC),
@@ -71,6 +76,11 @@ public class Program {
                 String.valueOf(Constants.CMD_OPTION_SHORT_TC),
                 Constants.CMD_OPTION_LONG_TC, true,
                 Constants.CMD_OPTION_DESCRIPTION_TC);
+
+        programOptions.addOption(
+                String.valueOf(Constants.CMD_OPTION_SHORT_MMS),
+                Constants.CMD_OPTION_LONG_MMS, true,
+                Constants.CMD_OPTION_DESCRIPTION_MMS);
 
 
         programOptions.addOption(
@@ -109,7 +119,7 @@ public class Program {
         readConfiguration(cmd);
 
         ParallelOps.setupParallelism(args);
-        Vertex[] vertices = ParallelOps.setParallelDecomposition(inputFile, globalVertexCount);
+        Vertex[] vertices = ParallelOps.setParallelDecomposition(inputFile, globalVertexCount, partsFile);
 
         runProgram(vertices);
 
@@ -122,6 +132,7 @@ public class Program {
             msgSize = vertex.prepareSend(superStep, ParallelOps.BUFFER_OFFSET);
         }
         ParallelOps.sendMessages(msgSize);
+
     }
 
 
@@ -308,6 +319,10 @@ public class Program {
         inputFile = cmd.hasOption(Constants.CMD_OPTION_SHORT_INPUT) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_INPUT) :
                 cmd.getOptionValue(Constants.CMD_OPTION_LONG_INPUT);
+        partsFile = cmd.hasOption(Constants.CMD_OPTION_SHORT_PARTS) ?
+                cmd.getOptionValue(Constants.CMD_OPTION_SHORT_PARTS) :
+                cmd.getOptionValue(Constants.CMD_OPTION_LONG_PARTS);
+
         globalVertexCount = Integer.parseInt(cmd.hasOption(Constants.CMD_OPTION_SHORT_VC) ?
                 cmd.getOptionValue(Constants.CMD_OPTION_SHORT_VC) :
                 cmd.getOptionValue(Constants.CMD_OPTION_LONG_NUM_VC));
