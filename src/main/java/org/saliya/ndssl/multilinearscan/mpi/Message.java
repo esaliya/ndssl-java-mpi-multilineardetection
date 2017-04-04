@@ -34,6 +34,10 @@ public class Message {
         this.data = data;
     }
 
+    public short getData() {
+        return data;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(data);

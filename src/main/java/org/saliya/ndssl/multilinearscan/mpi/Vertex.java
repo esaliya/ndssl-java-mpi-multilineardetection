@@ -15,7 +15,7 @@ public class Vertex {
     int vertexLabel;
     int vertexId;
     int vertexLevel;
-    char vertexOp;
+    VertexOp vertexOp;
 
     TreeMap<Integer, Integer> outNeighborLabelToWorldRank;
     TreeMap<Integer, VertexBuffer> outrankToSendBuffer;
@@ -44,7 +44,17 @@ public class Vertex {
         this.vertexId = vertexId;
         vertexLabel = Integer.parseInt(splits[0]);
         vertexLevel = Integer.parseInt(splits[1]) - 1;
-        vertexOp = splits[2].charAt(0);
+        char vertexOpChar = splits[2].charAt(0);
+        switch (vertexOpChar){
+            case 'x':
+                vertexOp = this::multiply;
+                break;
+            case '+':
+                vertexOp = this::add;
+                break;
+            default:
+                vertexOp = null;
+        }
 
         outrankToSendBuffer = new TreeMap<>();
         outNeighborLabelToWorldRank = new TreeMap<>();
@@ -57,8 +67,28 @@ public class Vertex {
         recvdMessages = new ArrayList<>();
     }
 
-    public void compute(int superStep){
+    private short multiply(List<Message> msgs){
+        int result = 1;
+        for (Message msg : msgs){
+            result *= msg.getData();
+        }
+        return (short)result;
+    }
 
+    private short add(List<Message> msgs){
+        int result = 1;
+        for (Message msg : msgs){
+            result += msg.getData();
+        }
+        return (short)result;
+    }
+
+    public void compute(int dagLevel){
+        if (dagLevel == 0 && dagLevel != vertexLevel){
+            return; // nothing to do
+        }
+
+        this.message.setData(vertexOp.apply(recvdMessages));
     }
 
     public int prepareSend(int superStep, int shift){

@@ -143,30 +143,32 @@ public class Program {
             InterruptedException {
 
         long startTime = System.currentTimeMillis();
-        if (ParallelOps.threadCount > 1) {
-            try {
-                launchHabaneroApp(() -> forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
-                    if (bind) {
-                        BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
-                        Affinity.setThreadId();
-                        Affinity.setAffinity(bitSet);
-                    }
-                    try {
+        for (int iter = 0; iter < 3; ++iter) {
+            if (ParallelOps.threadCount > 1) {
+                try {
+                    launchHabaneroApp(() -> forallChunked(0, ParallelOps.threadCount - 1, threadIdx -> {
+                        if (bind) {
+                            BitSet bitSet = ThreadBitAssigner.getBitSet(ParallelOps.worldProcRank, threadIdx, ParallelOps.threadCount, cps);
+                            Affinity.setThreadId();
+                            Affinity.setAffinity(bitSet);
+                        }
+                        try {
 
-                        long t = System.currentTimeMillis();
-                        runSuperSteps(vertices, startTime, threadIdx);
+                            long t = System.currentTimeMillis();
+                            runSuperSteps(vertices, startTime, threadIdx);
 //                            System.out.printf("Thread: " + threadIdx + " time with comm " + (System.currentTimeMillis
 //                                    () - t) + " ms");
 
-                    } catch (MPIException | InterruptedException | BrokenBarrierException e) {
-                        e.printStackTrace();
-                    }
-                }));
-            }catch (Exception e){
-                throw new RuntimeException(e);
+                        } catch (MPIException | InterruptedException | BrokenBarrierException e) {
+                            e.printStackTrace();
+                        }
+                    }));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                runSuperSteps(vertices, startTime, 0);
             }
-        } else {
-            runSuperSteps(vertices, startTime, 0);
         }
 
         return -1;
