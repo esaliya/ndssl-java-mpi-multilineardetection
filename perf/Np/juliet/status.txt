@@ -398,3 +398,7 @@ Running 24x1x21 on Sun Apr  2 22:38:04 EDT 2017
 Finished 24x1x21 on Sun Apr  2 22:55:44 EDT 2017
 Running 16x1x15 on Sun Apr  2 22:57:27 EDT 2017
 Finished 16x1x15 on Sun Apr  2 22:59:11 EDT 2017
+Running 1x1x1 on Mon Apr  3 01:02:25 EDT 2017
+Finished 1x1x1 on Mon Apr  3 01:02:27 EDT 2017
+Running 1x1x1 on Mon Apr  3 01:07:10 EDT 2017
+Finished 1x1x1 on Mon Apr  3 01:07:11 EDT 2017

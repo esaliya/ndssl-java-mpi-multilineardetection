@@ -28,13 +28,11 @@ procbind=$9
 
 i=${10}
 v=${11}
-k=${12}
-e=${13}
 
-mms=${14}
-parts=${15}
-partMethod=${16}
-bindThreads=${17}
+mms=${12}
+parts=${13}
+partMethod=${14}
+bindThreads=${15}
 
 #pe=$(($cpn/$ppn))
 pe=$(($cps/$pps))
@@ -46,9 +44,9 @@ opts="-XX:+UseSerialGC -Xms256m -Xmx$xmx"
 echo "Running $pat on `date`" >> status.txt
 if [ $procbind = "core" ]; then
   # same as socket
-  $BUILD/bin/mpirun --mca btl ^tcp --mca mtl ^psm --hostfile $nodefile --report-bindings --map-by ppr:$ppn:socket:PE=$pe  --bind-to core --rank-by core  -np $(($nodes*$ppn)) java $opts -cp $cp org.saliya.ndssl.multilinearscan.mpi.Program -v $v -k $k -i $i -e $e -nc $nodes -mms $mms -p $parts -tc $tpp -cps $cps -bind $bindThreads 2>&1 | tee $name.v$v.k$k.e$e.$pat.$partMethod.out.txt
+  $BUILD/bin/mpirun --mca btl ^tcp --mca mtl ^psm --hostfile $nodefile --report-bindings --map-by ppr:$ppn:socket:PE=$pe  --bind-to core --rank-by core  -np $(($nodes*$ppn)) java $opts -cp $cp org.saliya.ndssl.multilinearscan.mpi.Program -v $v -i $i -nc $nodes -mms $mms -p $parts -tc $tpp -cps $cps -bind $bindThreads 2>&1 | tee $name.v$v.k$k.e$e.$pat.$partMethod.out.txt
 elif [ $procbind = "socket" ]; then
-  $BUILD/bin/mpirun --mca btl ^tcp --mca mtl ^psm --hostfile $nodefile --report-bindings --map-by ppr:$ppn:socket:PE=$pe  --bind-to core --rank-by core  -np $(($nodes*$ppn)) java $opts -cp $cp org.saliya.ndssl.multilinearscan.mpi.Program -v $v -k $k -i $i -e $e -nc $nodes -mms $mms -p $parts -tc $tpp -cps $cps -bind $bindThreads 2>&1 | tee $name.v$v.k$k.e$e.$pat.$partMethod.out.txt
+  $BUILD/bin/mpirun --mca btl ^tcp --mca mtl ^psm --hostfile $nodefile --report-bindings --map-by ppr:$ppn:socket:PE=$pe  --bind-to core --rank-by core  -np $(($nodes*$ppn)) java $opts -cp $cp org.saliya.ndssl.multilinearscan.mpi.Program -v $v -i $i -nc $nodes -mms $mms -p $parts -tc $tpp -cps $cps -bind $bindThreads 2>&1 | tee $name.v$v.k$k.e$e.$pat.$partMethod.out.txt
 else
   echo $BUILD/bin/mpirun --hostfile $7 --mca btl ^tcp --report-bindings --map-by ppr:$ppn:node  --bind-to none --rank-by core  -np $(($nodes*$ppn)) java $opts  $MDS_OPS -cp $cp edu.indiana.soic.spidal.damds.ProgramLRT -c ../config.properties.$data -n $nodes -t $tpp -mmaps $mmaps -mmapdir $mmapdir -bind $explicitbind -cps $cps 2>&1 | tee $data.$pat.$xmx.$memmultype.$4.$3.comm.$commpat.out.txt
 fi
