@@ -216,6 +216,7 @@ public class Program {
         long startTime = System.currentTimeMillis();
         // assume twoRaisedToK can be divisible by ParallelOps.parallelInstanceCount
         int iterationsPerParallelInstance = twoRaisedToK / ParallelOps.parallelInstanceCount;
+        System.out.println("********" + iterationsPerParallelInstance);
         for (int iter = 0; iter < iterationsPerParallelInstance; ++iter) {
             int finalIter = iter+(ParallelOps.parallelInstance*iterationsPerParallelInstance);
             if (ParallelOps.threadCount > 1) {
@@ -248,7 +249,8 @@ public class Program {
         ParallelOps.oneByteBuffer.put(0, foundKPath);
         ParallelOps.worldProcsComm.allReduce(ParallelOps.oneByteBuffer, 1, MPI.BYTE, MPI.MAX);
         foundKPath = ParallelOps.oneByteBuffer.get(0);
-        putils.printMessage("    Loop "  +loopNumber + " found k Path: " + foundKPath);
+        putils.printMessage("    Loop "  +loopNumber + " found k Path: " + foundKPath + " in " + (System
+                .currentTimeMillis() - startTime) + " ms");
         return (foundKPath > 0);
     }
 
