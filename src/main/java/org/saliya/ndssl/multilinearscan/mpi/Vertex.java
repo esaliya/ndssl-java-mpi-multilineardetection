@@ -84,7 +84,7 @@ public class Vertex {
     }
 
     public void compute(int dagLevel){
-        if (dagLevel == 0 && dagLevel != vertexLevel){
+        if (dagLevel == 0 || dagLevel != vertexLevel){
             return; // nothing to do
         }
 
