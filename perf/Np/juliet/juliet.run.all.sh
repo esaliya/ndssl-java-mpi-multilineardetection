@@ -12,12 +12,19 @@ v=4843864
 dir=/N/u/sekanaya/sali/projects/vt/giraph
 COMMENT
 
+#10k
 #fn=0010000
 #v=8109
+
+#100k
 #fn=0100000
 #v=80991
+
+#1mil
 #fn=1000000
 #v=809165
+
+#10mil
 fn=10000000
 v=10000000
 dir=/N/u/sekanaya/sali/projects/vt/giraph/random-er

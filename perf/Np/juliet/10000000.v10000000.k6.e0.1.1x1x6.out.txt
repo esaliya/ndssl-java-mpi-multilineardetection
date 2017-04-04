@@ -1,0 +1,54 @@
+--------------------------------------------------------------------------
+WARNING: a request was made to bind a process. While the system
+supports binding the process itself, at least one node does NOT
+support binding memory to the process location.
+
+  Node:  j-001
+
+This usually is due to not having the required NUMA support installed
+on the node. In some Linux distributions, the required support is
+contained in the libnumactl and libnumactl-devel packages.
+This is a warning only; your job will continue, though performance may be degraded.
+--------------------------------------------------------------------------
+[j-019:105338] MCW rank 3 is not bound (or bound to all available processors)
+[j-001:97550] MCW rank 0 is not bound (or bound to all available processors)
+[j-017:112827] MCW rank 1 is not bound (or bound to all available processors)
+[j-020:104192] MCW rank 4 is not bound (or bound to all available processors)
+[j-029:102992] MCW rank 5 is not bound (or bound to all available processors)
+[j-018:105888] MCW rank 2 is not bound (or bound to all available processors)
+--Rank: 0 6 9953429 6 9953883--Rank: 1 6 9953672 6 9953674--Rank: 2 6 9953534 6 9953410--Rank: 3 6 9953580 6 9953471--Rank: 4 6 9953883 6 9953479--Rank: 5 6 9953591 6 9953772
+
+== MultilinearScan run started on Fri Mar 24 11:39:32 EDT 2017 ==
+
+Parameters...
+           Input File: /N/u/sekanaya/sali/projects/vt/giraph/random-er/10000000.txt
+  Global Vertex Count: 10000000
+                    K: 6
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 1x1x6
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 119992.0 r: 17
+
+  Start of Loop: 0
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at org.saliya.ndssl.multilinearscan.mpi.Message.loadFrom(Message.java:38)
+	at org.saliya.ndssl.multilinearscan.mpi.Vertex.processRecvd(Vertex.java:146)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.receiveMessages(Program.java:131)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runGraphComp(Program.java:175)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.runProgram(Program.java:155)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:114)
+-------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code.. Per user-direction, the job has been aborted.
+-------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[40873,1],4]
+  Exit code:    1
+--------------------------------------------------------------------------
