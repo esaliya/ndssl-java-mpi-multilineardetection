@@ -19,24 +19,26 @@ COMMENT
 #v=80991
 
 #1mil
-fn=1000000
-v=809165
+#fn=1000000
+#v=809165
 
 #10mil
 #fn=10000000
 #v=10000000
 
-dir=/localscratch/esaliya/sali/projects/vt/giraph/random-er
+#dir=/localscratch/esaliya/sali/projects/vt/giraph/random-er
+
+fn=karate-circuit
+v=259
+dir=./src/main/resources/dag
 
 i=$dir/"$fn".txt
-k=6
-e=0.1
 
 nodes=$3
 ppn=$2
 tpp=$5
 bind=$6
-xmx=100g
+xmx=65g
 
 totalPar=$(($nodes*$ppn*$tpp))
 partMethod=$4
@@ -55,4 +57,4 @@ nodefile=nodes."$nodes"n.txt
 #can be core/socket/none
 procbind=$1
 
-./haswell.run.generic.sh $tpp $ppn $cps $spn $fn $nodes $nodefile $xmx $procbind $i $v $k $e 500 $partsFile $partMethod $bind
+./haswell.run.generic.sh $tpp $ppn $cps $spn $fn $nodes $nodefile $xmx $procbind $i $v 500 $partsFile $partMethod $bind
