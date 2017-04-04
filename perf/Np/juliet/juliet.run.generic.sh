@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp=$HOME/.m2/repository/org/saliya/ndssl/multilineardetection/1.0-SNAPSHOT/multilineardetection-1.0-SNAPSHOT-jar-with-dependencies.jar:$HOME/sali/software/slf4j-1.7.21/slf4j-api-1.7.21.jar:$HOME/sali/software/slf4j-1.7.21/slf4j-nop-1.7.21.jar
+cp=$HOME/.m2/repository/org/saliya/ndssl/multilineardetection/dag-1.0-SNAPSHOT/multilineardetection-dag-1.0-SNAPSHOT-jar-with-dependencies.jar:$HOME/sali/software/slf4j-1.7.21/slf4j-api-1.7.21.jar:$HOME/sali/software/slf4j-1.7.21/slf4j-nop-1.7.21.jar
 
 wd=`pwd`
 x='x'
@@ -46,9 +46,9 @@ if [ $procbind = "core" ]; then
   # same as socket
   $BUILD/bin/mpirun --mca btl ^tcp --mca mtl ^psm --hostfile $nodefile --report-bindings --map-by ppr:$ppn:socket:PE=$pe  --bind-to core --rank-by core  -np $(($nodes*$ppn)) java $opts -cp $cp org.saliya.ndssl.multilinearscan.mpi.Program -v $v -i $i -nc $nodes -mms $mms -p $parts -tc $tpp -cps $cps -bind $bindThreads 2>&1 | tee $name.v$v.k$k.e$e.$pat.$partMethod.out.txt
 elif [ $procbind = "socket" ]; then
-  $BUILD/bin/mpirun --mca btl ^tcp --mca mtl ^psm --hostfile $nodefile --report-bindings --map-by ppr:$ppn:socket:PE=$pe  --bind-to core --rank-by core  -np $(($nodes*$ppn)) java $opts -cp $cp org.saliya.ndssl.multilinearscan.mpi.Program -v $v -i $i -nc $nodes -mms $mms -p $parts -tc $tpp -cps $cps -bind $bindThreads 2>&1 | tee $name.v$v.k$k.e$e.$pat.$partMethod.out.txt
+  $BUILD/bin/mpirun --mca btl ^tcp --mca mtl ^psm --hostfile $nodefile --report-bindings --map-by ppr:$pps:socket:PE=$pe  --bind-to core --rank-by core  -np $(($nodes*$ppn)) java $opts -cp $cp org.saliya.ndssl.multilinearscan.mpi.Program -v $v -i $i -nc $nodes -mms $mms -p $parts -tc $tpp -cps $cps -bind $bindThreads 2>&1 | tee $name.v$v.k$k.e$e.$pat.$partMethod.out.txt
 else
-  echo $BUILD/bin/mpirun --hostfile $7 --mca btl ^tcp --report-bindings --map-by ppr:$ppn:node  --bind-to none --rank-by core  -np $(($nodes*$ppn)) java $opts  $MDS_OPS -cp $cp edu.indiana.soic.spidal.damds.ProgramLRT -c ../config.properties.$data -n $nodes -t $tpp -mmaps $mmaps -mmapdir $mmapdir -bind $explicitbind -cps $cps 2>&1 | tee $data.$pat.$xmx.$memmultype.$4.$3.comm.$commpat.out.txt
+ echo  $BUILD/bin/mpirun --hostfile $7 --mca btl ^tcp --report-bindings --map-by ppr:$ppn:node  --bind-to none --rank-by core  -np $(($nodes*$ppn)) java $opts  $MDS_OPS -cp $cp edu.indiana.soic.spidal.damds.ProgramLRT -c ../config.properties.$data -n $nodes -t $tpp -mmaps $mmaps -mmapdir $mmapdir -bind $explicitbind -cps $cps 2>&1 | tee $data.$pat.$xmx.$memmultype.$4.$3.comm.$commpat.out.txt
 fi
 echo "Finished $pat on `date`" >> status.txt
 

@@ -6,7 +6,7 @@
 
     <groupId>org.saliya.ndssl</groupId>
     <artifactId>multilineardetection</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>dag-1.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>

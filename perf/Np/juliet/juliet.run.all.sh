@@ -40,7 +40,7 @@ COMMENT
 #DAG
 fn=karate-circuit
 v=259
-dir=/N/u/sekanaya/sali/git/github/esaliya/java/ndssl-java-mpi-multilineardetection_threaded/src/main/resources/dag
+dir=/N/u/sekanaya/sali/git/github/esaliya/java/ndssl-java-mpi-multilineardetection/src/main/resources/dag
 
 i=$dir/"$fn".txt
 
