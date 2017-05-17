@@ -1,0 +1,32 @@
+[hsw005:93170] MCW rank 0 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]]: [B/B/B/B/B/B/B/B/./././././././.][./././././././././././././././.]
+[hsw005:93170] MCW rank 1 bound to socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [././././././././B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw005:93170] MCW rank 2 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]]: [B/B/B/B/B/B/B/B/./././././././.][./././././././././././././././.]
+[hsw005:93170] MCW rank 3 bound to socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [././././././././B/B/B/B/B/B/B/B][./././././././././././././././.]
+Rank: 0 allocate vertex buffers: 5 ms
+Rank: 0 readgraph: 3673 ms
+Rank: 0 findNbrs: 13737 ms
+  Partitioning Method: SimpleLoadBalance
+
+== MultilinearScan run started on Fri Mar 31 16:29:14 EDT 2017 ==
+
+Parameters...
+           Input File: /localscratch/esaliya/sali/projects/vt/giraph/random-er/1000000.txt
+  Global Vertex Count: 809165
+                    K: 6
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 1x4x1
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 190834.0 r: 18
+
+  Start of Loop: 0
+      Iteration 1 of 64 elapsed 89996 ms
+    Loop 0 best score: 248659.31065896223
+  End of Loop: 0 took 250545 ms
+Best score: 248659.31065896223
+
+== MultilinearScan run ended on Fri Mar 31 16:33:26 EDT 2017 took 251531 ms ==
+

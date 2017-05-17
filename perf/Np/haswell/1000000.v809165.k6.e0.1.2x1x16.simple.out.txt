@@ -1,0 +1,70 @@
+[hsw005:51463] MCW rank 0 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw005:51463] MCW rank 1 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw007:143976] MCW rank 4 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw010:121278] MCW rank 10 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw007:143976] MCW rank 5 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw006:17987] MCW rank 2 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw010:121278] MCW rank 11 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw009:113272] MCW rank 8 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw006:17987] MCW rank 3 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw011:125286] MCW rank 12 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw009:113272] MCW rank 9 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw012:134302] MCW rank 14 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw008:125308] MCW rank 6 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw011:125286] MCW rank 13 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw012:134302] MCW rank 15 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw008:125308] MCW rank 7 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+Rank: 0 allocate vertex buffers: 3 ms
+Rank: 0 readgraph: 1005 ms
+Rank: 0 findNbrs: 9601 ms
+  Partitioning Method: SimpleLoadBalance
+
+== MultilinearScan run started on Thu Mar 30 12:51:30 EDT 2017 ==
+
+Parameters...
+           Input File: /localscratch/esaliya/sali/projects/vt/giraph/random-er/1000000.txt
+  Global Vertex Count: 809165
+                    K: 6
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 2x1x16
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 190834.0 r: 18
+
+  Start of Loop: 0
+Thread: 0 comp: 8163 | recvComm: 17861 | barrier: 0 | procRecvd: 212 | sendComm: 484
+Thread: 1 comp: 8307 | recvComm: 0 | barrier: 18199 | procRecvd: 214 | sendComm: 0
+Thread: 1 comp: 6574 | recvComm: 0 | barrier: 19999 | procRecvd: 156 | sendComm: 0
+Thread: 0 comp: 6591 | recvComm: 19290 | barrier: 0 | procRecvd: 157 | sendComm: 694
+Thread: 1 comp: 6974 | recvComm: 0 | barrier: 19315 | procRecvd: 215 | sendComm: 0
+Thread: 0 comp: 6989 | recvComm: 18768 | barrier: 0 | procRecvd: 215 | sendComm: 534
+Thread: 1 comp: 6523 | recvComm: 0 | barrier: 19990 | procRecvd: 139 | sendComm: 0
+Thread: 0 comp: 6529 | recvComm: 19603 | barrier: 0 | procRecvd: 140 | sendComm: 381
+Thread: 0 comp: 6888 | recvComm: 19627 | barrier: 0 | procRecvd: 144 | sendComm: 413
+Thread: 1 comp: 6907 | recvComm: 0 | barrier: 20024 | procRecvd: 143 | sendComm: 0
+Thread: 0 comp: 6899 | recvComm: 19107 | barrier: 1 | procRecvd: 231 | sendComm: 879
+Thread: 1 comp: 6925 | recvComm: 0 | barrier: 19987 | procRecvd: 221 | sendComm: 0
+Thread: 0 comp: 6564 | recvComm: 19718 | barrier: 0 | procRecvd: 143 | sendComm: 340
+Thread: 1 comp: 6565 | recvComm: 0 | barrier: 20053 | procRecvd: 147 | sendComm: 0
+Thread: 1 comp: 6946 | recvComm: 0 | barrier: 19685 | procRecvd: 215 | sendComm: 1
+Thread: 0 comp: 6930 | recvComm: 19221 | barrier: 0 | procRecvd: 212 | sendComm: 485
+Thread: 1 comp: 6486 | recvComm: 0 | barrier: 20032 | procRecvd: 151 | sendComm: 0
+Thread: 0 comp: 7564 | recvComm: 19100 | barrier: 0 | procRecvd: 145 | sendComm: 365
+Thread: 1 comp: 7575 | recvComm: 0 | barrier: 19450 | procRecvd: 149 | sendComm: 0
+Thread: 0 comp: 6663 | recvComm: 19670 | barrier: 0 | procRecvd: 148 | sendComm: 381
+Thread: 1 comp: 6668 | recvComm: 0 | barrier: 20042 | procRecvd: 153 | sendComm: 0
+Thread: 0 comp: 6885 | recvComm: 19227 | barrier: 0 | procRecvd: 208 | sendComm: 572
+Thread: 1 comp: 6908 | recvComm: 0 | barrier: 19773 | procRecvd: 218 | sendComm: 0
+Thread: 1 comp: 7356 | recvComm: 0 | barrier: 19687 | procRecvd: 221 | sendComm: 0
+Thread: 0 comp: 7371 | recvComm: 19073 | barrier: 0 | procRecvd: 221 | sendComm: 600
+Thread: 1 comp: 7391 | recvComm: 0 | barrier: 19694 | procRecvd: 223 | sendComm: 0
+Thread: 0 comp: 7394 | recvComm: 19115 | barrier: 0 | procRecvd: 222 | sendComm: 577
+Thread: 0 comp: 17037 | recvComm: 9102 | barrier: 0 | procRecvd: 809 | sendComm: 1827
+Thread: 1 comp: 17033 | recvComm: 0 | barrier: 10912 | procRecvd: 831 | sendComm: 0
+Thread: 1 comp: 17472 | recvComm: 0 | barrier: 10742 | procRecvd: 828 | sendComm: 0
+Thread: 0 comp: 17477 | recvComm: 8908 | barrier: 0 | procRecvd: 813 | sendComm: 1837
+Thread: 0 comp: 22347 | recvComm: 8769 | barrier: 0 | procRecvd: 260 | sendComm: 479
+      Iteration 1 of 64 elapsed 31990 ms

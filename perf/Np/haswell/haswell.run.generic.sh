@@ -20,6 +20,7 @@ else
   pps=$(($ppn/$spn))
 fi
 
+
 name=$5
 nodes=$6
 nodefile=$7
@@ -46,7 +47,7 @@ echo "Running $pat on `date`" >> status.txt
 if [ $procbind = "core" ]; then
   ~/sali/software/builds/ompi.2.0.2/bin/mpirun --mca btl ^openib --mca mtl ^psm --report-bindings --map-by ppr:$ppn:node:PE=$pe  --bind-to core:overload-allowed --rank-by core  -np $(($nodes*$ppn)) java $opts -cp $cp org.saliya.ndssl.multilinearscan.mpi.Program -v $v -k $k -i $i -e $e -nc $nodes -mms $mms -p $parts -tc $tpp -cps $cps -bind $bindThreads 2>&1 | tee $name.v$v.k$k.e$e.$pat.$partMethod.out.txt
 elif [ $procbind = "socket" ]; then
-  ~/sali/software/builds/ompi.2.0.2/bin/mpirun --mca btl ^openib --mca mtl ^psm --report-bindings --map-by ppr:$ppn:socket:PE=$pe  --bind-to core:overload-allowed --rank-by core  -np $(($nodes*$ppn)) java $opts -cp $cp org.saliya.ndssl.multilinearscan.mpi.Program -v $v -k $k -i $i -e $e -nc $nodes -mms $mms -p $parts -tc $tpp -cps $cps -bind $bindThreads 2>&1 | tee $name.v$v.k$k.e$e.$pat.$partMethod.out.txt
+  ~/sali/software/builds/ompi.2.0.2/bin/mpirun --mca btl ^openib --mca mtl ^psm --report-bindings --map-by ppr:$pps:socket:PE=$pe  --bind-to core:overload-allowed --rank-by core  -np $(($nodes*$ppn)) java $opts -cp $cp org.saliya.ndssl.multilinearscan.mpi.Program -v $v -k $k -i $i -e $e -nc $nodes -mms $mms -p $parts -tc $tpp -cps $cps -bind $bindThreads 2>&1 | tee $name.v$v.k$k.e$e.$pat.$partMethod.out.txt
 else
   echo $BUILD/bin/mpirun --hostfile $7 --mca btl ^tcp --report-bindings --map-by ppr:$ppn:node  --bind-to none --rank-by core  -np $(($nodes*$ppn)) java $opts  $MDS_OPS -cp $cp edu.indiana.soic.spidal.damds.ProgramLRT -c ../config.properties.$data -n $nodes -t $tpp -mmaps $mmaps -mmapdir $mmapdir -bind $explicitbind -cps $cps 2>&1 | tee $data.$pat.$xmx.$memmultype.$4.$3.comm.$commpat.out.txt
 fi

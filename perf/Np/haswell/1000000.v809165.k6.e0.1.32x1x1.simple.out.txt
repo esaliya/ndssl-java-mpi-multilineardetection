@@ -1,7 +1,10 @@
-[hsw005:34153] MCW rank 0 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw005:89170] MCW rank 0 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+Rank: 0 allocate vertex buffers: 5 ms
+Rank: 0 readgraph: 12120 ms
+Rank: 0 findNbrs: 40521 ms
   Partitioning Method: SimpleLoadBalance
 
-== MultilinearScan run started on Thu Mar 30 00:18:32 EDT 2017 ==
+== MultilinearScan run started on Fri Mar 31 14:18:29 EDT 2017 ==
 
 Parameters...
            Input File: /localscratch/esaliya/sali/projects/vt/giraph/random-er/1000000.txt
@@ -17,10 +20,10 @@ Parameters...
   Max Weight: 190834.0 r: 18
 
   Start of Loop: 0
-      Iteration 1 of 64 elapsed 36178 ms
+      Iteration 1 of 64 elapsed 36187 ms
     Loop 0 best score: 248659.31065896223
-  End of Loop: 0 took 86830 ms
+  End of Loop: 0 took 88271 ms
 Best score: 248659.31065896223
 
-== MultilinearScan run ended on Thu Mar 30 00:19:59 EDT 2017 took 86901 ms ==
+== MultilinearScan run ended on Fri Mar 31 14:19:57 EDT 2017 took 88346 ms ==
 

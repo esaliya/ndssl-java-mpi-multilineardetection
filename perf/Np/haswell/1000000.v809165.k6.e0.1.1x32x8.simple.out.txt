@@ -1,0 +1,559 @@
+[hsw005:99828] MCW rank 0 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 1 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 2 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 3 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 4 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 5 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 6 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 7 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 8 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 9 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 10 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 11 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 12 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw005:99828] MCW rank 13 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw005:99828] MCW rank 14 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw005:99828] MCW rank 15 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw005:99828] MCW rank 16 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw005:99828] MCW rank 17 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw005:99828] MCW rank 18 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw005:99828] MCW rank 19 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw005:99828] MCW rank 20 bound to socket 1[core 20[hwt 0]]: [./././././././././././././././.][././././B/././././././././././.]
+[hsw005:99828] MCW rank 21 bound to socket 1[core 21[hwt 0]]: [./././././././././././././././.][./././././B/./././././././././.]
+[hsw005:99828] MCW rank 22 bound to socket 1[core 22[hwt 0]]: [./././././././././././././././.][././././././B/././././././././.]
+[hsw005:99828] MCW rank 23 bound to socket 1[core 23[hwt 0]]: [./././././././././././././././.][./././././././B/./././././././.]
+[hsw005:99828] MCW rank 24 bound to socket 1[core 24[hwt 0]]: [./././././././././././././././.][././././././././B/././././././.]
+[hsw005:99828] MCW rank 25 bound to socket 1[core 25[hwt 0]]: [./././././././././././././././.][./././././././././B/./././././.]
+[hsw005:99828] MCW rank 26 bound to socket 1[core 26[hwt 0]]: [./././././././././././././././.][././././././././././B/././././.]
+[hsw005:99828] MCW rank 27 bound to socket 1[core 27[hwt 0]]: [./././././././././././././././.][./././././././././././B/./././.]
+[hsw005:99828] MCW rank 28 bound to socket 1[core 28[hwt 0]]: [./././././././././././././././.][././././././././././././B/././.]
+[hsw005:99828] MCW rank 29 bound to socket 1[core 29[hwt 0]]: [./././././././././././././././.][./././././././././././././B/./.]
+[hsw005:99828] MCW rank 30 bound to socket 1[core 30[hwt 0]]: [./././././././././././././././.][././././././././././././././B/.]
+[hsw005:99828] MCW rank 31 bound to socket 1[core 31[hwt 0]]: [./././././././././././././././.][./././././././././././././././B]
+[hsw011:20621] MCW rank 192 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 160 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 64 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 224 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 96 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 32 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 193 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 161 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 65 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 225 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 97 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 33 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 194 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 162 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 66 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 226 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 98 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 34 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 195 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 163 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 67 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 227 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 99 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 35 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 196 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 164 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 68 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 228 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 100 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 36 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 197 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 165 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 37 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 198 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 166 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 69 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 229 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 38 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 199 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 167 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 70 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 230 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 101 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 39 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 200 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 168 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 71 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 231 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 102 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 40 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 201 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 169 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 72 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 232 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 103 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 41 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 202 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 170 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 73 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 233 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 104 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 42 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 203 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 171 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 74 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 234 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 105 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 43 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 204 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw010:16595] MCW rank 172 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw007:40714] MCW rank 75 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 235 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 106 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 44 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw011:20621] MCW rank 205 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw010:16595] MCW rank 173 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw007:40714] MCW rank 76 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw012:29621] MCW rank 236 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw008:21992] MCW rank 107 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 45 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw011:20621] MCW rank 206 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw010:16595] MCW rank 174 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw007:40714] MCW rank 77 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw012:29621] MCW rank 237 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw008:21992] MCW rank 108 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw006:63569] MCW rank 46 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw011:20621] MCW rank 207 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw010:16595] MCW rank 175 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw007:40714] MCW rank 78 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw012:29621] MCW rank 238 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw008:21992] MCW rank 109 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw011:20621] MCW rank 208 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw010:16595] MCW rank 176 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw007:40714] MCW rank 79 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw012:29621] MCW rank 239 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw008:21992] MCW rank 110 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw006:63569] MCW rank 47 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw011:20621] MCW rank 209 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw010:16595] MCW rank 177 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw007:40714] MCW rank 80 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw012:29621] MCW rank 240 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw008:21992] MCW rank 111 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw006:63569] MCW rank 48 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw011:20621] MCW rank 210 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw010:16595] MCW rank 178 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw007:40714] MCW rank 81 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw012:29621] MCW rank 241 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw008:21992] MCW rank 112 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw006:63569] MCW rank 49 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw011:20621] MCW rank 211 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw010:16595] MCW rank 179 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw007:40714] MCW rank 82 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw012:29621] MCW rank 242 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw008:21992] MCW rank 113 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw006:63569] MCW rank 50 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw011:20621] MCW rank 212 bound to socket 1[core 20[hwt 0]]: [./././././././././././././././.][././././B/././././././././././.]
+[hsw010:16595] MCW rank 180 bound to socket 1[core 20[hwt 0]]: [./././././././././././././././.][././././B/././././././././././.]
+[hsw007:40714] MCW rank 83 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw012:29621] MCW rank 243 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw008:21992] MCW rank 114 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw006:63569] MCW rank 51 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw011:20621] MCW rank 213 bound to socket 1[core 21[hwt 0]]: [./././././././././././././././.][./././././B/./././././././././.]
+[hsw010:16595] MCW rank 181 bound to socket 1[core 21[hwt 0]]: [./././././././././././././././.][./././././B/./././././././././.]
+[hsw007:40714] MCW rank 84 bound to socket 1[core 20[hwt 0]]: [./././././././././././././././.][././././B/././././././././././.]
+[hsw012:29621] MCW rank 244 bound to socket 1[core 20[hwt 0]]: [./././././././././././././././.][././././B/././././././././././.]
+[hsw008:21992] MCW rank 115 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw006:63569] MCW rank 52 bound to socket 1[core 20[hwt 0]]: [./././././././././././././././.][././././B/././././././././././.]
+[hsw011:20621] MCW rank 214 bound to socket 1[core 22[hwt 0]]: [./././././././././././././././.][././././././B/././././././././.]
+[hsw010:16595] MCW rank 182 bound to socket 1[core 22[hwt 0]]: [./././././././././././././././.][././././././B/././././././././.]
+[hsw007:40714] MCW rank 85 bound to socket 1[core 21[hwt 0]]: [./././././././././././././././.][./././././B/./././././././././.]
+[hsw012:29621] MCW rank 245 bound to socket 1[core 21[hwt 0]]: [./././././././././././././././.][./././././B/./././././././././.]
+[hsw008:21992] MCW rank 116 bound to socket 1[core 20[hwt 0]]: [./././././././././././././././.][././././B/././././././././././.]
+[hsw006:63569] MCW rank 53 bound to socket 1[core 21[hwt 0]]: [./././././././././././././././.][./././././B/./././././././././.]
+[hsw011:20621] MCW rank 215 bound to socket 1[core 23[hwt 0]]: [./././././././././././././././.][./././././././B/./././././././.]
+[hsw010:16595] MCW rank 183 bound to socket 1[core 23[hwt 0]]: [./././././././././././././././.][./././././././B/./././././././.]
+[hsw007:40714] MCW rank 86 bound to socket 1[core 22[hwt 0]]: [./././././././././././././././.][././././././B/././././././././.]
+[hsw012:29621] MCW rank 246 bound to socket 1[core 22[hwt 0]]: [./././././././././././././././.][././././././B/././././././././.]
+[hsw008:21992] MCW rank 117 bound to socket 1[core 21[hwt 0]]: [./././././././././././././././.][./././././B/./././././././././.]
+[hsw006:63569] MCW rank 54 bound to socket 1[core 22[hwt 0]]: [./././././././././././././././.][././././././B/././././././././.]
+[hsw011:20621] MCW rank 216 bound to socket 1[core 24[hwt 0]]: [./././././././././././././././.][././././././././B/././././././.]
+[hsw010:16595] MCW rank 184 bound to socket 1[core 24[hwt 0]]: [./././././././././././././././.][././././././././B/././././././.]
+[hsw007:40714] MCW rank 87 bound to socket 1[core 23[hwt 0]]: [./././././././././././././././.][./././././././B/./././././././.]
+[hsw012:29621] MCW rank 247 bound to socket 1[core 23[hwt 0]]: [./././././././././././././././.][./././././././B/./././././././.]
+[hsw008:21992] MCW rank 118 bound to socket 1[core 22[hwt 0]]: [./././././././././././././././.][././././././B/././././././././.]
+[hsw006:63569] MCW rank 55 bound to socket 1[core 23[hwt 0]]: [./././././././././././././././.][./././././././B/./././././././.]
+[hsw011:20621] MCW rank 217 bound to socket 1[core 25[hwt 0]]: [./././././././././././././././.][./././././././././B/./././././.]
+[hsw010:16595] MCW rank 185 bound to socket 1[core 25[hwt 0]]: [./././././././././././././././.][./././././././././B/./././././.]
+[hsw007:40714] MCW rank 88 bound to socket 1[core 24[hwt 0]]: [./././././././././././././././.][././././././././B/././././././.]
+[hsw012:29621] MCW rank 248 bound to socket 1[core 24[hwt 0]]: [./././././././././././././././.][././././././././B/././././././.]
+[hsw008:21992] MCW rank 119 bound to socket 1[core 23[hwt 0]]: [./././././././././././././././.][./././././././B/./././././././.]
+[hsw006:63569] MCW rank 56 bound to socket 1[core 24[hwt 0]]: [./././././././././././././././.][././././././././B/././././././.]
+[hsw011:20621] MCW rank 218 bound to socket 1[core 26[hwt 0]]: [./././././././././././././././.][././././././././././B/././././.]
+[hsw010:16595] MCW rank 186 bound to socket 1[core 26[hwt 0]]: [./././././././././././././././.][././././././././././B/././././.]
+[hsw007:40714] MCW rank 89 bound to socket 1[core 25[hwt 0]]: [./././././././././././././././.][./././././././././B/./././././.]
+[hsw012:29621] MCW rank 249 bound to socket 1[core 25[hwt 0]]: [./././././././././././././././.][./././././././././B/./././././.]
+[hsw008:21992] MCW rank 120 bound to socket 1[core 24[hwt 0]]: [./././././././././././././././.][././././././././B/././././././.]
+[hsw006:63569] MCW rank 57 bound to socket 1[core 25[hwt 0]]: [./././././././././././././././.][./././././././././B/./././././.]
+[hsw011:20621] MCW rank 219 bound to socket 1[core 27[hwt 0]]: [./././././././././././././././.][./././././././././././B/./././.]
+[hsw010:16595] MCW rank 187 bound to socket 1[core 27[hwt 0]]: [./././././././././././././././.][./././././././././././B/./././.]
+[hsw007:40714] MCW rank 90 bound to socket 1[core 26[hwt 0]]: [./././././././././././././././.][././././././././././B/././././.]
+[hsw012:29621] MCW rank 250 bound to socket 1[core 26[hwt 0]]: [./././././././././././././././.][././././././././././B/././././.]
+[hsw008:21992] MCW rank 121 bound to socket 1[core 25[hwt 0]]: [./././././././././././././././.][./././././././././B/./././././.]
+[hsw006:63569] MCW rank 58 bound to socket 1[core 26[hwt 0]]: [./././././././././././././././.][././././././././././B/././././.]
+[hsw011:20621] MCW rank 220 bound to socket 1[core 28[hwt 0]]: [./././././././././././././././.][././././././././././././B/././.]
+[hsw010:16595] MCW rank 188 bound to socket 1[core 28[hwt 0]]: [./././././././././././././././.][././././././././././././B/././.]
+[hsw007:40714] MCW rank 91 bound to socket 1[core 27[hwt 0]]: [./././././././././././././././.][./././././././././././B/./././.]
+[hsw012:29621] MCW rank 251 bound to socket 1[core 27[hwt 0]]: [./././././././././././././././.][./././././././././././B/./././.]
+[hsw008:21992] MCW rank 122 bound to socket 1[core 26[hwt 0]]: [./././././././././././././././.][././././././././././B/././././.]
+[hsw006:63569] MCW rank 59 bound to socket 1[core 27[hwt 0]]: [./././././././././././././././.][./././././././././././B/./././.]
+[hsw011:20621] MCW rank 221 bound to socket 1[core 29[hwt 0]]: [./././././././././././././././.][./././././././././././././B/./.]
+[hsw010:16595] MCW rank 189 bound to socket 1[core 29[hwt 0]]: [./././././././././././././././.][./././././././././././././B/./.]
+[hsw007:40714] MCW rank 92 bound to socket 1[core 28[hwt 0]]: [./././././././././././././././.][././././././././././././B/././.]
+[hsw012:29621] MCW rank 252 bound to socket 1[core 28[hwt 0]]: [./././././././././././././././.][././././././././././././B/././.]
+[hsw008:21992] MCW rank 123 bound to socket 1[core 27[hwt 0]]: [./././././././././././././././.][./././././././././././B/./././.]
+[hsw006:63569] MCW rank 60 bound to socket 1[core 28[hwt 0]]: [./././././././././././././././.][././././././././././././B/././.]
+[hsw011:20621] MCW rank 222 bound to socket 1[core 30[hwt 0]]: [./././././././././././././././.][././././././././././././././B/.]
+[hsw010:16595] MCW rank 190 bound to socket 1[core 30[hwt 0]]: [./././././././././././././././.][././././././././././././././B/.]
+[hsw007:40714] MCW rank 93 bound to socket 1[core 29[hwt 0]]: [./././././././././././././././.][./././././././././././././B/./.]
+[hsw012:29621] MCW rank 253 bound to socket 1[core 29[hwt 0]]: [./././././././././././././././.][./././././././././././././B/./.]
+[hsw008:21992] MCW rank 124 bound to socket 1[core 28[hwt 0]]: [./././././././././././././././.][././././././././././././B/././.]
+[hsw006:63569] MCW rank 61 bound to socket 1[core 29[hwt 0]]: [./././././././././././././././.][./././././././././././././B/./.]
+[hsw011:20621] MCW rank 223 bound to socket 1[core 31[hwt 0]]: [./././././././././././././././.][./././././././././././././././B]
+[hsw010:16595] MCW rank 191 bound to socket 1[core 31[hwt 0]]: [./././././././././././././././.][./././././././././././././././B]
+[hsw007:40714] MCW rank 94 bound to socket 1[core 30[hwt 0]]: [./././././././././././././././.][././././././././././././././B/.]
+[hsw012:29621] MCW rank 254 bound to socket 1[core 30[hwt 0]]: [./././././././././././././././.][././././././././././././././B/.]
+[hsw008:21992] MCW rank 125 bound to socket 1[core 29[hwt 0]]: [./././././././././././././././.][./././././././././././././B/./.]
+[hsw006:63569] MCW rank 62 bound to socket 1[core 30[hwt 0]]: [./././././././././././././././.][././././././././././././././B/.]
+[hsw007:40714] MCW rank 95 bound to socket 1[core 31[hwt 0]]: [./././././././././././././././.][./././././././././././././././B]
+[hsw012:29621] MCW rank 255 bound to socket 1[core 31[hwt 0]]: [./././././././././././././././.][./././././././././././././././B]
+[hsw008:21992] MCW rank 126 bound to socket 1[core 30[hwt 0]]: [./././././././././././././././.][././././././././././././././B/.]
+[hsw006:63569] MCW rank 63 bound to socket 1[core 31[hwt 0]]: [./././././././././././././././.][./././././././././././././././B]
+[hsw008:21992] MCW rank 127 bound to socket 1[core 31[hwt 0]]: [./././././././././././././././.][./././././././././././././././B]
+[hsw009:08591] MCW rank 128 bound to socket 0[core 0[hwt 0]]: [B/././././././././././././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 129 bound to socket 0[core 1[hwt 0]]: [./B/./././././././././././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 130 bound to socket 0[core 2[hwt 0]]: [././B/././././././././././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 131 bound to socket 0[core 3[hwt 0]]: [./././B/./././././././././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 132 bound to socket 0[core 4[hwt 0]]: [././././B/././././././././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 133 bound to socket 0[core 5[hwt 0]]: [./././././B/./././././././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 134 bound to socket 0[core 6[hwt 0]]: [././././././B/././././././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 135 bound to socket 0[core 7[hwt 0]]: [./././././././B/./././././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 136 bound to socket 0[core 8[hwt 0]]: [././././././././B/././././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 137 bound to socket 0[core 9[hwt 0]]: [./././././././././B/./././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 138 bound to socket 0[core 10[hwt 0]]: [././././././././././B/././././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 139 bound to socket 0[core 11[hwt 0]]: [./././././././././././B/./././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 140 bound to socket 0[core 12[hwt 0]]: [././././././././././././B/././.][./././././././././././././././.]
+[hsw009:08591] MCW rank 141 bound to socket 0[core 13[hwt 0]]: [./././././././././././././B/./.][./././././././././././././././.]
+[hsw009:08591] MCW rank 142 bound to socket 0[core 14[hwt 0]]: [././././././././././././././B/.][./././././././././././././././.]
+[hsw009:08591] MCW rank 143 bound to socket 0[core 15[hwt 0]]: [./././././././././././././././B][./././././././././././././././.]
+[hsw009:08591] MCW rank 144 bound to socket 1[core 16[hwt 0]]: [./././././././././././././././.][B/././././././././././././././.]
+[hsw009:08591] MCW rank 145 bound to socket 1[core 17[hwt 0]]: [./././././././././././././././.][./B/./././././././././././././.]
+[hsw009:08591] MCW rank 146 bound to socket 1[core 18[hwt 0]]: [./././././././././././././././.][././B/././././././././././././.]
+[hsw009:08591] MCW rank 147 bound to socket 1[core 19[hwt 0]]: [./././././././././././././././.][./././B/./././././././././././.]
+[hsw009:08591] MCW rank 148 bound to socket 1[core 20[hwt 0]]: [./././././././././././././././.][././././B/././././././././././.]
+[hsw009:08591] MCW rank 149 bound to socket 1[core 21[hwt 0]]: [./././././././././././././././.][./././././B/./././././././././.]
+[hsw009:08591] MCW rank 150 bound to socket 1[core 22[hwt 0]]: [./././././././././././././././.][././././././B/././././././././.]
+[hsw009:08591] MCW rank 151 bound to socket 1[core 23[hwt 0]]: [./././././././././././././././.][./././././././B/./././././././.]
+[hsw009:08591] MCW rank 152 bound to socket 1[core 24[hwt 0]]: [./././././././././././././././.][././././././././B/././././././.]
+[hsw009:08591] MCW rank 153 bound to socket 1[core 25[hwt 0]]: [./././././././././././././././.][./././././././././B/./././././.]
+[hsw009:08591] MCW rank 154 bound to socket 1[core 26[hwt 0]]: [./././././././././././././././.][././././././././././B/././././.]
+[hsw009:08591] MCW rank 155 bound to socket 1[core 27[hwt 0]]: [./././././././././././././././.][./././././././././././B/./././.]
+[hsw009:08591] MCW rank 156 bound to socket 1[core 28[hwt 0]]: [./././././././././././././././.][././././././././././././B/././.]
+[hsw009:08591] MCW rank 157 bound to socket 1[core 29[hwt 0]]: [./././././././././././././././.][./././././././././././././B/./.]
+[hsw009:08591] MCW rank 158 bound to socket 1[core 30[hwt 0]]: [./././././././././././././././.][././././././././././././././B/.]
+[hsw009:08591] MCW rank 159 bound to socket 1[core 31[hwt 0]]: [./././././././././././././././.][./././././././././././././././B]
+Rank: 0 allocate vertex buffers: 4 ms
+Rank: 0 readgraph: 878 ms
+Rank: 0 findNbrs: 54953 ms
+  Partitioning Method: SimpleLoadBalance
+
+== MultilinearScan run started on Fri Mar 31 17:46:07 EDT 2017 ==
+
+Parameters...
+           Input File: /localscratch/esaliya/sali/projects/vt/giraph/random-er/1000000.txt
+  Global Vertex Count: 809165
+                    K: 6
+              Epsilon: 0.1
+                Delta: 1
+            Alpha Max: 0.15
+     Parallel Pattern: 1x32x8
+
+  10 assignments will be evaluated for epsilon = 0.1
+  approximation factor is 2.0
+  Max Weight: 190834.0 r: 18
+
+  Start of Loop: 0
+[hsw006][[40111,1],55][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(213, 0/8) failed: Connection reset by peer (104)
+[hsw006:63653] pml_ob1_sendreq.c:233 FATAL
+--------------------------------------------------------------------------
+An MPI communication peer process has unexpectedly disconnected.  This
+usually indicates a failure in the peer process (e.g., a crash or
+otherwise exiting without calling MPI_FINALIZE first).
+
+Although this local MPI process will likely now behave unpredictably
+(it may even hang or crash), the root cause of this problem is the
+failure of the peer -- that is what you need to investigate.  For
+example, there may be a core file that you can examine.  More
+generally: such peer hangups are frequently caused by application bugs
+or other external events.
+
+  Local host: hsw011
+  Local PID:  20643
+  Peer host:  hsw006
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: Open MPI failed to handshake with a connecting peer MPI
+process over TCP.  This should not happen.
+
+Your Open MPI job may now fail.
+
+  Local host: hsw005
+  PID:        99852
+  Message:    did not receive entire connect ACK from peer
+--------------------------------------------------------------------------
+[hsw005][[40111,1],0][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.6 failed: Connection refused (111)
+[hsw005][[40111,1],0][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.7 failed: Connection refused (111)
+[hsw005:99844] pml_ob1_sendreq.c:233 FATAL
+[hsw005][[40111,1],6][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(217, 0/8) failed: Connection reset by peer (104)
+[hsw005][[40111,1],10][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(388, 0/8) failed: Connection reset by peer (104)
+[hsw005][[40111,1],16][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(403, 0/8) failed: Connection reset by peer (104)
+[hsw005:99930] pml_ob1_sendreq.c:233 FATAL
+[hsw005][[40111,1],26][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(247, 0/8) failed: Connection reset by peer (104)
+[hsw007][[40111,1],75][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] [hsw006:63640] pml_ob1_sendreq.c:233 FATAL
+recv(198, 0/8) failed: Connection reset by peer (104)[hsw006][[40111,1],53][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(206, 0/8) failed: Connection reset by peer (104)
+
+[hsw007:40738] pml_ob1_sendreq.c:233 FATAL
+[hsw007][[40111,1],92][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(247, 0/8) failed: Connection reset by peer (104)
+[hsw007:40808] pml_ob1_sendreq.c:233 FATAL
+[hsw007:40817] pml_ob1_sendreq.c:233 FATAL
+[hsw007][[40111,1],93][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(237, 0/8) failed: Connection reset by peer (104)
+[hsw008][[40111,1],96][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(408, 0/8) failed: Connection reset by peer (104)
+[hsw008][[40111,1],116][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] [hsw007][[40111,1],70][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+connect() to 10.112.0.6 failed: Connection refused (111)
+[hsw008][[40111,1],118][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(253, 0/8) failed: Connection reset by peer (104)
+[hsw008:22063] pml_ob1_sendreq.c:233 FATAL
+[hsw008][[40111,1],122][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(118, 0/8) failed: Connection reset by peer (104)
+[hsw008:22082] pml_ob1_sendreq.c:233 FATAL
+[hsw008][[40111,1],123][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw008][[40111,1],115][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw011][[40111,1],212][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(252, 0/8) failed: Connection reset by peer (104)
+[hsw011:20679] pml_ob1_sendreq.c:233 FATAL
+[hsw011][[40111,1],210][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(385, 0/8) failed: Connection reset by peer (104)
+[hsw008][[40111,1],115][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.7 failed: Connection refused (111)
+[hsw008][[40111,1],116][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.6 failed: Connection refused (111)
+[hsw008][[40111,1],101][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(196, 0/8) failed: Connection reset by peer (104)
+[hsw008:22004] pml_ob1_sendreq.c:233 FATAL
+[hsw008][[40111,1],123][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.7 failed: Connection refused (111)
+[hsw008][[40111,1],106][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(396, 0/8) failed: Connection reset by peer (104)
+[hsw010][[40111,1],168][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] [hsw010][[40111,1],173][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(352, 0/8) failed: Connection reset by peer (104)
+[hsw010][[40111,1],188][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(64, 0/8) failed: Connection reset by peer (104)
+recv(385, 0/8) failed: Connection reset by peer (104)
+[hsw008][[40111,1],113][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw008][[40111,1],105][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.7 failed: Connection refused (111)
+[hsw008][[40111,1],123][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.7 failed: Connection refused (111)
+[hsw008][[40111,1],113][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.7 failed: Connection refused (111)
+[hsw008:22036] pml_ob1_sendreq.c:233 FATAL
+[hsw008][[40111,1],114][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(217, 0/8) failed: Connection reset by peer (104)
+[hsw008:22039] pml_ob1_sendreq.c:233 FATAL
+[hsw008][[40111,1],115][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(217, 0/8) failed: Connection reset by peer (104)
+[hsw008:22098] pml_ob1_sendreq.c:233 FATAL
+[hsw008][[40111,1],124][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(219, 0/8) failed: Connection reset by peer (104)
+[hsw011][[40111,1],218][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(372, 0/8) failed: Connection reset by peer (104)
+[hsw010:16609] pml_ob1_sendreq.c:233 FATAL
+[hsw010][[40111,1],166][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(218, 0/8) failed: Connection reset by peer (104)
+[hsw010][[40111,1],169][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.8 failed: Connection refused (111)
+[hsw010][[40111,1],188][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(138, 0/8) failed: Connection reset by peer (104)
+[hsw010:16627] pml_ob1_sendreq.c:233 FATAL
+[hsw010:16689] pml_ob1_sendreq.c:233 FATAL
+[hsw010][[40111,1],186][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(219, 0/8) failed: Connection reset by peer (104)
+[hsw010:16697] pml_ob1_sendreq.c:233 FATAL
+[hsw010:16718] pml_ob1_sendreq.c:233 FATAL
+[hsw010][[40111,1],189][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(220, 0/8) failed: Connection reset by peer (104)
+[hsw006][[40111,1],47][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(421, 0/8) failed: Connection reset by peer (104)
+[hsw006][[40111,1],37][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(399, 0/8) failed: Connection reset by peer (104)
+[hsw006][[40111,1],47][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(50, 0/8) failed: Connection reset by peer (104)
+[hsw006][[40111,1],54][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.8 failed: Connection refused (111)
+[hsw006][[40111,1],56][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw006:63842] pml_ob1_sendreq.c:233 FATAL
+[hsw006:63581] pml_ob1_sendreq.c:304 FATAL
+[hsw006:63582] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],33][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63583] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],34][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63585] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],35][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw006][[40111,1],35][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63587] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],36][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],70][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63589] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],37][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],90][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(354, 0/8) failed: Connection reset by peer (104)
+[hsw006:63591] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],38][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63593] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],39][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63595] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],40][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63597] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],41][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63599] pml_ob1_sendreq.c:233 FATAL
+[hsw006][[40111,1],42][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(191, 0/8) failed: Connection reset by peer (104)
+[hsw006:63601] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],43][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63603] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],44][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw006][[40111,1],44][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63605] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],45][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw006][[40111,1],45][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63608] pml_ob1_sendreq.c:304 FATAL
+[hsw006:63609] pml_ob1_sendreq.c:304 FATAL
+[hsw006:63611] pml_ob1_sendreq.c:233 FATAL
+[hsw006][[40111,1],48][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.7 failed: Connection refused (111)
+[hsw006][[40111,1],48][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.8 failed: Connection refused (111)
+[hsw006][[40111,1],48][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.8 failed: Connection refused (111)
+[hsw006][[40111,1],48][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006][[40111,1],48][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(108, 0/8) failed: Connection reset by peer (104)
+[hsw006:63617] pml_ob1_sendreq.c:233 FATAL
+[hsw006:63623] pml_ob1_sendreq.c:233 FATAL
+[hsw006][[40111,1],50][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(172, 0/8) failed: Connection reset by peer (104)
+[hsw006:63632] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],51][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw006][[40111,1],51][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63634] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],52][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63647] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],47][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63656] pml_ob1_sendreq.c:233 FATAL
+[hsw006][[40111,1],54][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006][[40111,1],57][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw006][[40111,1],57][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(38, 0/8) failed: Connection reset by peer (104)
+[hsw006:63667] pml_ob1_sendreq.c:233 FATAL
+[hsw006][[40111,1],59][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006][[40111,1],59][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63673] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],60][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006:63743] pml_ob1_sendreq.c:304 FATAL
+[hsw006][[40111,1],61][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw006][[40111,1],62][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.8 failed: Connection refused (111)
+[hsw006][[40111,1],56][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(126, 0/8) failed: Connection reset by peer (104)
+[hsw007:40719] pml_ob1_sendreq.c:233 FATAL
+[hsw007][[40111,1],66][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(346, 0/8) failed: Connection reset by peer (104)
+[hsw007:40721] pml_ob1_sendreq.c:233 FATAL
+[hsw007:40724] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],68][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007:40726] pml_ob1_sendreq.c:233 FATAL
+[hsw007:40728] pml_ob1_sendreq.c:233 FATAL
+[hsw007:40730] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],71][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007:40732] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],72][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],74][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],74][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw007:40740] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],76][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],76][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],76][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007:40742] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],77][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],77][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],77][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007:40746] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],79][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],80][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw007:40752] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],81][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007:40759] pml_ob1_sendreq.c:233 FATAL
+[hsw007:40767] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],83][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],83][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],83][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007:40772] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],84][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],84][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],84][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007:40785] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],86][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],87][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],87][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw007][[40111,1],87][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007:40792] pml_ob1_sendreq.c:304 FATAL
+[hsw007][[40111,1],88][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw007:40796] pml_ob1_sendreq.c:233 FATAL
+[hsw007][[40111,1],95][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],239][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw012][[40111,1],239][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] [hsw012][[40111,1],246][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(88, 0/8) failed: Connection reset by peer (104)
+recv(370, 0/8) failed: Connection reset by peer (104)
+[hsw012][[40111,1],248][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw012][[40111,1],242][btl_tcp_endpoint.c:599:mca_btl_tcp_endpoint_recv_blocking] recv(391, 0/8) failed: Connection reset by peer (104)
+[hsw012][[40111,1],240][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.6 failed: Connection refused (111)[hsw011:20737] pml_ob1_sendreq.c:304 FATAL
+[hsw011][[40111,1],192][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw011][[40111,1],192][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw011:20626] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20627] pml_ob1_sendreq.c:304 FATAL
+[hsw011][[40111,1],195][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw011][[40111,1],195][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw011:20631] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20635] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20637] pml_ob1_sendreq.c:304 FATAL
+[hsw011][[40111,1],199][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw011:20641] pml_ob1_sendreq.c:304 FATAL
+[hsw011][[40111,1],201][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw011:20643] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20645] pml_ob1_sendreq.c:304 FATAL
+[hsw011][[40111,1],203][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw011:20653] pml_ob1_sendreq.c:304 FATAL
+[hsw011][[40111,1],208][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.8 failed: Connection refused (111)
+[hsw011][[40111,1],208][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw011][[40111,1],208][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw011][[40111,1],208][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.8 failed: Connection refused (111)
+[hsw011:20660] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20664] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20670] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20682] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20686] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29626] pml_ob1_sendreq.c:304 FATAL
+[hsw011][[40111,1],214][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw012:29628] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20696] pml_ob1_sendreq.c:304 FATAL
+[hsw012][[40111,1],228][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],228][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw011][[40111,1],216][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw011][[40111,1],216][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw011][[40111,1],216][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw012:29633] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20707] pml_ob1_sendreq.c:304 FATAL
+[hsw012][[40111,1],229][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw011:20712] pml_ob1_sendreq.c:304 FATAL
+[hsw012][[40111,1],230][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],230][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],230][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.7 failed: Connection refused (111)
+[hsw012][[40111,1],230][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.7 failed: Connection refused (111)
+[hsw011][[40111,1],219][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.6 failed: Connection refused (111)
+[hsw011][[40111,1],219][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.6 failed: Connection refused (111)
+[hsw012:29637] pml_ob1_sendreq.c:304 FATAL
+[hsw011:20715] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29641] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29645] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29647] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29649] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29651] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29653] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29663] pml_ob1_sendreq.c:304 FATAL
+[hsw012][[40111,1],248][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.7 failed: Connection refused (111)
+[hsw012:29669] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29680] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29683] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29693] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29697] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29705] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29718] pml_ob1_sendreq.c:304 FATAL
+[hsw012:29727] pml_ob1_sendreq.c:304 FATAL
+[hsw012][[40111,1],253][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],253][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],254][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],254][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],254][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],255][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],255][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+
+[hsw012][[40111,1],240][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.6 failed: Connection refused (111)
+[hsw012][[40111,1],240][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.6 failed: Connection refused (111)
+[hsw012][[40111,1],240][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.112.0.5 failed: Connection refused (111)
+[hsw012][[40111,1],240][btl_tcp_endpoint.c:800:mca_btl_tcp_endpoint_complete_connect] connect() to 10.111.0.5 failed: Connection refused (111)
+[hsw005:99828] 1560 more processes have sent help message help-mpi-btl-tcp.txt / peer hung up
+[hsw005:99828] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[hsw005:99828] 18 more processes have sent help message help-mpi-btl-tcp.txt / client handshake fail

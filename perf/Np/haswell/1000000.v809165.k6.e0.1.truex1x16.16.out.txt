@@ -1,0 +1,400 @@
+[hsw005:79989] MCW rank 0 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw005:79989] MCW rank 1 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw008:07224] MCW rank 6 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw008:07224] MCW rank 7 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw012:16213] MCW rank 14 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw007:25893] MCW rank 4 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw011:07205] MCW rank 12 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw012:16213] MCW rank 15 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw007:25893] MCW rank 5 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw006:46424] MCW rank 2 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw011:07205] MCW rank 13 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw010:03036] MCW rank 10 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw006:46424] MCW rank 3 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw009:141702] MCW rank 8 bound to socket 0[core 0[hwt 0]], socket 0[core 1[hwt 0]], socket 0[core 2[hwt 0]], socket 0[core 3[hwt 0]], socket 0[core 4[hwt 0]], socket 0[core 5[hwt 0]], socket 0[core 6[hwt 0]], socket 0[core 7[hwt 0]], socket 0[core 8[hwt 0]], socket 0[core 9[hwt 0]], socket 0[core 10[hwt 0]], socket 0[core 11[hwt 0]], socket 0[core 12[hwt 0]], socket 0[core 13[hwt 0]], socket 0[core 14[hwt 0]], socket 0[core 15[hwt 0]]: [B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B][./././././././././././././././.]
+[hsw010:03036] MCW rank 11 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+[hsw009:141702] MCW rank 9 bound to socket 1[core 16[hwt 0]], socket 1[core 17[hwt 0]], socket 1[core 18[hwt 0]], socket 1[core 19[hwt 0]], socket 1[core 20[hwt 0]], socket 1[core 21[hwt 0]], socket 1[core 22[hwt 0]], socket 1[core 23[hwt 0]], socket 1[core 24[hwt 0]], socket 1[core 25[hwt 0]], socket 1[core 26[hwt 0]], socket 1[core 27[hwt 0]], socket 1[core 28[hwt 0]], socket 1[core 29[hwt 0]], socket 1[core 30[hwt 0]], socket 1[core 31[hwt 0]]: [./././././././././././././././.][B/B/B/B/B/B/B/B/B/B/B/B/B/B/B/B]
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)Argument parsing failed!
+
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+Argument parsing failed!
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+Argument parsing failed!
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+Argument parsing failed!
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: bind	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+
+	at org.apache.commons.cli.Parser.processArgs(Parser.java:343)
+	at org.apache.commons.cli.Parser.processOption(Parser.java:393)
+	at org.apache.commons.cli.Parser.parse(Parser.java:199)
+	at org.apache.commons.cli.Parser.parse(Parser.java:85)
+	at org.saliya.ndssl.Utils.parseCommandLineArguments(Utils.java:24)
+Argument parsing failed!
+	at org.saliya.ndssl.multilinearscan.mpi.Program.main(Program.java:103)
+Argument parsing failed!
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
+usage: MultilinearScan
+ -a,--alpha <arg>          Alpha max
+ -bind <arg>               Bind threads to cores
+ -cps <arg>                Cores per socket
+ -d,--delta <arg>          Delta
+ -e,--epsilon <arg>        Epsilon
+ -i,--input <arg>          Input file
+ -k,--k <arg>              Motif size
+ -mmapdir <arg>            Scratch directory to store memmory mapped
+                           files. A node local volatile storage like tmpfs
+                           is advised for this
+ -mms,--maxMsgSize <arg>   Maximum message size (#shorts)
+ -nc,--nodeCount <arg>     Node count
+ -p,--parts <arg>          Partition file
+ -tc,--threadCount <arg>   Thread count
+ -v,--vertexCount <arg>    Vertex count
