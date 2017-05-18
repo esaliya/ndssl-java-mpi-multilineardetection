@@ -359,13 +359,16 @@ public class ParallelOps {
         MappedByteBuffer dataMap;
         dataExtent *= Integer.BYTES;
         try {
+            System.out.println("+++INFO Rank: " + worldProcRank + " ext: " + dataExtent
+                            + " off: " + (dataOffset + headerExtent + readExtent)
+                            + " callCount: " + readVerticesCallCount);
             dataMap = fc.map(FileChannel.MapMode.READ_ONLY,
                     dataOffset + headerExtent + readExtent, dataExtent);
             ++readVerticesCallCount;
         } catch (Exception e){
             System.out.println("---ERROR Rank: " + worldProcRank + " ext: " + dataExtent
                     + " off: " + (dataOffset + headerExtent + readExtent)
-                    + "callCount: " + readVerticesCallCount + " " + e.getMessage());
+                    + " callCount: " + readVerticesCallCount + " " + e.getMessage());
             throw new RuntimeException(e);
         }
         for (int j = readVertex+1; j < i; ++j){
