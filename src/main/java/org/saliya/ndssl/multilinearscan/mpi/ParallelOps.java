@@ -197,7 +197,7 @@ public class ParallelOps {
 //        readBinary(outputFile, globalVertexCount);
 
         worldProcsCount = 86;
-        worldProcRank = 1;
+        worldProcRank = 85;
         simpleGraphPartitionForBinaryFiles(outputFile.toString(), globalVertexCount);
 
     }
@@ -297,10 +297,10 @@ public class ParallelOps {
             MappedByteBuffer headerMap;
             MappedByteBuffer dataMap;
 
-            int headerExtent = globalVertexCount * 2 * Integer.BYTES;
+            long headerExtent = ((long) globalVertexCount) * 2 * Integer.BYTES;
             headerMap = fc.map(FileChannel.MapMode.READ_ONLY, 0, headerExtent);
-            int dataOffset = 0;
-            int dataExtent = 0;
+            long dataOffset = 0;
+            long dataExtent = 0;
             for (int i = 0; i < globalVertexCount; ++i){
                 if (skipVertexCount == i){
                     break;
@@ -308,7 +308,7 @@ public class ParallelOps {
                 headerMap.getInt();//skip-node id
                 // skip-node's weight+neighbors
                 // +1 because we store node id as well
-                dataOffset += (headerMap.getInt()+1);
+                dataOffset += (long)(headerMap.getInt()+1);
             }
             dataOffset *= Integer.BYTES;
 
@@ -323,7 +323,7 @@ public class ParallelOps {
                 if (vertexNeighborLength[i] > maxNeighborLength){
                     maxNeighborLength = vertexNeighborLength[i];
                 }
-                dataExtent += (len +1);
+                dataExtent += (long)(len +1);
             }
             dataExtent *= Integer.BYTES;
 
