@@ -118,14 +118,14 @@ public class ParallelOps {
         String partitionMethod = "SimpleLoadBalance";
         Vertex[] vertices;
         if (Strings.isNullOrEmpty(partitionFile)){
-            vertices = simpleGraphPartition(file, vertexCount);
+            vertices = simpleGraphPartitionForBinaryFiles(file, vertexCount);
         } else {
             File f = new File(partitionFile);
             if (f.exists()) {
                 partitionMethod = "Metis";
                 vertices = metisGraphPartition(file, partitionFile, vertexCount);
             } else {
-                vertices = simpleGraphPartition(file, vertexCount);
+                vertices = simpleGraphPartitionForBinaryFiles(file, vertexCount);
             }
         }
 
