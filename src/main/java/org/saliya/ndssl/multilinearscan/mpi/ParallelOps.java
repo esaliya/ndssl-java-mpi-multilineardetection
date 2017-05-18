@@ -338,7 +338,7 @@ public class ParallelOps {
             readVertices(vertices, skipVertexCount, fc, headerExtent, dataOffset,
                     dataExtent, vertexNeighborLength, outNeighbors, readExtent, readVertex, myVertexCount);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("***ERROR: Rank: " + worldProcRank + " " + e.getMessage());
         }
         if (debug3){
             System.out.println("Rank: " + worldProcRank + " readgraph: "+ (System.currentTimeMillis() - t) + " ms");
