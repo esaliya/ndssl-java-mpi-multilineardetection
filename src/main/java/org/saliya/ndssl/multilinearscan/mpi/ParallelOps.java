@@ -197,7 +197,7 @@ public class ParallelOps {
 //        readBinary(outputFile, globalVertexCount);
 
         worldProcsCount = 86;
-        worldProcRank = 72;
+        worldProcRank = 27;
         simpleGraphPartitionForBinaryFiles(outputFile.toString(), globalVertexCount);
 
     }
@@ -338,7 +338,7 @@ public class ParallelOps {
             readVertices(vertices, skipVertexCount, fc, headerExtent, dataOffset,
                     dataExtent, vertexNeighborLength, outNeighbors, readExtent, readVertex, myVertexCount);
         } catch (IOException e) {
-            System.out.println("***ERROR: Rank: " + worldProcRank + " " + e.getMessage());
+            System.out.println("***ERROR: Rank: " + worldProcRank + " of " + worldProcsCount + " " + e.getMessage());
         }
         if (debug3){
             System.out.println("Rank: " + worldProcRank + " readgraph: "+ (System.currentTimeMillis() - t) + " ms");
