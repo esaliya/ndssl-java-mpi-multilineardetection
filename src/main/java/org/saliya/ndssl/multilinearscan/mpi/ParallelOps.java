@@ -325,7 +325,7 @@ public class ParallelOps {
                 vertexNeighborLength[i] = len-1;
 
                 runningExtent = dataExtent + (long)(len +1);
-                if (runningExtent <= Integer.MAX_VALUE){
+                if (runningExtent*Integer.BYTES <= Integer.MAX_VALUE){
                     dataExtent = runningExtent;
                 } else {
                     dataExtent *= Integer.BYTES;
