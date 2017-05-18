@@ -197,7 +197,7 @@ public class ParallelOps {
 //        readBinary(outputFile, globalVertexCount);
 
         worldProcsCount = 86;
-        worldProcRank = 85;
+        worldProcRank = 72;
         simpleGraphPartitionForBinaryFiles(outputFile.toString(), globalVertexCount);
 
     }
@@ -328,23 +328,15 @@ public class ParallelOps {
                 if (runningExtent*Integer.BYTES <= Integer.MAX_VALUE){
                     dataExtent = runningExtent;
                 } else {
-                    dataExtent *= Integer.BYTES;
-                    dataMap = fc.map(FileChannel.MapMode.READ_ONLY,
-                            dataOffset+headerExtent+readExtent, dataExtent);
-                    for (int j = readVertex+1; j < i; ++j){
-                        int vertexLabel = dataMap.getInt();
-                        double vertexWeight = dataMap.getInt();
-                        for (int k = 0; k < vertexNeighborLength[j]; ++k){
-                            outNeighbors[k] = dataMap.getInt();
-                        }
-                        vertices[j] = new Vertex(j+skipVertexCount, vertexLabel, vertexWeight, outNeighbors,
-                                vertexNeighborLength[j]);
-                    }
-                    readExtent += dataExtent*Integer.BYTES;
+                    dataExtent = readVertices(vertices, skipVertexCount, fc, headerExtent, dataOffset,
+                            dataExtent, vertexNeighborLength, outNeighbors, readExtent, readVertex, i);
+                    readExtent += dataExtent;
                     dataExtent = (long)(len +1);
                     readVertex = (i-1);
                 }
             }
+            readVertices(vertices, skipVertexCount, fc, headerExtent, dataOffset,
+                    dataExtent, vertexNeighborLength, outNeighbors, readExtent, readVertex, myVertexCount);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -359,6 +351,23 @@ public class ParallelOps {
         }
         return vertices;
 
+    }
+
+    private static long readVertices(Vertex[] vertices, int skipVertexCount, FileChannel fc, long headerExtent, long dataOffset, long dataExtent, int[] vertexNeighborLength, int[] outNeighbors, long readExtent, int readVertex, int i) throws IOException {
+        MappedByteBuffer dataMap;
+        dataExtent *= Integer.BYTES;
+        dataMap = fc.map(FileChannel.MapMode.READ_ONLY,
+                dataOffset+headerExtent+readExtent, dataExtent);
+        for (int j = readVertex+1; j < i; ++j){
+            int vertexLabel = dataMap.getInt();
+            double vertexWeight = dataMap.getInt();
+            for (int k = 0; k < vertexNeighborLength[j]; ++k){
+                outNeighbors[k] = dataMap.getInt();
+            }
+            vertices[j] = new Vertex(j+skipVertexCount, vertexLabel, vertexWeight, outNeighbors,
+                    vertexNeighborLength[j]);
+        }
+        return dataExtent;
     }
 
     private static Vertex[] simpleGraphPartition(String file, int globalVertexCount) throws MPIException {
