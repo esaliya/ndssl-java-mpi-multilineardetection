@@ -115,17 +115,23 @@ public class ParallelOps {
             System.out.println("Rank: 0 allocate vertex buffers: " + (System.currentTimeMillis() - t) + " ms");
         }
 
+        boolean isBinary = file.endsWith(".bin");
+
         String partitionMethod = "SimpleLoadBalance";
         Vertex[] vertices;
         if (Strings.isNullOrEmpty(partitionFile)){
-            vertices = simpleGraphPartitionForBinaryFiles(file, vertexCount);
+            vertices = isBinary
+                    ? simpleGraphPartitionForBinaryFiles(file, vertexCount)
+                    : simpleGraphPartition(file, vertexCount);
         } else {
             File f = new File(partitionFile);
             if (f.exists()) {
                 partitionMethod = "Metis";
                 vertices = metisGraphPartition(file, partitionFile, vertexCount);
             } else {
-                vertices = simpleGraphPartitionForBinaryFiles(file, vertexCount);
+                vertices = isBinary
+                        ? simpleGraphPartitionForBinaryFiles(file, vertexCount)
+                        : simpleGraphPartition(file, vertexCount);
             }
         }
 
@@ -353,24 +359,14 @@ public class ParallelOps {
 
     }
 
-    // todo debug
-    static int readVerticesCallCount = 0;
     private static long readVertices(Vertex[] vertices, int skipVertexCount, FileChannel fc, long headerExtent, long dataOffset, long dataExtent, int[] vertexNeighborLength, int[] outNeighbors, long readExtent, int readVertex, int i) throws IOException {
         MappedByteBuffer dataMap;
         dataExtent *= Integer.BYTES;
-        try {
-            System.out.println("+++INFO Rank: " + worldProcRank + " ext: " + dataExtent
-                            + " off: " + (dataOffset + headerExtent + readExtent)
-                            + " callCount: " + readVerticesCallCount);
-            dataMap = fc.map(FileChannel.MapMode.READ_ONLY,
-                    dataOffset + headerExtent + readExtent, dataExtent);
-            ++readVerticesCallCount;
-        } catch (Exception e){
-            System.out.println("---ERROR Rank: " + worldProcRank + " ext: " + dataExtent
-                    + " off: " + (dataOffset + headerExtent + readExtent)
-                    + " callCount: " + readVerticesCallCount + " " + e.getMessage());
-            throw new RuntimeException(e);
-        }
+//        System.out.println("+++INFO Rank: " + worldProcRank + " ext: " + dataExtent
+//                + " off: " + (dataOffset + headerExtent + readExtent));
+
+        dataMap = fc.map(FileChannel.MapMode.READ_ONLY,
+                dataOffset + headerExtent + readExtent, dataExtent);
         for (int j = readVertex+1; j < i; ++j){
             int vertexLabel = dataMap.getInt();
             double vertexWeight = dataMap.getInt();
@@ -417,8 +413,8 @@ public class ParallelOps {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (debug3 && worldProcRank == 0){
-            System.out.println("Rank: 0 readgraph: "+ (System.currentTimeMillis() - t) + " ms");
+        if (debug3){
+            System.out.println("Rank: " + worldProcRank + " readgraph: "+ (System.currentTimeMillis() - t) + " ms");
         }
 
         t = System.currentTimeMillis();
