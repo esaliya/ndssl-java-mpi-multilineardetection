@@ -313,31 +313,38 @@ public class ParallelOps {
             dataOffset *= Integer.BYTES;
 
             int[] vertexNeighborLength = new int[myVertexCount];
-            int maxNeighborLength = -1;
+            int[] outNeighbors = new int[globalVertexCount];
+            long runningExtent;
+            long readExtent = 0L;
+            int readVertex = -1;
             for (int i = 0; i < myVertexCount; ++i){
                 headerMap.getInt();// my ith vertex's node id
                 // my ith vertex's weight+neighbors
                 //+ +1 because we store node id as well
                 int len = headerMap.getInt();
                 vertexNeighborLength[i] = len-1;
-                if (vertexNeighborLength[i] > maxNeighborLength){
-                    maxNeighborLength = vertexNeighborLength[i];
-                }
-                dataExtent += (long)(len +1);
-            }
-            dataExtent *= Integer.BYTES;
 
-            dataMap = fc.map(FileChannel.MapMode.READ_ONLY, dataOffset+headerExtent, dataExtent);
-            int[] outNeighbors = new int[maxNeighborLength];
-            for (int i = 0; i < myVertexCount; ++i){
-                int vertexLabel = dataMap.getInt();
-                double vertexWeight = dataMap.getInt();
-                for (int j = 0; j < vertexNeighborLength[i]; ++j){
-                    outNeighbors[j] = dataMap.getInt();
+                runningExtent = dataExtent + (long)(len +1);
+                if (runningExtent <= Integer.MAX_VALUE){
+                    dataExtent = runningExtent;
+                } else {
+                    dataExtent *= Integer.BYTES;
+                    dataMap = fc.map(FileChannel.MapMode.READ_ONLY,
+                            dataOffset+headerExtent+readExtent, dataExtent);
+                    for (int j = readVertex+1; j < i; ++j){
+                        int vertexLabel = dataMap.getInt();
+                        double vertexWeight = dataMap.getInt();
+                        for (int k = 0; k < vertexNeighborLength[j]; ++k){
+                            outNeighbors[k] = dataMap.getInt();
+                        }
+                        vertices[j] = new Vertex(j+skipVertexCount, vertexLabel, vertexWeight, outNeighbors,
+                                vertexNeighborLength[j]);
+                    }
+                    readExtent += dataExtent*Integer.BYTES;
+                    dataExtent = (long)(len +1);
+                    readVertex = (i-1);
                 }
-                vertices[i] = new Vertex(i+skipVertexCount, vertexLabel, vertexWeight, outNeighbors, vertexNeighborLength[i]);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
