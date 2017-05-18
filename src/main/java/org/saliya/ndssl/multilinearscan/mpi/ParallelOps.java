@@ -356,8 +356,13 @@ public class ParallelOps {
     private static long readVertices(Vertex[] vertices, int skipVertexCount, FileChannel fc, long headerExtent, long dataOffset, long dataExtent, int[] vertexNeighborLength, int[] outNeighbors, long readExtent, int readVertex, int i) throws IOException {
         MappedByteBuffer dataMap;
         dataExtent *= Integer.BYTES;
-        dataMap = fc.map(FileChannel.MapMode.READ_ONLY,
-                dataOffset+headerExtent+readExtent, dataExtent);
+        try {
+            dataMap = fc.map(FileChannel.MapMode.READ_ONLY,
+                    dataOffset + headerExtent + readExtent, dataExtent);
+        } catch (Exception e){
+            System.out.println("---ERROR Rank: " + worldProcRank + " " + e.getMessage());
+            throw new RuntimeException(e);
+        }
         for (int j = readVertex+1; j < i; ++j){
             int vertexLabel = dataMap.getInt();
             double vertexWeight = dataMap.getInt();
