@@ -40,6 +40,22 @@ public class Vertex {
     public Vertex() {
 
     }
+    public Vertex(int vertexId, int vertexLabel, double weight, int[] outNeighbors, int outNeighborsLength){
+        this.vertexId = vertexId;
+        this.vertexLabel = vertexLabel;
+        this.weight = weight;
+        outrankToSendBuffer = new TreeMap<>();
+        outNeighborLabelToWorldRank = new TreeMap<>();
+        recvBuffers = new ArrayList<>();
+        message = new Message(vertexLabel);
+        recvdMessages = new ArrayList<>();
+
+        for (int i = 0; i < outNeighborsLength; ++i) {
+            outNeighborLabelToWorldRank.put(outNeighbors[i], -1);
+        }
+
+    }
+
     public Vertex(int vertexId, String vertexLine){
         String[] splits = pat.split(vertexLine);
         this.vertexId = vertexId;
@@ -47,12 +63,14 @@ public class Vertex {
         weight = Double.parseDouble(splits[1]);
         outrankToSendBuffer = new TreeMap<>();
         outNeighborLabelToWorldRank = new TreeMap<>();
-        for (int i = 2; i < splits.length; ++i){
-            outNeighborLabelToWorldRank.put(Integer.parseInt(splits[i]), -1);
-        }
         recvBuffers = new ArrayList<>();
         message = new Message(vertexLabel);
         recvdMessages = new ArrayList<>();
+
+        for (int i = 2; i < splits.length; ++i){
+            outNeighborLabelToWorldRank.put(Integer.parseInt(splits[i]), -1);
+        }
+
     }
 
     public void compute(int superStep, int iter, int[] completionVariables, TreeMap<Integer, Integer>

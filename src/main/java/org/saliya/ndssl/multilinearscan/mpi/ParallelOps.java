@@ -6,14 +6,20 @@ import mpi.MPI;
 import mpi.MPIException;
 import mpi.Request;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.*;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.text.DecimalFormat;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Saliya Ekanayake on 2/22/17.
@@ -178,6 +184,174 @@ public class ParallelOps {
         threadIdToVertexOffset[0] = 0;
         System.arraycopy(threadIdToVertexCount, 0, threadIdToVertexOffset, 1, threadCount - 1);
         Arrays.parallelPrefix(threadIdToVertexOffset, (m, n) -> m + n);
+    }
+
+    public static void main(String[] args) throws MPIException {
+        String file = args[0];
+        String name = com.google.common.io.Files.getNameWithoutExtension(file);
+        String dir = new File(file).getParent();
+        Path outputFile = Paths.get(dir, name+".bin");
+        int globalVertexCount = Integer.parseInt(args[1]);
+
+//        writeBinary(file, outputFile, globalVertexCount);
+//        readBinary(outputFile, globalVertexCount);
+
+        worldProcsCount = 86;
+        worldProcRank = 1;
+        simpleGraphPartitionForBinaryFiles(outputFile.toString(), globalVertexCount);
+
+    }
+
+    private static void readBinary(Path outputFile, int globalVertexCount) {
+        try(BufferedInputStream bis = new BufferedInputStream(
+                Files.newInputStream(outputFile, StandardOpenOption.READ))){
+            DataInputStream dis = new DataInputStream(bis);
+            for (int i = 0; i < globalVertexCount; ++i){
+                System.out.println(dis.readInt() + " " + dis.readInt());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void writeBinary(String file, Path outputFile, int globalVertexCount) {
+        int readCount = 0;
+        long t = System.currentTimeMillis();
+        int[][] numNeighbors = new int[globalVertexCount][2];
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(file));
+             BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(outputFile,
+                        StandardOpenOption.CREATE))){
+
+            DataOutputStream dos = new DataOutputStream(bos);
+            for (int i = 0; i < globalVertexCount; ++i){
+                dos.writeInt(-1);
+                dos.writeInt(-1);
+            }
+
+            String line;
+            DecimalFormat df = new DecimalFormat("#.##");
+            df.setRoundingMode(RoundingMode.FLOOR);
+            Pattern pat = Pattern.compile(" ");
+            String[] splits;
+
+            while ((line = reader.readLine()) != null){
+                if (Strings.isNullOrEmpty(line)) continue;
+
+                if (readCount%5000 == 0){
+                    System.out.println("Read: " + readCount + " " + df.format
+                            (readCount*100.0/globalVertexCount) +
+                            "% " +
+                            "lines in" +
+                            " " + (System
+                            .currentTimeMillis()
+                            - t)
+                            + " ms");
+                }
+
+                splits = pat.split(line);
+                numNeighbors[readCount][0] = Integer.parseInt(splits[0]);
+                numNeighbors[readCount][1] = splits.length - 1;
+                Stream.of(splits).forEach(i -> {
+                    try {
+                        dos.writeInt(Integer.parseInt(i));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                ++readCount;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try(BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(outputFile,StandardOpenOption
+                .WRITE))){
+            DataOutputStream dos = new DataOutputStream(bos);
+            for (int i = 0; i < globalVertexCount; ++i){
+                dos.writeInt(numNeighbors[i][0]);
+                dos.writeInt(numNeighbors[i][1]);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Vertex[] simpleGraphPartitionForBinaryFiles(String file, int globalVertexCount) throws MPIException{
+        /* Will assume vertex IDs are continuous and starts with zero
+        * Then partition these vertices uniformly across all processes
+        * Also, this assumes all vertices have out edges, otherwise we can't skip
+        * lines like here.*/
+
+        int q = globalVertexCount / worldProcsCount;
+        int r = globalVertexCount % worldProcsCount;
+        int myVertexCount = (worldProcRank < r) ? q+1: q;
+        Vertex[] vertices = new Vertex[myVertexCount];
+        int skipVertexCount = q*worldProcRank + (worldProcRank < r ? worldProcRank : r);
+
+        long t = System.currentTimeMillis();
+        try (FileChannel fc = (FileChannel) Files.newByteChannel(Paths.get(
+                file), StandardOpenOption.READ)) {
+            MappedByteBuffer headerMap;
+            MappedByteBuffer dataMap;
+
+            int headerExtent = globalVertexCount * 2 * Integer.BYTES;
+            headerMap = fc.map(FileChannel.MapMode.READ_ONLY, 0, headerExtent);
+            int dataOffset = 0;
+            int dataExtent = 0;
+            for (int i = 0; i < globalVertexCount; ++i){
+                if (skipVertexCount == i){
+                    break;
+                }
+                headerMap.getInt();//skip-node id
+                // skip-node's weight+neighbors
+                // +1 because we store node id as well
+                dataOffset += (headerMap.getInt()+1);
+            }
+            dataOffset *= Integer.BYTES;
+
+            int[] vertexNeighborLength = new int[myVertexCount];
+            int maxNeighborLength = -1;
+            for (int i = 0; i < myVertexCount; ++i){
+                headerMap.getInt();// my ith vertex's node id
+                // my ith vertex's weight+neighbors
+                //+ +1 because we store node id as well
+                int len = headerMap.getInt();
+                vertexNeighborLength[i] = len-1;
+                if (vertexNeighborLength[i] > maxNeighborLength){
+                    maxNeighborLength = vertexNeighborLength[i];
+                }
+                dataExtent += (len +1);
+            }
+            dataExtent *= Integer.BYTES;
+
+            dataMap = fc.map(FileChannel.MapMode.READ_ONLY, dataOffset+headerExtent, dataExtent);
+            int[] outNeighbors = new int[maxNeighborLength];
+            for (int i = 0; i < myVertexCount; ++i){
+                int vertexLabel = dataMap.getInt();
+                double vertexWeight = dataMap.getInt();
+                for (int j = 0; j < vertexNeighborLength[i]; ++j){
+                    outNeighbors[j] = dataMap.getInt();
+                }
+                vertices[i] = new Vertex(i+skipVertexCount, vertexLabel, vertexWeight, outNeighbors, vertexNeighborLength[i]);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (debug3){
+            System.out.println("Rank: " + worldProcRank + " readgraph: "+ (System.currentTimeMillis() - t) + " ms");
+        }
+
+        t = System.currentTimeMillis();
+        findNeighbors(globalVertexCount, vertices);
+        if (debug3 && worldProcRank == 0){
+            System.out.println("Rank: 0 findNbrs: "+ (System.currentTimeMillis() - t) + " ms");
+        }
+        return vertices;
+
     }
 
     private static Vertex[] simpleGraphPartition(String file, int globalVertexCount) throws MPIException {
