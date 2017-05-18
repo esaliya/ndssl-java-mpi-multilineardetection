@@ -360,7 +360,9 @@ public class ParallelOps {
             dataMap = fc.map(FileChannel.MapMode.READ_ONLY,
                     dataOffset + headerExtent + readExtent, dataExtent);
         } catch (Exception e){
-            System.out.println("---ERROR Rank: " + worldProcRank + " " + e.getMessage());
+            System.out.println("---ERROR Rank: " + worldProcRank + " ext: " + dataExtent
+                    + " off: " + (dataOffset + headerExtent + readExtent)
+                    + e.getMessage());
             throw new RuntimeException(e);
         }
         for (int j = readVertex+1; j < i; ++j){
