@@ -543,6 +543,7 @@ public class ParallelOps {
         }
         // DEBUG - print how many message counts and what are destined vertex labels (in order) for each rank from me
         if (debug){
+            System.out.printf("\n\n--Rank: " + worldProcRank + " msgSize=" + msgSize[0]);
             StringBuilder sb = new StringBuilder();
             sb.append("\n--Rank: ").append(worldProcRank).append('\n');
             for (Map.Entry<Integer, List<Integer>> kv : sendtoRankToMsgCountAndDestinedVertexLabels.entrySet()) {
@@ -566,6 +567,7 @@ public class ParallelOps {
         oneIntBuffer.put(0, msgSize[0]);
         worldProcsComm.allReduce(oneIntBuffer, 1, MPI.INT, MPI.MAX);
         int maxBufferSize = oneIntBuffer.get(0)+1;// +1 to send msgSize
+        System.out.println("Rank: " + worldProcRank + " maxBufferSize: " + maxBufferSize);
         {
             IntBuffer buffer = MPI.newIntBuffer(maxBufferSize);
             for (int rank = 0; rank < worldProcsCount; ++rank) {
