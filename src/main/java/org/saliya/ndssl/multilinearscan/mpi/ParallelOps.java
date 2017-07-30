@@ -58,8 +58,6 @@ public class ParallelOps {
 
     public static int msgSizeToReceive;
 
-    public static TreeMap<Integer, Request> requests;
-
     private static boolean debug = false;
     private static boolean debug2 = false;
     private static boolean debug3 = true;
@@ -630,7 +628,6 @@ public class ParallelOps {
         // END ################
 
         // ~~~~~~~~~~~~~~~~
-        requests = new TreeMap<>();
         recvfromRankToRecvBuffer = new TreeMap<>();
         recvfromRankToMsgCountAndforvertexLabels.entrySet().forEach(kv -> {
             int recvfromRank = kv.getKey();
